@@ -1,0 +1,78 @@
+
+.carousel__box {
+    display: flex;
+    color: var(--color-black);
+  }
+  
+  .carousel__title {
+    margin-left: 33px;
+    color: var(--color-black);
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 35px;
+  }
+  
+  .carousel .slide {
+    height: 694px;
+  }
+  
+  .carousel__box__item {
+    display: flex;
+    width: 900px;
+    height: 458px;
+  }
+  
+  .carousel { 
+    width: 1470px;
+    height: 740px;
+    margin: auto;
+    padding-top: 145px
+  }
+  
+  .carousel .slide {
+    padding: 0;
+    height: 548px;
+  }
+  
+  .carousel-inner {
+    top: 75px;
+    padding-left: 37px;
+  }
+  
+  .carousel__item {
+    width: 204px;
+    height: 204px;  
+    margin-right: 35px;
+    border-radius: 104px;
+  }   
+  .carousel-caption {
+    padding-top: 4px;
+    margin-right: 107px;
+  }
+  
+  div .carousel__name {
+    font-size: 28px;
+    margin-top: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .carousel__text {
+    width: 377px;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  
+  .slide .carousel-indicators {
+    bottom: 96px;
+  }
+  
+  .carousel .carousel-indicators button {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #E5E5E5 !important;
+  }
+  
+  .carousel .slide .carousel-control-prev .carousel-control-prev-icon, .carousel-control-next .carousel-control-next-icon {
+    display: none;
+  }

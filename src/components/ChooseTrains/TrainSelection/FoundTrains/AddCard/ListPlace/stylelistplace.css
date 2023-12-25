@@ -1,0 +1,36 @@
+.item__place__info_box {
+    width: 279px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 11px 29px 31px;
+}
+
+.item__place__info {
+    display: flex;
+    width: 167px;
+    justify-content: space-between;
+}
+
+.number__seats {
+    position: relative;
+    left: 105px;
+    padding-left: 20px;
+    color: #FFA800;
+    font-weight: 500;
+}  
+
+.price__number {
+    margin-top: -7px;
+    font-size: 24px;
+    font-weight: 700;  
+}
+
+.price__type__currency {
+    margin-top: -10px;
+    font-size: 30px;
+    color: var(--color-gray);
+}
+
+.price__from {
+    margin-right: 15px;
+}

@@ -1,0 +1,338 @@
+[{ "itemcard":{"traininformation":
+{
+            "name": "116С",
+            "initialstart": "Адлер →",
+            "from": "Москва →",
+            "to": "Санкт-Петербург"
+        },
+        "pathinformationfrom": {
+            "timefrom": "00:10",
+            "timeto": "09:52",
+            "cityfrom": "Москва",
+            "cityto": "Санкт-Петербург",
+            "railwaystationfrom":"Курский вокзал",
+            "railwaystationto":"Ладожский вокзал",
+            "traveltime": "9:42"
+        },
+        "pathinformationto": {
+            "timefrom":"00:10",
+            "timeto": "09:52",
+            "cityfrom": "Москва",
+            "cityto": "Санкт-Петербург",
+            "railwaystationfrom":"Курский вокзал",
+            "railwaystationto":"Ладожский вокзал",
+            "traveltime": "9:42"
+        },
+        "informationplace": [
+            {"id": 0, "type": "Сидячий", "quantity": 88, "price": 1920, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]
+            },
+            {"id": 1, "type": "Плацкарт", "quantity": 52, "price": 2530, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]},
+            {"id": 2, "type": "Купе", "quantity": 24, "price": 3820, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]},
+            {"id": 3, "type": "Люкс", "quantity": 15, "price": 4950, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]}
+        ]
+    }},
+    {"itemcard": {
+        "traininformation": {
+            "name": "020У",
+            "initialstart": "Москва →",
+            "from": null,
+            "to": "Санкт-Петербург Мегаполис"
+        },
+         "pathinformationfrom": {
+            "timefrom": "00:20",
+            "timeto": "09:52",
+            "cityfrom": "Москва",
+            "cityto": "Санкт-Петербург",
+            "railwaystationfrom":"Ленинградский вокзал",
+            "railwaystationto":"Московский вокзал",
+            "traveltime": "8:39"
+        },
+        "pathinformationto": null,
+        "informationplace": [
+            {"id": 0, "type": "Купе", "quantity": 90, "price": 3950, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]},
+            {"id": 1, "type": "Люкс", "quantity": 31, "price": 4950, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]}
+        ]
+    }},
+    {"itemcard": {
+        "traininformation": {
+            "name": "116C",
+            "initialstart": "Нижний Новгород →",
+            "from": "Москва →",
+            "to": "Санкт-Петербург Волга"
+        },
+        "pathinformationfrom": {
+            "timefrom":"00:41",
+            "timeto": "09:13",
+            "cityfrom": "Москва",
+            "cityto": "Санкт-Петербург",
+            "railwaystationfrom":"Ленинградский вокзал",
+            "railwaystationto":"Ладожский вокзал",
+            "traveltime": "8:32"
+        },
+        "pathinformationto": {
+            "timefrom":"00:10",
+            "timeto": "09:52",
+            "cityfrom": "Москва",
+            "cityto": "Санкт-Петербург",
+            "railwaystationfrom":"Курский вокзал",
+            "railwaystationto":"Ладожский вокзал",
+            "traveltime": "9:42"
+        },
+        "informationplace": [
+            {"id": 0, "type": "Плацкарт", "quantity": 52, "price": 2530, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]},
+            {"id": 1, "type": "Купе", "quantity": 24, "price": 3820, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]},
+            {"id": 2, "type": "Люкс", "quantity": 15, "price": 4950, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]}
+        ]
+    }},
+    {"itemcard": {
+        "traininformation": {
+            "name": "116С",
+            "initialstart": "Адлер →",
+            "from": "Москва →",
+            "to": "Санкт-Петербург"
+        },
+         "pathinformationfrom": {
+            "timefrom": "00:10",
+            "timeto": "09:52",
+            "cityfrom": "Москва",
+            "cityto": "Санкт-Петербург",
+            "railwaystationfrom":"Курский вокзал",
+            "railwaystationto":"Ладожский вокзал",
+            "traveltime": "9:42"
+        },
+        "pathinformationto": {
+            "timefrom":"00:10",
+            "timeto": "09:52",
+            "cityfrom": "Москва",
+            "cityto": "Санкт-Петербург",
+            "railwaystationfrom":"Курский вокзал",
+            "railwaystationto":"Ладожский вокзал",
+            "traveltime": "9:42"
+        },
+        "informationplace": [
+            {"id": 0, "type": "Сидячий", "quantity": 88, "price": 1920, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]},
+            {"id": 1, "type": "Плацкарт", "quantity": 52, "price": 2530, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]},
+            {"id": 2, "type": "Купе", "quantity": 24, "price": 3820, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]},
+            {"id": 3, "type": "Люкс", "quantity": 15, "price": 4950, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]}
+        ]
+    }},
+    {"itemcard": {
+        "traininformation": {
+            "name": "116С",
+            "initialstart": "Адлер →",
+            "from": "Москва →",
+            "to": "Санкт-Петербург"
+        },
+         "pathinformationfrom": {
+            "timefrom": "00:10",
+            "timeto": "09:52",
+            "cityfrom": "Москва",
+            "cityto": "Санкт-Петербург",
+            "railwaystationfrom":"Курский вокзал",
+            "railwaystationto":"Ладожский вокзал",
+            "traveltime": "9:42"
+        },
+        "pathinformationto": {
+            "timefrom":"00:10",
+            "timeto": "09:52",
+            "cityfrom": "Москва",
+            "cityto": "Санкт-Петербург",
+            "railwaystationfrom":"Курский вокзал",
+            "railwaystationto":"Ладожский вокзал",
+            "traveltime": "9:42"
+        },
+        "informationplace": [
+            {"id": 0, "type": "Сидячий", "quantity": 88, "price": 1920, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]},
+            {"id": 1, "type": "Плацкарт", "quantity": 52, "price": 2530, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]},
+            {"id": 2, "type": "Купе", "quantity": 24, "price": 3820, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]},
+            {"id": 3, "type": "Люкс", "quantity": 15, "price": 4950, "description": [
+                {
+                    "typeplace": "верхние",
+                    "quantity": 19,
+                    "price": 2530
+                },
+                { 
+                    "typeplace": "нижние",
+                    "quantity": 5,
+                    "price": 3530
+
+                }]}
+        ]
+    }}
+]

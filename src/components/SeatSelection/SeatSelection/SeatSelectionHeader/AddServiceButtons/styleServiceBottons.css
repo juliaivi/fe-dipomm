@@ -1,0 +1,87 @@
+.service {
+    width: 36px;
+    height: 34px;
+    margin: 15px 5px;
+    border-radius: 6px;
+    border: 1px solid var(--color-black);
+}
+
+.service__condition {
+    background: var(--bg-and-color-white) url(../../../../../img/blackSnowflake.svg) no-repeat;
+    background-position: center;
+}
+
+.service__wifi {
+    background: var(--bg-and-color-white) url(../../../../../img/blackWifi.svg) no-repeat;
+    background-position: center;
+}
+
+.service__bedding {
+    background: var(--bg-and-color-white) url(../../../../../img/blackBedding.svg) no-repeat;
+    background-position: center;
+}
+
+.service__mug {
+    background: var(--bg-and-color-white) url(../../../../../img/blackMug.svg) no-repeat;
+    background-position: center;
+}
+
+.service__condition:hover, .service__bedding:hover, .service__wifi:hover, .service__mug:hover {
+    background-color: var(--bg-color-orange);
+}
+
+.service__condition_not-active {
+    background: var(--bg-color-light-orange) url(../../../../../img/graySnowflake.svg) no-repeat;
+    background-position: center;
+    border: var(--bg-color-light-orange);
+}
+
+.service__wifi_not-active {
+    background: var(--bg-color-light-orange) url(../../../../../img/grayWifi.svg) no-repeat;
+    background-position: center;
+    border: var(--bg-color-light-orange);
+}
+
+.service__bedding_not-active {
+    background: var(--bg-color-light-orange) url(../../../../../img/grayBedding.svg) no-repeat;
+    background-position: center;
+    border: var(--bg-color-light-orange);
+}
+
+.service__mug_not-active {
+    background: var(--bg-color-light-orange) url(../../../../../img/grayMug.svg) no-repeat;
+    background-position: center;
+    border: var(--bg-color-light-orange);
+}
+
+.service__condition_active {
+    background: var(--bg-color-orange) url(../../../../../img/whiteSnowflake.svg) no-repeat;
+    background-position: center;
+    border: var(--bg-color-orange);
+}
+
+.service__wifi_active {
+    background: var(--bg-color-orange) url(../../../../../img/whiteWifi.svg) no-repeat;
+    background-position: center;
+    border: var(--bg-color-orange);
+}
+
+.service__bedding_active {
+    background: var(--bg-color-orange) url(../../../../../img/whiteBedding.svg) no-repeat;
+    background-position: center;
+    border: var(--bg-color-orange);
+}
+
+.service__mug_active {
+    background: var(--bg-color-orange) url(../../../../../img/whiteMug.svg) no-repeat;
+    background-position: center;
+    border: var(--bg-color-orange);
+}
+
+/* .service__list__buttons .service__tooltip {
+    background: var(--bg-fons) !important;
+}
+
+#tooltip-bottom {
+    background: var(--bg-fons) !important;
+} */

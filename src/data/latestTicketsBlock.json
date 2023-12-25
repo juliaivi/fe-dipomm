@@ -1,0 +1,26 @@
+[ { "latestTickets": [
+    {
+        "cityfrom": "Санкт-Петербург",
+        "cityto": "Самара",
+        "stationfrom": "Курский вокзал",
+        "stationto": "Московский вокзал",
+        "ticketprice": "2500"       
+    },
+    {
+        "cityfrom": "Москва",
+        "cityto": "Казань",
+        "stationfrom": "Курский вокзал",
+        "stationto": "Московский вокзал",
+        "ticketprice": "3500"       
+    },
+    {
+        "cityfrom": "Казань",
+        "cityto": "Нижний Новгород",
+        "stationfrom": "Курский вокзал",
+        "stationto": "Московский вокзал",
+        "ticketprice": "3800"       
+    }
+
+]}
+]
+
