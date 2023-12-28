@@ -3,6 +3,7 @@ import arroWrigth from '../../../../../img/arrowrigth.svg';
 import littleTrain from '../../../../../img/littleTrain.svg';
 import clock from '../../../../../img/clock.svg';
 import { useState } from 'react';
+// import AddBtnType from './AddBtnType/AddBtnType';
 import AddBtnType from './AddBtnType/AddBtnType';
 
 export default function AddHeaderTrainCard() {

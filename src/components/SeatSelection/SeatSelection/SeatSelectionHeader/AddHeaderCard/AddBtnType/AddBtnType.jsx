@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { SvgSelector } from "../SvgSelector/SvgSelector";
-import AddVagonInfoDetailed from "../../AddVagonInfoDetailed/AddVagonInfoDetailed";
+import AddVagonInfo from "../../AddVagonInfo/AddVagonInfo";
 
 export default function AddBtnType() {
     const [btnSteat, setBtnSteat] = useState({
@@ -13,17 +13,17 @@ export default function AddBtnType() {
         {
             type: 'reserved-seat',
             text: 'Плацкарт',
-            id: 1
+            id: 2
          },
          {
             type: 'coupe',
             text: 'Купе',
-            id: 1
+            id: 3
          },
          {
             type: 'lux',
             text: 'Люкс',
-            id: 1
+            id: 4
          },
     ]
     })
@@ -46,8 +46,8 @@ export default function AddBtnType() {
             <div className='type__vagon__items'>
                 {btnSteat.objects.map((el,index) => {
                    return( 
-                   <>   <div>
-                        <button key={index} className={toggleActiveState(index)} onClick={(e) => {toggleActive(e,index)}}>
+                   <>   <div key={el.id}>
+                        <button  className={toggleActiveState(index)} onClick={(e) => {toggleActive(e,index)}}>
                             <SvgSelector type={el.type}/>
                             <div className="type__vagon__text">{el.text}</div>
                         </button>
@@ -56,10 +56,10 @@ export default function AddBtnType() {
                     </>)
                 })}
 
-                {(btnSteat.activeObject?.type === 'sedentary' && btnSteat.activeObject !== null) && <AddVagonInfoDetailed type={'sedentary'} />}
-                {(btnSteat.activeObject?.type === 'reserved-seat' && btnSteat.activeObject !== null) && <AddVagonInfoDetailed type={'reserved-seat'} />}
-                {(btnSteat.activeObject?.type === 'coupe'&& btnSteat.activeObject !== null) && <AddVagonInfoDetailed type={'coupe'} />}
-                {(btnSteat.activeObject?.type === 'lux' && btnSteat.activeObject !== null) && <AddVagonInfoDetailed type={'lux'} />}
+                {(btnSteat.activeObject?.type === 'sedentary' && btnSteat.activeObject !== null) && <AddVagonInfo type={'sedentary'} />}
+                {(btnSteat.activeObject?.type === 'reserved-seat' && btnSteat.activeObject !== null) && <AddVagonInfo type={'reserved-seat'} />}
+                {(btnSteat.activeObject?.type === 'coupe'&& btnSteat.activeObject !== null) && <AddVagonInfo type={'coupe'} />}
+                {(btnSteat.activeObject?.type === 'lux' && btnSteat.activeObject !== null) && <AddVagonInfo type={'lux'} />}
             </div>
         </>
     )

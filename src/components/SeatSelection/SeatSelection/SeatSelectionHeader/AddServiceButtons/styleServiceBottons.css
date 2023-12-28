@@ -21,7 +21,7 @@
     background-position: center;
 }
 
-.service__mug {
+.service__food {
     background: var(--bg-and-color-white) url(../../../../../img/blackMug.svg) no-repeat;
     background-position: center;
 }
@@ -48,7 +48,7 @@
     border: var(--bg-color-light-orange);
 }
 
-.service__mug_not-active {
+.service__food_not-active {
     background: var(--bg-color-light-orange) url(../../../../../img/grayMug.svg) no-repeat;
     background-position: center;
     border: var(--bg-color-light-orange);
@@ -72,7 +72,7 @@
     border: var(--bg-color-orange);
 }
 
-.service__mug_active {
+.service__food_active {
     background: var(--bg-color-orange) url(../../../../../img/whiteMug.svg) no-repeat;
     background-position: center;
     border: var(--bg-color-orange);

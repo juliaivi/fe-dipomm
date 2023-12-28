@@ -1,0 +1,14 @@
+.vagon__places__list_lux {
+    background: url(../../../../../../img/luxSeatType1.jpg) no-repeat;
+    background-position: center;
+}
+
+.vagon__places__list_reserved-seat {
+    background: url(../../../../../../img/reservedSeatType1.jpg) no-repeat;
+    background-position: center;
+}
+
+.vagon__places__list_sedentary {
+    background: url(../../../../../../img/sedentarySeatType1.jpg) no-repeat;
+    background-position: center;
+}
