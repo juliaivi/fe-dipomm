@@ -22,7 +22,7 @@
     width: 100%;
     height: 321px;
     margin-top: 111px !important;
-    margin-left: 216px !important;
+    /* margin-left: 216px !important; */
     margin: auto;
     padding: 25px 21px 59px 43px;
     background: rgba(41, 41, 41, 0.80) !important;

@@ -65,12 +65,16 @@ table {
   --bg-color-light-gray-cart: #E4E0E9;
   --bg-fons:#F7F5F9;
   --bg-color-ligth-grey-type-tickets:#F7F6F6;
+  --bg-color-error:#f7a48a ;
+  --bg-color-light_green: #B2F6A1;
+  --bg-color-ligth-grey-type:#F9F9F9;
+  --bg-color-ligth-grey-successful-order:#F4F3F6;
 }
 
 
 
 
-/*.....................*/
+/*.....................#FF3D00*/
 
 html {
   box-sizing: border-box;

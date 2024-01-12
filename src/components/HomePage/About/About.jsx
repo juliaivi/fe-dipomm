@@ -1,9 +1,10 @@
 import './about.css';
 
 export default function About() {
+
     return(
         <>
-            <section className="about">
+            <section className="about" id="about">
                 <h2 className="about__title">О нас</h2>
                 <div className="paragraphs">
                     <p className="paragraph">

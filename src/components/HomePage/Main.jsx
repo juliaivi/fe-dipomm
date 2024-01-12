@@ -13,6 +13,3 @@ export default function Main() {
         </main>
     )
 }
-
-// border: 1px solid;
-//361 border-radius: 78px;

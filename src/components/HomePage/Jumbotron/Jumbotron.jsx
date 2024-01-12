@@ -2,11 +2,18 @@ import {  useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './jumbotron.css';
-
+import { useDispatch, useSelector } from 'react-redux';
 import SearchCity from './SearchStations/SearchStations';
+import { useNavigate } from 'react-router-dom';
+
+import { trainsListRequest, departureDay,citiesItemThere, returnDay, citiesItemTo } from '../../../redux/slice/trainSlice';
 
 export default function Jumbotron() {
+    let {citiesFromList,  cityFrom, cityTo, cityFromId, loadingCitiesFrom, errorCitiesFrom, citiesToList, cityToId} = useSelector(state => state.train);
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    // useNavigate Перейти на предыдущую или следующую страницы Перенаправить пользователя на определенный URL-адрес
     //дата
     const [showCalendarHere, setShowCalendarHere] = useState(false);//показывать 1
     const [showCalendarBack, setShowCalendarBack] = useState(false);//показывать 2
@@ -19,22 +26,23 @@ export default function Jumbotron() {
     const [dateEnd, setDateEnd] = useState(null);
     let valid = false;
     
-    //выбор даты - начало
+
     const onChange = (value) => { //toLocaleDateString() возвращает строку с языкозависимым представлением части с датой в этой дате
         const time = value.toLocaleDateString('en-ca'); //ту дату которую передали из календаря
         const start = valueStart.toLocaleDateString('en-ca');//текущая дата
         if (value > valueStart || (new Date(time).getTime() === new Date(start).getTime())) {//getTime()экземпляров Dateвозвращает количество миллисекунд для этой даты с эпохи 
             setDateStart(time);
             setDateHere(dateToString(value)); //dateToString -Преобразует объект даты в строку в соответствии с заданным пользователем форматом
+            dispatch(departureDay(dateToString(value)));
             setShowCalendarHere(false);// закрыть календарь
         }
     }
 
-     //выбор даты - конец
     const onChangeBack = (value) => {
         if (value > new Date(dateStart)) {
             setDateEnd(value.toLocaleDateString('en-ca'));
             setDateBack(dateToString(value));
+            dispatch(returnDay(dateToString(value)));
             setShowCalendarBack(false);// закрыть календарь
         }
     }
@@ -48,21 +56,42 @@ export default function Jumbotron() {
 
         return result.replace(/[,%]/g,''); //находит и заменяет символы
     } 
+    
+    // if (cityFrom !== '' && cityTo !== '' && dateStart !== null && dateEnd !== null) {
+    //     valid = true
+    // }
 
     // создается объект поиска с параметрами ДОПИСАТЬ
-    const lookTickets = () => {
-       
+    const lookTickets = (e) => {
+        if (cityFrom !== '' && cityTo !== '' && dateStart !== null && dateEnd !== null) {
+            valid = true
+        }
+      
+        const form = {
+            'from_city_id': cityFromId,
+            'to_city_id': cityToId,
+            'date_start': dateStart,
+            'date_end': dateEnd,
+            'sort': 'date',
+            'limit': 5,
+            'offset': 0
+          }
+  
+        dispatch(trainsListRequest(form));
+        navigate('/trains')
     }
 
-// поменяться местами
-    // const swapPlaces = () => {
-    //     let change;
-    //     if (cityFrom !== '' && cityTo !== '') {
-    //         change = cityFrom;
-    //         setCityFrom(cityTo);
-    //         setCityTo(change);
-    //     }
-    // }
+   const swapCities = (e) => {
+    e.preventDefault(); 
+    let changeCity = null;
+    if (cityFrom !== '' && cityTo !== '') {
+        changeCity = cityFrom;
+        console.log(changeCity);
+        dispatch(citiesItemThere(cityTo));
+        dispatch(citiesItemTo(changeCity));
+    }
+    console.log(cityFrom, cityTo );
+   }
 
     return (
         <section className="jumbotron">
@@ -79,11 +108,11 @@ export default function Jumbotron() {
                     <div className='direction jumbotron__direction'>
                         <p className='form__title'>Направление</p>
                         <div className='from__direction'>
-                            <SearchCity title={'Откуда'}/>
+                            <SearchCity title={'Откуда'} listcites={citiesFromList}/>
                  
-                            <button className='button btn_reverse'> </button> 
+                            <button className='button btn_reverse' onClick={(e) =>swapCities(e)}> </button> 
         
-                            <SearchCity title={'Куда'}/>
+                            <SearchCity title={'Куда'} listcites={citiesToList}/>
                         </div>
                     </div>
 
@@ -113,7 +142,8 @@ export default function Jumbotron() {
                         </div>
                     </div>
                     </div>
-                    <button className='button button-find' onClick={lookTickets} disabled={valid ? false : true}>Найти билеты</button>
+
+                    <button className={`button button-find ${valid ? '' : 'button-find-disabled'}`} disabled={valid === true ? false : true} onClick={(e) => lookTickets(e)} >Найти билеты</button>
                 </form>
                 </div>
                 </div>

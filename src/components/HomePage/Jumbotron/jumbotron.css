@@ -145,8 +145,8 @@ input:focus {
 input {
   outline:none;
 }
-  
-.form__order_direction .btn_reverse {
+
+.from__direction .btn_reverse {
   width: 24px;
   height: 24px;
   margin: auto 6px;
@@ -154,6 +154,13 @@ input {
   background-repeat: no-repeat;
   background-position: center; 
   border: none;
+}
+
+.from__direction .btn_reverse:hover {
+  width: 24px;
+  height: 24px;
+  background: url(../../../img/reload_arrows_active.svg);
+  background-repeat: no-repeat;
 }
 
 .button-find {
@@ -210,4 +217,10 @@ input {
 
 .react-calendar__tile--rangeBothEnds{
   background-color: var(--bg-color-orange) !important;
+}
+
+.button-find-disabled:disabled {
+  color: var(--bg-and-color-white);
+  background: var(--color-gray);
+  border: 1px solid var(--color-gray);
 }

@@ -1,0 +1,8 @@
+.passengers__details__box {
+    display: flex;
+    width: 1470px;
+    justify-content: space-between;
+    margin: auto;
+    padding-top: 95px;
+    padding-left: 42px;
+}

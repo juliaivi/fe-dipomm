@@ -31,7 +31,7 @@
     height: 37px;
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     padding: 0px 18px 0px 33px;
     background: var(--bg-color-orange);
 }
@@ -50,3 +50,8 @@
     margin: auto 0;
 }
 
+.seat__selection__to .choose__another__train {
+    justify-content: end;
+    padding-top: 12px;
+    padding-right: 19px;
+}

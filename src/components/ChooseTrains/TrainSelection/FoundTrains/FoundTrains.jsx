@@ -5,6 +5,7 @@ import { useState } from 'react';
 import AddCardElement from './AddCard/AddCardElement.jsx';
 
 import Pagination from '../../Pagination/Pagination.jsx';
+import data from '../../../../data/datalistplace.json'
 
 export default function FoundTrains () {
     const [selected, setSelected] = useState("времени");
@@ -24,8 +25,10 @@ export default function FoundTrains () {
                         <ShowBy />      
                 </div>
             </div>
-
-            <AddCardElement />
+            {data.map((el, index) => (
+                <AddCardElement el={el} index={index}/>
+            ))}
+            
 
             <ul className='pagination'>
                 <Pagination />

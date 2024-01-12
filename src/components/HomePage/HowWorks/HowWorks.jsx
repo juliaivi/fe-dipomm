@@ -6,7 +6,7 @@ import './howWorks.css';
 export default function HowWorks() {
     return (
         <>
-            <section className="how__works">
+            <section className="how__works" id='howworks'>
                 <div className='how__works_box'>
                     <div className='how__works__header'>
                         <h2 className='how__works__title'>Как это работает</h2>

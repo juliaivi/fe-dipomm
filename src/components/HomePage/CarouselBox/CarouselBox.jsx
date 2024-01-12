@@ -6,7 +6,7 @@ import './carouselBox.css';
 export default function CarouselBox() {
     return (
         <>
-            <section className="carousel">
+            <section className="carousel" id='reviews'>
                 <h2 className="carousel__title">Отзывы</h2>
                 <Slider />
             </section>

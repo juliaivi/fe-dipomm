@@ -10,10 +10,12 @@ export default function SeatSelectionCoupe() {
                     <div className='seat__selection__there'>
                         <SeatSelectionHeader />
                     </div>
-                    <div className='seat__selection__to'></div>
+                    <div className='seat__selection__to'>
+                        <SeatSelectionHeader />
+                    </div>
                 </form>
                 
-                <button>Далее</button>
+                <button className='next__btn'>Далее</button>
                 
             </section>
         </>

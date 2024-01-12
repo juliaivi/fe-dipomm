@@ -160,26 +160,7 @@ export default function SelectionMenu () {
                         </div>
 
                         <AccordionInfo />
-
-                        {/* <div  className='there__info'>
-                            <div className='there__info__box'>
-                                <img src={arrowRight} className='there__info__img' alt='arrowRight'></img>
-                                <div className='there__info__title'>Туда</div>
-                            </div>
-                            <div  className={checkedHere ? 'label__checkbox__plus' : 'checkbox__minus'} 
-                            onClick={(e)=> {checkedHere ? setCheckedHere(false) : setCheckedHere(true) }} ></div>  
-                        </div>
-
-
-                        <div className='back__info'>
-                            <div className='back__info__box'>
-                                <img src={arrowLeft} className='back__info__img' alt='arrowLeft'></img>
-                                <div className='there__info__title'>Обратно</div>
-                            </div>
-                            <div  className={checkedBack ? 'label__checkbox__plus' : 'checkbox__minus'} 
-                            onClick={(e)=> {checkedBack ? setCheckedBack(false) : setCheckedBack(true) }} ></div>
-                          
-                        </div> */}
+                        
                     </form>
                 </div>
                 <div className="sidebar sidebar__info">

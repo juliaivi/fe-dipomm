@@ -85,33 +85,21 @@
     text-align: end;
 }
 
-/* .choose__seat {
-    width: 100%;
-    height: 137px;
-    margin-bottom: 84px;
-    background: url(../../../../../img/choiseCoupe.jpg) no-repeat;
-    background-position: center;
-} */
-
-
-
 .vagon__places__list {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+
     width: 100%;
     height: 137px;
     margin-bottom: 84px;
-    padding-left: 151px;
+    padding-left: 164px;
     padding-top: 24px;   
     padding-bottom: 47px;
-    background: url(../../../../../img/luxSeatType1.jpg) no-repeat;
+    /* background: url(../../../../../img/luxSeatType1.jpg) no-repeat; */
     background-position: center;
+    padding-top: 72px;
     padding-right: 91px;
 }
-
-/* .vagon__places__list_reserved-seat {
-    padding-left: 164px;
-} */
 
 .vagon__places__list_coupe .first_row .place__number,
 .vagon__places__list_coupe .second__row .place__number {
@@ -121,31 +109,21 @@
 .place__number {
     width: 27px;
     height: 30px;  
-    padding-top: 7px;
-    /* margin-right: 34px; */
     text-align: center;
-  
     border: 1px solid;
-    /* margin-right: 33px; */
 }
 
 .place_item {
     display: flex;
     justify-content: space-between;
     width: 87px;
-    /* margin-right: 5px; */
     margin-right: 2px;
     margin-left: 1px;
 }
 
 .first_row, .second__row {
     display: flex;
-    /* width: 90px; */
 }
-/* 
-.first_row { */
-    /* justify-content: space-between;
-} */
 
 .first_row:first-child {
     margin-left: 0 !important;
@@ -158,9 +136,14 @@
 }
 
 .place_item_free {
-    background: var(--bg-and-color-white);
+    background: var(--color-light-gray);
     color: var(--color-black);
-    border: 1px solid var(--bg-and-color-white);
+    border: 1px solid var(--color-light-gray);
+    cursor: pointer;
+}
+
+.place_item_free-active {
+    border: 1px solid var(--bg-color-orange);
 }
 
 .place_item_free:hover {
@@ -173,195 +156,426 @@
     margin-right: -17px; */
 }
 
-.vagon__places__list_lux .first_row .place__number_3 {
-    margin-left: 34px;
-    margin-right: 3x;
-  
+.vagon__places__list_lux {
+    background: url(../../../../../img/luxSeatType1.jpg) no-repeat;
+    background-position: center;
 }
 
-.vagon__places__list_lux .first_row .place__number_4, 
-.vagon__places__list_lux .first_row .place__number_6,
-.vagon__places__list_lux .first_row .place__number_14, 
-.vagon__places__list_lux .first_row .place__number_16 {
-    margin-right: 33px;
-    margin-left: 3px;
+.vagon__places__list_reserved-seat {
+    background: url(../../../../../img/reservedSeatType1.jpg) no-repeat;
+    background-position: center;
 }
 
-.vagon__places__list_lux .first_row .place__number_7 {
-    margin-right: 18px;
-
+.vagon__places__list_sedentary {
+    background: url(../../../../../img/sedentarySeatType1.jpg) no-repeat;
+    background-position: center;
 }
 
-.vagon__places__list_lux .first_row .place__number_8 {
-    margin-left: -15px;
-    margin-right: 32px;
-     
+.vagon__places__list_coupe {
+    background: url(../../../../../img/luxSeatType1.jpg) no-repeat;
+    background-position: center;
 }
-
-.vagon__places__list_lux .first_row .place__number_9 {
-    margin-right: 30px;
-}
-
-.vagon__places__list_lux .first_row .place__number_10 {
-    margin-left: -27px; 
-    margin-right: 33px;
-}
-
-.vagon__places__list_lux .first_row .place__number_12 {
-    margin-left: 3px;
-    margin-right: 31px;
-}
-
-/* .place__number_14, .place__number_16 {
-    margin-left: 3px;
-    margin-right: 33px;
+/* .vagon__places__list_coupe .vagon__places__list .place__number {
+    height:28px;
 } */
 
-/* .place__number_16 {
-    margin-left: 33px;
-    margin-right: 3px;
+/* .vagon__places__list_lux .vagon__places__list .place__number_2 {
+    left: 151px;
 } */
-.vagon__places__list_coupe .first_row .place__number_4,
-.vagon__places__list_coupe .second__row .place__number_3,
-.vagon__places__list_reserved-seat .first_row .place__number_4,
-.vagon__places__list_reserved-seat .second__row .place__number_3 {
-    margin-left: 34px;
-    margin-right: 3px;
+
+/* .vagon__places__list_lux .vagon__places__list .place__number_1 {
+    left: 151px;
+} */
+
+.vagon__places__list_lux .vagon__places__list .place__number {
+    /* left: 151px; */
+    bottom: 53px;
+    height: 59px;
 }
 
-.vagon__places__list_coupe .first_row .place__number_8,
-.vagon__places__list_coupe .second__row .place__number_7,
-.vagon__places__list_reserved-seat .first_row .place__number_8,
-.vagon__places__list_reserved-seat .second__row .place__number_7  {
-    margin-left: 32px;
-    margin-right: 3px;
-}
-.vagon__places__list_coupe .first_row .place__number_12,
-.vagon__places__list_coupe .second__row .place__number_11,
-.vagon__places__list_reserved-seat .first_row .place__number_12,
-.vagon__places__list_reserved-seat .second__row .place__number_11 {
-    margin-left: 33px;
-    margin-right: 3px;
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_2,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_1,
+.vagon__places__list_coupe .vagon__places__list .place__number_2,
+.vagon__places__list_coupe .vagon__places__list .place__number_1,
+.vagon__places__list_lux .vagon__places__list .place__number_1  {
+    right: 780px;
 }
 
-.vagon__places__list_coupe .first_row .place__number_16,
-.vagon__places__list_coupe .second__row .place__number_15,
-.vagon__places__list_reserved-seat .first_row .place__number_16,
-.vagon__places__list_reserved-seat .second__row .place__number_15 {
-    margin-left: 32px;
-    margin-right: 3px;
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_4,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_3,
+.vagon__places__list_coupe .vagon__places__list .place__number_4,
+.vagon__places__list_coupe .vagon__places__list .place__number_3,
+.vagon__places__list_lux .vagon__places__list .place__number_2 {
+    right: 719px;
 }
 
-.vagon__places__list_coupe .first_row .place__number_20,
-.vagon__places__list_coupe .second__row .place__number_19,
-.vagon__places__list_reserved-seat .first_row .place__number_20,
-.vagon__places__list_reserved-seat .second__row .place__number_19 {
-    margin-left: 33px;
-    margin-right: 3px;
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_6,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_5,
+.vagon__places__list_coupe .vagon__places__list .place__number_6,
+.vagon__places__list_coupe .vagon__places__list .place__number_5,
+.vagon__places__list_lux .vagon__places__list .place__number_3 {
+    right: 689px;
 }
 
-.vagon__places__list_coupe .first_row .place__number_24,
-.vagon__places__list_coupe .second__row .place__number_23,
-.vagon__places__list_reserved-seat .first_row .place__number_24,
-.vagon__places__list_reserved-seat .second__row .place__number_23 {
-    margin-left: 32px;
-    margin-right: 3px;
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_8,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_7,
+.vagon__places__list_coupe .vagon__places__list .place__number_8,
+.vagon__places__list_coupe .vagon__places__list .place__number_7,
+.vagon__places__list_lux .vagon__places__list .place__number_4 {
+    right: 631px;
 }
 
-.vagon__places__list_coupe .first_row .place__number_28,
-.vagon__places__list_coupe .second__row .place__number_27,
-.vagon__places__list_reserved-seat .first_row .place__number_28,
-.vagon__places__list_reserved-seat .second__row .place__number_27 {
-    margin-left: 33px;
-    margin-right: 3px;
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_10,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_9,
+.vagon__places__list_coupe .vagon__places__list .place__number_10,
+.vagon__places__list_coupe .vagon__places__list .place__number_9,
+.vagon__places__list_lux .vagon__places__list .place__number_5 {
+    right: 601px;
 }
 
-.vagon__places__list_coupe .first_row .place__number_32,
-.vagon__places__list_coupe .second__row .place__number_31,
-.vagon__places__list_reserved-seat .first_row .place__number_32,
-.vagon__places__list_reserved-seat .second__row .place__number_31 {
-    margin-left: 32px;
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_12,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_11,
+.vagon__places__list_coupe .vagon__places__list .place__number_12,
+.vagon__places__list_coupe .vagon__places__list .place__number_11,
+.vagon__places__list_lux .vagon__places__list .place__number_6 {
+    right: 540px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_14,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_13,
+.vagon__places__list_coupe .vagon__places__list .place__number_14,
+.vagon__places__list_coupe .vagon__places__list .place__number_13,
+.vagon__places__list_lux .vagon__places__list .place__number_7 {
+    right: 511px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_16,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_15,
+.vagon__places__list_coupe .vagon__places__list .place__number_16,
+.vagon__places__list_coupe .vagon__places__list .place__number_15,
+.vagon__places__list_lux .vagon__places__list .place__number_8 {
+    right: 451px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_18,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_17,
+.vagon__places__list_coupe .vagon__places__list .place__number_18,
+.vagon__places__list_coupe .vagon__places__list .place__number_17,
+.vagon__places__list_lux .vagon__places__list .place__number_9 {
+    right: 421px;
+}
+
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_20,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_19,
+.vagon__places__list_coupe .vagon__places__list .place__number_20,
+.vagon__places__list_coupe .vagon__places__list .place__number_19,
+.vagon__places__list_lux .vagon__places__list .place__number_10 {
+    right: 361px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_22,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_21,
+.vagon__places__list_coupe .vagon__places__list .place__number_22,
+.vagon__places__list_coupe .vagon__places__list .place__number_21,
+.vagon__places__list_lux .vagon__places__list .place__number_11 {
+    right: 332px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_24,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_23,
+.vagon__places__list_coupe .vagon__places__list .place__number_24,
+.vagon__places__list_coupe .vagon__places__list .place__number_23,
+.vagon__places__list_lux .vagon__places__list .place__number_12 {
+    right: 273px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_26,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_25,
+.vagon__places__list_coupe .vagon__places__list .place__number_26,
+.vagon__places__list_coupe .vagon__places__list .place__number_25,
+.vagon__places__list_lux .vagon__places__list .place__number_13 {
+    right: 243px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_28,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_27,
+.vagon__places__list_coupe .vagon__places__list .place__number_28,
+.vagon__places__list_coupe .vagon__places__list .place__number_27,
+.vagon__places__list_lux .vagon__places__list .place__number_14 {
+    right: 183px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_30,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_29,
+.vagon__places__list_coupe .vagon__places__list .place__number_30,
+.vagon__places__list_coupe .vagon__places__list .place__number_29,
+.vagon__places__list_lux .vagon__places__list .place__number_15 {
+    right: 153px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_32,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_31,
+.vagon__places__list_coupe .vagon__places__list .place__number_32,
+.vagon__places__list_coupe .vagon__places__list .place__number_31,
+.vagon__places__list_lux .vagon__places__list .place__number_16 {
+    right: 94px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_32,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_30,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_28,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_26,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_24,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_22,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_20,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_18,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_16,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_14,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_12,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_10,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_8,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_6,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_4,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_2,
+.vagon__places__list_coupe .vagon__places__list .place__number_32,
+.vagon__places__list_coupe .vagon__places__list .place__number_30,
+.vagon__places__list_coupe .vagon__places__list .place__number_28,
+.vagon__places__list_coupe .vagon__places__list .place__number_26,
+.vagon__places__list_coupe .vagon__places__list .place__number_24,
+.vagon__places__list_coupe .vagon__places__list .place__number_22,
+.vagon__places__list_coupe .vagon__places__list .place__number_20,
+.vagon__places__list_coupe .vagon__places__list .place__number_18,
+.vagon__places__list_coupe .vagon__places__list .place__number_16,
+.vagon__places__list_coupe .vagon__places__list .place__number_14,
+.vagon__places__list_coupe .vagon__places__list .place__number_12,
+.vagon__places__list_coupe .vagon__places__list .place__number_10,
+.vagon__places__list_coupe .vagon__places__list .place__number_8,
+.vagon__places__list_coupe .vagon__places__list .place__number_6,
+.vagon__places__list_coupe .vagon__places__list .place__number_4,
+.vagon__places__list_coupe .vagon__places__list .place__number_2 {
+    bottom: 82px;
+}
+
+
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_31,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_29,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_27,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_25,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_23,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_21,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_19,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_17,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_15,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_13,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_11,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_9,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_7,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_5,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_3,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_1,
+.vagon__places__list_coupe .vagon__places__list .place__number_31,
+.vagon__places__list_coupe .vagon__places__list .place__number_29,
+.vagon__places__list_coupe .vagon__places__list .place__number_27,
+.vagon__places__list_coupe .vagon__places__list .place__number_25,
+.vagon__places__list_coupe .vagon__places__list .place__number_23,
+.vagon__places__list_coupe .vagon__places__list .place__number_21,
+.vagon__places__list_coupe .vagon__places__list .place__number_19,
+.vagon__places__list_coupe .vagon__places__list .place__number_17,
+.vagon__places__list_coupe .vagon__places__list .place__number_15,
+.vagon__places__list_coupe .vagon__places__list .place__number_13,
+.vagon__places__list_coupe .vagon__places__list .place__number_11,
+.vagon__places__list_coupe .vagon__places__list .place__number_9,
+.vagon__places__list_coupe .vagon__places__list .place__number_7,
+.vagon__places__list_coupe .vagon__places__list .place__number_5,
+.vagon__places__list_coupe .vagon__places__list .place__number_3,
+.vagon__places__list_coupe .vagon__places__list .place__number_1{
+    bottom: 52px;
+}
+
+
+
+
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_33 {
+    right: 764px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_34 {
+    right: 719px;
+    width: 45px !important;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_35 {
+    right: 673px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_36 {
+    right: 630px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_37 {
+    right: 584px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_38 {
+    right: 541px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_39 {
+    right: 494px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_40 {
+    right: 451px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_41 {
+    right: 405px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_42 {
+    right: 362px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_43 {
+    right: 316px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_44 {
+    right: 273px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_45 {
+    right: 226px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_46 {
+    right: 183px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_47 {
+    right: 137px;
+}
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_48 {
+    right: 94px;
+}
+
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_48, 
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_47, 
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_46, 
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_45,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_44, 
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_43,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_42, 
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_41, 
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_40,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_39,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_38,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_37,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_36,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_35,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_34,
+.vagon__places__list_reserved-seat .vagon__places__list .place__number_33 {
+    width: 43px;
+    height: 24px;  
+    bottom: 4px; 
+}
+
+
+
+.vagon__places__list_sedentary .vagon__places__list .place__number  {
+    /* position: absolute; */
+    margin-right: 20px;
+    margin-bottom: 3px;
+    width: 24px; 
+    height: 18px;
 }
 
 .place__number  {
-    height: 32px;
+    position: absolute;
 }
 
 
-.vagon__places__list_reserved-seat .third__row {
-    display: flex;
+.vagon__places__list {
+    position: relative;
 }
 
-.vagon__places__list_reserved-seat .third__row .place__number {
-    width: 44px;
-    height: 26px;
-    margin-top: 19px;
+.place__number_31, .place__number_29, .place__number_27, .place__number_25, .place__number_23, .place__number_21, .place__number_19, .place__number_17, .place__number_15, .place__number_13, .place__number_11, .place__number_9, .place__number_7, .place__number_5, .place__number_3, .place__number_1 {
+    bottom: 22px;
 }
 
-/* .vagon__places__list_reserved-seat .third__row .place__number_34,
-.vagon__places__list_reserved-seat .third__row .place__number_36,
-.vagon__places__list_reserved-seat .third__row .place__number_38,
-.vagon__places__list_reserved-seat .third__row .place__number_40,*/
-/* .vagon__places__list_reserved-seat .third__row .place__number_42 {
-    margin-right: 1px;
-}  */
-
-.vagon__places__list_reserved-seat .third__row .place__number_35,
-.vagon__places__list_reserved-seat .third__row .place__number_37,
-.vagon__places__list_reserved-seat .third__row .place__number_39,
-.vagon__places__list_reserved-seat .third__row .place__number_41,
-.vagon__places__list_reserved-seat .third__row .place__number_43 {
-    margin-left: 2px;
+.place__number_60, .place__number_58, .place__number_56, .place__number_54, .place__number_52, .place__number_50, .place__number_48, .place__number_46, .place__number_44, .place__number_42, .place__number_40, .place__number_38, .place__number_36, .place__number_34 {
+    bottom: -11px;
 }
 
-.vagon__places__list_reserved-seat .third__row .place__number_39,
-.vagon__places__list_reserved-seat .third__row .place__number_43,
-.vagon__places__list_reserved-seat .third__row .place__number_48,
-.vagon__places__list_reserved-seat .third__row .place__number_47 {
-    width: 43px;
+.place__number_33, .place__number_58, .place__number_1, .place__number_2 {
+    right: 748px;
 }
 
-.vagon__places__list_reserved-seat .third__row .place__number_44,
-.vagon__places__list_reserved-seat .third__row .place__number_46 {
-    margin-right: 2px;
+.place__number_35, .place__number_34, .place__number_3, .place__number_4 {
+    right: 704px;
 }
 
-.vagon__places__list_sedentary .first_row .place__number,
-.vagon__places__list_sedentary .second__row .place__number,
-.vagon__places__list_sedentary .third__row .place__number,
-.vagon__places__list_sedentary .fourth__row .place__number {
-    margin-top: 5px;
-    margin-left: 13px;
-    margin-right: 2px;
-    margin-bottom: -2px;
-    width: 29px;
-    height: 19px;
-    padding: 0;
-} 
-
-.third__row, .fourth__row {
-    display: flex;
+.place__number_37, .place__number_36, .place__number_5, .place__number_6 {
+    right: 660px;
 }
 
-.vagon__places__list_sedentary .third__row {
-    margin-top: 12px;
+.place__number_39, .place__number_38, .place__number_7, .place__number_8 {
+    right: 616px;
 }
 
-.vagon__places__list_sedentary .third__row .place__number_62 {
-position: relative;
-top: 21px
+.place__number_41, .place__number_40, .place__number_9, .place__number_10 {
+    right: 572px;
 }
 
-.vagon__places__list_sedentary .third__row .place__number_14 {
-    visibility: hidden;
-}  
-
-.sedentary {
-    visibility: visible
+.place__number_43, .place__number_42, .place__number_11, .place__number_12 {
+    right: 528px;
 }
 
-.sedentary__active {
-    visibility: hidden;
+.place__number_45, .place__number_44, .place__number_13, .place__number_14 {
+    right: 484px;
+}
+
+.place__number_47,.place__number_46, .place__number_15, .place__number_16 {
+    right: 440px;
+}
+
+.place__number_49, .place__number_48, .place__number_17, .place__number_18 {
+    right: 392px;
+}
+
+.place__number_51, .place__number_50, .place__number_19, .place__number_20 {
+    right: 352px;
+}
+
+.place__number_53, .place__number_52, .place__number_21, .place__number_22 {
+    right: 308px;
+}
+
+.place__number_55, .place__number_54, .place__number_23, .place__number_24 {
+    right: 264px;
+}
+
+.place__number_57, .place__number_56, .place__number_25, .place__number_26 {
+    right: 220px;
+}
+
+.place__number_59,.place__number_58, .place__number_27, .place__number_28{
+    right: 176px;
+}
+
+.place__number_61, .place__number_60, .place__number_29, .place__number_30{
+    right: 132px;
+}
+
+.place__number_62, .place__number_31, .place__number_32 {
+    right: 88px;
+}
+
+.place__number_62, .place__number_61, .place__number_59, .place__number_57, .place__number_55, .place__number_53, .place__number_51, .place__number_49, .place__number_47,.place__number_45, .place__number_43, .place__number_41, .place__number_39, .place__number_37,.place__number_35, .place__number_33 {
+    bottom: -35px;
 }
 
 .vagon__number__active {
@@ -371,4 +585,31 @@ top: 21px
 
 .vagon__info__number {
     font-size: 30px;
+}
+
+.detailed__box {
+    display: none;
+}
+
+.detailed__box__active {
+    display: block;
+    width: 100%;
+}
+
+.vagon__places__list_sedentary {
+    display: flex;
+}
+
+.total__amount__tickets {
+    margin-right: 54px;
+    margin-bottom: 17px;    
+    margin-bottom: 17px;
+    text-align: end;
+    color: var(--bg-color-orange);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.currency__sign {
+    color: var(--color-gray);
 }

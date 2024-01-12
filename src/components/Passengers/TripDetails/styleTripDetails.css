@@ -1,0 +1,140 @@
+.sidebar__details__info {
+    background: var(--color-darck-gray);
+}
+
+.sidebar__details__title {
+    padding-top: 37px;
+    padding-bottom: 36px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.details__data {
+    margin-left: 16px;
+    font-size: 18px;
+}
+
+.accordion-button:not(.collapsed)::after, .accordion-button:hover::after {
+    margin-top: -16px;
+    margin-right: -6px;
+}
+
+.accordion-body {
+    color: var(--bg-and-color-white);
+}
+
+.details__train {
+ display: flex;
+ justify-content: space-between;
+}
+
+.details__info__there {
+    margin-top: 6px;
+    margin-left: 8px;
+}
+
+.details__train__text {
+    color: var(--color-light-gray);
+    font-size: 18px;
+}
+
+.details__train__number {
+    margin-right: 6px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.details__name__info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 17px;
+}
+
+.details__startin__point {
+    text-align: end;
+}
+
+.details__time__info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 72px;
+}
+
+.travel__time__info {
+    margin-top: -20px;
+}
+
+.trave__time {
+    font-size: 18px;
+    color: var(--color-light-gray);
+}
+
+.departure__date, .arrival__date {
+    color: var(--color-gray);
+}
+
+.details__place__info {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 52px;
+}
+
+
+.details__place__departure, .arrival__place__info {
+    margin-top: 24px;
+}
+
+.name__departure__station {
+    width: 110px;
+}
+
+.name__arrival__station {
+    width: 130px;
+}
+
+.arrival__place__info {
+ text-align: end;
+}
+
+
+.accordion-button::after {
+    margin-top: -16px;
+    margin-right: -6px;
+}
+
+.accordion-header .accordion-button {
+    border-top: 1px solid var(--color-light-gray);
+}
+
+.passengers__info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar .sidebar__details__info .information__total__amount__info {
+    display: flex;
+    justify-content: space-between;
+    padding: 46px 28px 35px;
+    border-top: 1px solid;
+} 
+
+
+.total__amount {
+    color: var(--bg-color-orange);
+    font-size: 48px;
+    font-weight: 700;
+}
+.information__total__amount .currency__sign {
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.information__total__amount__title {
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    align-self: end;
+}

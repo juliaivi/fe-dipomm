@@ -19,3 +19,22 @@
     margin-top: 57px;
     padding: 19px 0px 0px;
 }
+
+.seat__selection__to {
+    margin-top: 29px;
+}
+
+.next__btn {
+    margin-top: 101px;
+    padding: 15px 69px;
+    float: right;
+    color: var(--bg-and-color-white);
+    font-size: 24px;
+    font-weight: 700;
+    background: var(--bg-color-orange);
+    border:  1px solid var(--bg-color-orange);
+    border-radius: 6px;
+    text-transform: uppercase;
+    
+}
+

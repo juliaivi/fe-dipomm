@@ -11,13 +11,11 @@ import mug from '../../../../../img/mug.svg';
 
 
 
-export default function AddCardElement() {
+export default function AddCardElement({el, index}) {
 
     return (
-
         <>
-        {data.map((el, index) => {
-          return(<div className="cart__item" key={index}>
+         <div className="cart__item" key={index}>
                 <div className="cart__info">
                     <img src={train} alt="train" className="train__icon"></img>
                     <h2 className="train__name">{el.itemcard.traininformation.name}</h2>
@@ -85,10 +83,8 @@ export default function AddCardElement() {
                        
                    </div>
                 </div>
-            </div>)
-        })}
-                      
-        
+            </div>
+
         </>
     )
 }

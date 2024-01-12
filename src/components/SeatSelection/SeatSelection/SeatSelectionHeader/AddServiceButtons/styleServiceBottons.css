@@ -4,6 +4,7 @@
     margin: 15px 5px;
     border-radius: 6px;
     border: 1px solid var(--color-black);
+    background-position: center;
 }
 
 .service__condition {
@@ -26,7 +27,9 @@
     background-position: center;
 }
 
-.service__condition:hover, .service__bedding:hover, .service__wifi:hover, .service__mug:hover {
+
+
+.service__condition:hover, .service__bedding:hover, .service__wifi:hover, .service__food:hover {
     background-color: var(--bg-color-orange);
 }
 
@@ -78,10 +81,4 @@
     border: var(--bg-color-orange);
 }
 
-/* .service__list__buttons .service__tooltip {
-    background: var(--bg-fons) !important;
-}
 
-#tooltip-bottom {
-    background: var(--bg-fons) !important;
-} */
