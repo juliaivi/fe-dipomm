@@ -3,8 +3,15 @@ import Calendar from 'react-calendar';
 import { useState } from 'react';
 import './mainForm.css';
 import SearchCity from '../../HomePage/Jumbotron/SearchStations/SearchStations';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function MainForm() {
+    const {train} = useSelector(state => state);
+    const {passengers} = useSelector(state => state);
+
+    console.log(train, 'train')
+    console.log(passengers, 'passengers')
     //дата
     const [showCalendarHere, setShowCalendarHere] = useState(false);//показывать 1
     const [showCalendarBack, setShowCalendarBack] = useState(false);//показывать 2
@@ -16,7 +23,13 @@ export default function MainForm() {
     const [dateStart, setDateStart] = useState(null);//сегодняшней  дата to 1 
     const [dateEnd, setDateEnd] = useState(null);
 
-    let valid = false;
+    let valid = false; 
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();  
+    
+    const location = useLocation()
+    console.log(location.pathname, 'location.pathname')
 
     const onChange = (value) => { //toLocaleDateString() возвращает строку с языкозависимым представлением части с датой в этой дате
         const time = value.toLocaleDateString('en-ca'); //ту дату которую передали из календаря
@@ -112,27 +125,27 @@ export default function MainForm() {
                                 
 
                                     <div className='status status__passengers'>
-                                        <div className=' stage__passengers stage_active'> 
+                                        <div className={`stage__passengers ${location === '/passengers' || location === 'payment' || location === '/checkorder'? 'stage_active' : 'stage'} `}> 
                                             <div className="operation__name">
                                                 <p className='list__number'>2</p> 
                                                 <p className='list__title'>Пассажиры</p>
                                             </div>
                                         </div>    
-                                        <div className="arrow_active"> </div>
+                                        <div className={`${location === '/passengers' || location === 'payment' || location === '/checkorder'? 'arrow_active ' : 'arrow'}`}> </div>
                                     </div>
 
                                     <div className='status status__payment'>
-                                        <div className=' stage__payment stage'> 
+                                        <div className={`stage__payment ${location === 'payment' || location === '/checkorder'? 'stage_active' : 'stage'}`}> 
                                             <div className="operation__name">
                                                 <p className='list__number'>3</p> 
                                                 <p className='list__title'>Оплата</p>
                                             </div>
                                         </div>    
-                                        <div className="arrow"> </div>
+                                        <div className={`${location === 'payment' || location === '/checkorder'? 'arrow_active ' : 'arrow'}`}> </div>
                                     </div>
 
                                     <div className='status status__check'>
-                                        <div className=' stage__check stage'> 
+                                        <div className={` stage__check ${location === '/checkorder'? 'stage_active' : 'stage'}`}> 
                                             <div className="operation__name">
                                                 <p className='list__number'>4</p> 
                                                 <p className='list__title'>Проверка</p>

@@ -53,7 +53,7 @@ export default function Pagination() {
             {loading && <h2 className="pagination__loading">Loading...</h2>}
             <div className="pagination__control">
                 <button className="button__pagination btn__primary" onClick={prevPage}> {'<'} </button>
-                <div pagination__control__list>
+                <div className="pagination__control__list">
                 {/* {!loading &&
                     currentCountry.map((el) => (
                         <li className={currentCountry !== el ? "page__item": "page__item__active"} key={el} onClick={() => paginate(el)}>

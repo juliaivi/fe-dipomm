@@ -26,7 +26,7 @@ export default function FoundTrains () {
                 </div>
             </div>
             {data.map((el, index) => (
-                <AddCardElement el={el} index={index}/>
+                <AddCardElement el={el} key={index}/>
             ))}
             
 

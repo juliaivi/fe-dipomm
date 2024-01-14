@@ -1,4 +1,5 @@
 .jumbotron {
+  position: relative;
     height: 825px;
   }
 
@@ -6,7 +7,7 @@
   position: relative;
   height: 985px;
   top: -160px;
-  border-bottom: 8px solid var(--bg-color-orange);
+
 }
   
 .jumbotron__banner {
@@ -42,7 +43,7 @@
 
 .jumbotron__form__order {
   width: 723px;
-  height: 565px; 
+  height: 574px; 
   margin-right: 24px;
   padding: 82px 10px 62px 15px;
 }
@@ -224,3 +225,25 @@ input {
   background: var(--color-gray);
   border: 1px solid var(--color-gray);
 }
+
+/* <ProgressBar now={60} />; <ProgressBar now={60} />;*/    
+
+.loading__bar {
+  position: relative;
+  top: 833px;
+}
+
+.progress {
+  position: relative;
+  margin-top: -159px;
+  height: 9px;
+  background-color: var(--bg-color-orange);
+  border-radius: unset;  
+  z-index: 5;
+}
+
+.progress__bar{  
+  position: relative;
+  top: 151px;
+}
+

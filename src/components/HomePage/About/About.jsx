@@ -1,7 +1,12 @@
+import { useEffect } from 'react';
 import './about.css';
 
-export default function About() {
+export default function About({setProgress}) {
 
+    useEffect(() => {
+        setProgress(35);
+    }, []);
+    
     return(
         <>
             <section className="about" id="about">

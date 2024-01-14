@@ -1,7 +1,11 @@
 import './nav.css';
 import {Link} from 'react-scroll';
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 export default function Nav() {
+    // const location = useLocation()
+    // console.log(location.pathname, 'location.pathname')
    
     return (
         <nav className='navbar_box'>

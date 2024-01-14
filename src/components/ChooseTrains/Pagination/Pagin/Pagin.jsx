@@ -33,7 +33,7 @@ const Pagin = ({countriesPerPage, totalCountries, paginate}) => {
                             paginate(el);
                             toggleActive(index);
                         }}>
-                        <a href="#" className="page__link">
+                        <a href="#" className="page__link" >
                             {el}
                         </a>
                     </li>

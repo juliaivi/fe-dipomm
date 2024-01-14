@@ -49,15 +49,32 @@ export const trainSlice = createSlice({
         citiesFromListRequest: (state, action) => {
             state.loadingCitiesFrom = true;
             state.errorCitiesFrom = false;
-            !action.payload ? state.citiesFromList = [] : state.cityFrom = action.payload;
+            state.cityFrom = action.payload;
+            // !action.payload ? state.citiesFromList = [] : state.cityFrom = action.payload;
             state.cityFromId = '';
+        },
+        
+        citiesToListRequest: (state, action) => {
+            state.loadingCitiesTo = true;
+            state.errorCitiesTo = false;
+            state.cityTo = action.payload;
+            // !action.payload ? state.citiesToList = [] : state.cityTo = action.payload;
+            state.cityToId = '';
         },
 
         citiesItemThere: (state, action) => {
             state.loadingCitiesFrom = true;
             state.errorCitiesFrom = false;
+            // (action.payload !== state.cityFrom ) ? state.cityFrom = action.payload : state.cityFrom;
             state.cityFrom = action.payload;
             state.cityFromId = '';
+        },       
+        
+        citiesItemTo: (state, action) => {
+            state.loadingCitiesTo = true;
+            state.errorCitiesTo = false;
+            state.cityTo = action.payload;
+            state.cityToId = '';
         },
 
         citiesItemThereId: (state, action) => {
@@ -66,23 +83,22 @@ export const trainSlice = createSlice({
             state.cityFromId  = action.payload;
         },
 
-        citiesItemThereTo: (state, action) => {
-            state.loadingCitiesFrom = true;
-            state.errorCitiesFrom = false;
-            state.cityFromId  = action.payload;
+        citiesItemToId: (state, action) => {
+            state.loadingCitiesTo= true;
+            state.errorCitiesTo = false;
+            state.cityToId  = action.payload;
         },
 
-        citiesItemTo: (state, action) => {
-            state.loadingCitiesFrom = true;
-            state.errorCitiesFrom = false;
-            state.cityTo = action.payload;
-            state.cityFromId = '';
-        },
+ 
 
 
         citiesFromListFailure: (state, action) => {
             state.loadingCitiesFrom = false;
             state.errorCitiesFrom = action.payload;
+        },      
+        citiesToListFailure: (state, action) => {
+            state.loadingCitiesTo = false;
+            state.errorCitiesTo = action.payload;
         },
         //города Из списка Успех
         citiesFromListSuccess: (state, action) => {
@@ -94,16 +110,7 @@ export const trainSlice = createSlice({
             state.loadingCitiesFrom = false;
             state.errorCitiesFrom = null;
         },
-        citiesToListRequest: (state, action) => {
-            state.loadingCitiesTo = true;
-            state.errorCitiesTo = false;
-            !action.payload ? state.citiesToList = [] : state.cityTo = action.payload;
-            state.cityToId = '';
-        },
-        citiesToListFailure: (state, action) => {
-            state.loadingCitiesTo = false;
-            state.errorCitiesTo = action.payload;
-        },
+       
         citiesToListSuccess: (state, action) => {
             state.citiesToList = action.payload;
             state.loadingCitiesTo = false;
@@ -122,6 +129,7 @@ export const trainSlice = createSlice({
             state.dateBackTo = action.payload;
         },
 ///////////////
+// поиск направления
         trainsListRequest: (state, action) => {
             state.form = action.payload;
             if (state.form.sort === 'price') {
@@ -220,7 +228,7 @@ export const {
     citiesItemThere,
     citiesItemTo,
     citiesItemThereId,
-    citiesItemThereTo,
+    citiesItemToId,
 
     } = trainSlice.actions;
 

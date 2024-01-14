@@ -14,12 +14,13 @@ import Footer from './components/Footer/Footer';
 import ChooseTrains from './components/ChooseTrains/ChooseTrains';
 
 function App() {
+
   return (
     <>
       <div className='case'>
-        {/* <div className='jumbotron_bannerr'></div> */}
+
         <Router> 
-            <Header />
+            <Header />          
               <Routes>
                 <Route path="/" element={<Main />}/>
                 <Route path='/trains' element={<ChooseTrains/>}/>

@@ -1,4 +1,4 @@
-import {  useState } from 'react';
+import {  useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './jumbotron.css';
@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import SearchCity from './SearchStations/SearchStations';
 import { useNavigate } from 'react-router-dom';
 
-import { trainsListRequest, departureDay,citiesItemThere, returnDay, citiesItemTo } from '../../../redux/slice/trainSlice';
+import { trainsListRequest, departureDay,citiesItemThere, returnDay, citiesItemTo , citiesItemToId, citiesItemThereId } from '../../../redux/slice/trainSlice';
 
 export default function Jumbotron() {
-    let {citiesFromList,  cityFrom, cityTo, cityFromId, loadingCitiesFrom, errorCitiesFrom, citiesToList, cityToId} = useSelector(state => state.train);
+    const {citiesFromList,  cityFrom, cityTo, cityFromId, loadingCitiesFrom, errorCitiesFrom, citiesToList, cityToId} = useSelector(state => state.train);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -25,8 +25,8 @@ export default function Jumbotron() {
     const [dateStart, setDateStart] = useState(null);//сегодняшней  дата to 1 
     const [dateEnd, setDateEnd] = useState(null);
     let valid = false;
-    
 
+    
     const onChange = (value) => { //toLocaleDateString() возвращает строку с языкозависимым представлением части с датой в этой дате
         const time = value.toLocaleDateString('en-ca'); //ту дату которую передали из календаря
         const start = valueStart.toLocaleDateString('en-ca');//текущая дата
@@ -56,16 +56,16 @@ export default function Jumbotron() {
 
         return result.replace(/[,%]/g,''); //находит и заменяет символы
     } 
-    
-    // if (cityFrom !== '' && cityTo !== '' && dateStart !== null && dateEnd !== null) {
-    //     valid = true
-    // }
-
+    if (cityFrom !== '' && cityTo !== '' && dateStart !== null && dateEnd !== null) {
+        valid = true
+    }
+    // console.log(cityFrom , 'cityFrom ', cityFromId, 'cityFromId', cityToId, 'cityToId','cityTo' ,cityTo, 'dateStart', dateStart, 'dateEnd ', dateEnd)
     // создается объект поиска с параметрами ДОПИСАТЬ
     const lookTickets = (e) => {
-        if (cityFrom !== '' && cityTo !== '' && dateStart !== null && dateEnd !== null) {
-            valid = true
-        }
+        e.preventDefault();
+        // console.log(1)
+        // console.log(cityFrom , 'cityFrom ', 'cityTo' ,cityTo, 'dateStart', dateStart, 'dateEnd ', dateEnd)
+
       
         const form = {
             'from_city_id': cityFromId,
@@ -76,21 +76,23 @@ export default function Jumbotron() {
             'limit': 5,
             'offset': 0
           }
-  
+//   console.log(form, 'form')
         dispatch(trainsListRequest(form));
-        navigate('/trains')
+        navigate('/trains');
     }
 
    const swapCities = (e) => {
     e.preventDefault(); 
     let changeCity = null;
+    let changeCityId = null;
     if (cityFrom !== '' && cityTo !== '') {
         changeCity = cityFrom;
-        console.log(changeCity);
+        changeCityId = cityFromId;
         dispatch(citiesItemThere(cityTo));
         dispatch(citiesItemTo(changeCity));
+        dispatch(citiesItemThereId(cityToId));
+        dispatch(citiesItemToId(changeCityId));
     }
-    console.log(cityFrom, cityTo );
    }
 
     return (
@@ -110,7 +112,7 @@ export default function Jumbotron() {
                         <div className='from__direction'>
                             <SearchCity title={'Откуда'} listcites={citiesFromList}/>
                  
-                            <button className='button btn_reverse' onClick={(e) =>swapCities(e)}> </button> 
+                            <button  className='button btn_reverse' onClick={(e) =>swapCities(e)}> </button> 
         
                             <SearchCity title={'Куда'} listcites={citiesToList}/>
                         </div>
@@ -142,8 +144,8 @@ export default function Jumbotron() {
                         </div>
                     </div>
                     </div>
-
-                    <button className={`button button-find ${valid ? '' : 'button-find-disabled'}`} disabled={valid === true ? false : true} onClick={(e) => lookTickets(e)} >Найти билеты</button>
+                 {/* {   console.log(valid )} */}
+                    <button type="submit" className={`button button-find ${valid ? '' : 'button-find-disabled'}`} disabled={valid === true ? false : true} onClick={(e) => lookTickets(e)} >Найти билеты</button>
                 </form>
                 </div>
                 </div>

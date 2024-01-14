@@ -2,8 +2,14 @@ import howWorks1 from '../../../img/how-works1.svg';
 import howWorks2 from '../../../img/how-works2.svg';
 import howWorks3 from '../../../img/how-works3.svg';
 import './howWorks.css';
+import { useEffect } from 'react';
 
-export default function HowWorks() {
+
+export default function HowWorks({setProgress}) {
+    useEffect(() => {
+        setProgress(70);
+    }, []);
+   
     return (
         <>
             <section className="how__works" id='howworks'>

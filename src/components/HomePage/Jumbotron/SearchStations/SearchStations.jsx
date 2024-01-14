@@ -1,14 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 // import city from '../../../../data/listCity.json';
 import {  useSelector, useDispatch} from 'react-redux';
-import {citiesFromListRequest,citiesItemThere, citiesItemTo, citiesItemThereId, citiesItemThereTo, citiesToListRequest} from '../../../../redux/slice/trainSlice';
+import {citiesFromListRequest,citiesItemThere, citiesItemTo,  citiesItemThereId, citiesItemToId, citiesToListRequest} from '../../../../redux/slice/trainSlice';
 
 const SearchbarDropdown = (props) => {
+    const {citiesFromList,  cityFrom, cityTo, cityFromId, citiesToList, cityToId} = useSelector(state => state.train)
     const {options, onInputChange, title} = props;
     const ulRef = useRef(); 
     const inputRef = useRef(); 
     const dispatch = useDispatch();
-    let {citiesFromList} = useSelector(state => state.train);
+
+    console.log(citiesFromList, 'citiesFromList', citiesToList, 'citiesToList')
 
     useEffect(() => {
         inputRef.current.addEventListener('click', (event) => { 
@@ -22,14 +24,47 @@ const SearchbarDropdown = (props) => {
 
         //если кликнули не на подсказку, тогда скрыть подсказку
         document.addEventListener('click', (event) => {
-            if (ulRef.current.style.display === null) {
-                return;
-            }
-            if (ulRef.current.style) {
+            // if (ulRef?.current.style.display) {
+            //     return;
+            // }
+            // console.log(ulRef, 'ulRef111')
+            // console.log(ulRef.current, 'ulRef.current')
+            if (ulRef?.current?.style) {
                 ulRef.current.style.display = 'none';
             }    
         });
     }, []);
+
+    // if (cityFrom !== null && cityFrom !== '') {
+    //     if (cityFrom !== inputRef.current.value && inputRef.current.placeholder === 'Откуда') {
+    //         inputRef.current.value = cityFrom;
+    //     }  
+
+    //     if (inputRef.current.placeholder !== 'Откуда') {
+    //         inputRef.current.value = cityTo;
+    //     }
+    // }  
+
+    if (cityFrom !== "" && inputRef.current?.value !== '' && inputRef.current?.value  === undefined) {
+
+        // console.log(cityFrom, 'cityFrom')
+        // console.log(inputRef.current.value)
+
+        if (cityFrom !== inputRef.current?.value && inputRef.current?.placeholder === 'Откуда'  && inputRef.current !== undefined) {
+            console.log(inputRef, 'inputRef')
+            console.log(inputRef.current, 'inputRef.current')
+            inputRef.current.value = cityFrom;
+        }  
+    
+        if (cityTo !== inputRef.current?.value && inputRef.current?.placeholder !== 'Откуда' && inputRef.current !== undefined) {
+            console.log(inputRef, 'inputRef')
+            console.log(inputRef.current, 'inputRef.current')
+            inputRef.current.value = cityTo;
+        }  
+    }
+    
+  
+
 
     return (
         <>
@@ -37,7 +72,7 @@ const SearchbarDropdown = (props) => {
                 <div className='from__direction'>
                     <input 
                         type='text' 
-                        className='form-control direction__input direction__here' 
+                        className={`form-control direction__input direction__here`}
                         onChange={onInputChange}
                         ref={inputRef}
                         placeholder={title}  
@@ -51,12 +86,15 @@ const SearchbarDropdown = (props) => {
                             type='button'
                             onClick={(e) => {
                                 inputRef.current.value = option;
+                                console.log(option , 'option')
                                 if (title === 'Откуда') {
+                                    console.log(7777)
                                     dispatch(citiesItemThere(option));
                                     dispatch(citiesItemThereId(citiesFromList[0]._id))
                                 } else {
+                                    console.log(8888)
                                     dispatch(citiesItemTo(option));
-                                    dispatch(citiesItemThereTo(citiesFromList[0]._id))
+                                    dispatch(citiesItemToId(citiesToList[0]._id))
                                 }
                                 
                             }}
@@ -83,6 +121,9 @@ export default function SearchCity(props) {
         if (e === null) {
             return;
         }
+
+
+
         
         console.log(e.target.value, ' e.target')
         if (props.title === 'Откуда') {

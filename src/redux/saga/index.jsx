@@ -61,13 +61,13 @@ function* handleGetCitiesToSaga(action) {
 function* watchGetCitiesToSaga() {
     yield takeLatest(citiesToListRequest, handleGetCitiesToSaga)
 }
+
+// поиск направления
 // .Статический Object.entries()метод возвращает массив собственных перечислимых пар ключ-значение свойства со строковым ключом.
 function* handleGetTrainsSaga(action) {
     try { 
         const url = Object.entries(action.payload).map(entry => `${entry[0]}=${entry[1]}`).join('&')
-        console.log(url)
         const data = yield getRoutes(url);
-        console.log(data)
         yield put(trainsListSuccess(data))
     } catch (e) {
         yield put(trainsListFailure(e.message))
@@ -109,6 +109,7 @@ function* watchSortTrainsSaga() {
 function* handleGetTrainSeatsSaga(action) {
     try {
         const data = yield getSeats(action.payload);
+        console.log(data)
         yield put(trainSeatsSuccess(data))
     } catch (e) {
         yield put(trainsListFailure(e.message));
