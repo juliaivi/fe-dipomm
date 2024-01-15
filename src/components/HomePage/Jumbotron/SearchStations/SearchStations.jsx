@@ -4,7 +4,7 @@ import {  useSelector, useDispatch} from 'react-redux';
 import {citiesFromListRequest,citiesItemThere, citiesItemTo,  citiesItemThereId, citiesItemToId, citiesToListRequest} from '../../../../redux/slice/trainSlice';
 
 const SearchbarDropdown = (props) => {
-    const {citiesFromList,  cityFrom, cityTo, cityFromId, citiesToList, cityToId} = useSelector(state => state.train)
+    const {citiesFromList,  cityFrom, cityTo, citiesToList} = useSelector(state => state.train)
     const {options, onInputChange, title} = props;
     const ulRef = useRef(); 
     const inputRef = useRef(); 
@@ -24,47 +24,33 @@ const SearchbarDropdown = (props) => {
 
         //если кликнули не на подсказку, тогда скрыть подсказку
         document.addEventListener('click', (event) => {
-            // if (ulRef?.current.style.display) {
-            //     return;
-            // }
-            // console.log(ulRef, 'ulRef111')
-            // console.log(ulRef.current, 'ulRef.current')
             if (ulRef?.current?.style) {
                 ulRef.current.style.display = 'none';
             }    
         });
     }, []);
 
-    // if (cityFrom !== null && cityFrom !== '') {
-    //     if (cityFrom !== inputRef.current.value && inputRef.current.placeholder === 'Откуда') {
+
+    // if (cityFrom !== "" && inputRef.current?.value !== '' && inputRef.current?.value  === undefined) {
+
+    //     if (cityFrom !== inputRef.current?.value && inputRef.current?.placeholder === 'Откуда'  && inputRef.current !== undefined) {
     //         inputRef.current.value = cityFrom;
     //     }  
-
-    //     if (inputRef.current.placeholder !== 'Откуда') {
+    
+    //     if (cityTo !== inputRef.current?.value && inputRef.current?.placeholder !== 'Откуда' && inputRef.current !== undefined) {
     //         inputRef.current.value = cityTo;
-    //     }
-    // }  
-
-    if (cityFrom !== "" && inputRef.current?.value !== '' && inputRef.current?.value  === undefined) {
-
-        // console.log(cityFrom, 'cityFrom')
-        // console.log(inputRef.current.value)
-
-        if (cityFrom !== inputRef.current?.value && inputRef.current?.placeholder === 'Откуда'  && inputRef.current !== undefined) {
-            console.log(inputRef, 'inputRef')
-            console.log(inputRef.current, 'inputRef.current')
-            inputRef.current.value = cityFrom;
-        }  
+    //     }  
+    // }
     
-        if (cityTo !== inputRef.current?.value && inputRef.current?.placeholder !== 'Откуда' && inputRef.current !== undefined) {
-            console.log(inputRef, 'inputRef')
-            console.log(inputRef.current, 'inputRef.current')
-            inputRef.current.value = cityTo;
-        }  
-    }
-    
-  
+// если значения уже есть, то заполняем инпут
+    let valueCity = '';
+    if (title === 'Откуда' && cityFrom !== '' && title !== undefined) {
+        valueCity = cityFrom;
+    } 
 
+    if (title === 'Куда' && cityTo !== '' && title !== undefined) {
+        valueCity = cityTo; 
+    } 
 
     return (
         <>
@@ -77,6 +63,7 @@ const SearchbarDropdown = (props) => {
                         ref={inputRef}
                         placeholder={title}  
                         style={{'width': 'inherit'}}
+                        value={valueCity}
                     />
                 </div>
                 <ul className='list-group' style={{'position': 'absolute', 'width': 'inherit'}} ref={ulRef}>
@@ -88,11 +75,9 @@ const SearchbarDropdown = (props) => {
                                 inputRef.current.value = option;
                                 console.log(option , 'option')
                                 if (title === 'Откуда') {
-                                    console.log(7777)
                                     dispatch(citiesItemThere(option));
                                     dispatch(citiesItemThereId(citiesFromList[0]._id))
                                 } else {
-                                    console.log(8888)
                                     dispatch(citiesItemTo(option));
                                     dispatch(citiesItemToId(citiesToList[0]._id))
                                 }
@@ -122,10 +107,6 @@ export default function SearchCity(props) {
             return;
         }
 
-
-
-        
-        console.log(e.target.value, ' e.target')
         if (props.title === 'Откуда') {
              dispatch(citiesFromListRequest(e.target.value.toLowerCase()))
         } else {

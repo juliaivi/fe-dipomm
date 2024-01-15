@@ -16,16 +16,17 @@ import AddRange from './AddRange/AddRange';
 import { useState } from 'react';
 import LatestTickets from './LatestTickets/LatestTickets';
 import AccordionInfo from './AccordionInfi/AccordionInfo';
+import AddCalendar from '../../../HomePage/Jumbotron/AddCalendar';
 
 
 
 export default function SelectionMenu () {
-    const [range, setRange] = useState('1920');
-    const [span, setSpean] = useState('');
-    const [inputColor, setInputColor] = useState("#3E3C41");
+    // const [range, setRange] = useState('1920');
+    // const [span, setSpean] = useState('');
+    // const [inputColor, setInputColor] = useState("#3E3C41");
 
-    const [checkedHere, setCheckedHere] = useState(false);
-    const [checkedBack, setCheckedBack] = useState(false);
+    // const [checkedHere, setCheckedHere] = useState(false);
+    // const [checkedBack, setCheckedBack] = useState(false);
 
         //дата
         const [showCalendarHere, setShowCalendarHere] = useState(false);//показывать 1
@@ -78,7 +79,9 @@ export default function SelectionMenu () {
                         <div className="date datego">
                         <div className='sidebar__datego'>
                         <h4 className="datego__title">Дата поездки</h4>
-                            <div className='form__date-box form__date-box_to'>                         
+                            <div className='form__date-box form__date-box_to'>
+                                {/* <AddCalendar /> */}
+
                                 {showCalendarHere &&  
                                     <>
                                         <Calendar onChange={onChange} value={valueStart} defaultValue='month'/>
