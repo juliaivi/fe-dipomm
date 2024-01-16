@@ -6,13 +6,16 @@ import TicketSearchForm from '../../HomePage/Jumbotron/TicketSearchForm';
 
 export default function MainForm() {
     const {cityFrom, cityFromId, cityTo, cityToId, dateBackTo, dateStartThere, trainsList, citiesFromList, citiesToList} = useSelector(state => state.train);
-    const {passengers} = useSelector(state => state);
-    const {train} = useSelector(state => state);
-    console.log(train, 'train')  
-    console.log(cityFrom, cityFromId, cityTo, cityToId, dateBackTo, dateStartThere, trainsList, 'cityFrom, cityFromId, cityTo, cityToId, dateBackTo, dateStartThere, trainsList')
+    // const {passengers} = useSelector(state => state);
+    // const {train} = useSelector(state => state);
+    // console.log(train, 'train')  
+    // console.log(cityFrom, cityFromId, cityTo, cityToId, dateBackTo, dateStartThere, trainsList, 'cityFrom, cityFromId, cityTo, cityToId, dateBackTo, dateStartThere, trainsList')
     // cityFrom, cityFromId, cityTo, cityToId, dateBackTo, dateStartThere, trainsList
 
-    console.log(passengers, 'passengers')    
+
+
+    
+    // console.log(passengers, 'passengers')    
     const location = useLocation()
 
     return (

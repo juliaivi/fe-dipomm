@@ -7,6 +7,8 @@ const initialState = {
     cityToId: '',
     citiesFromList: [],
     citiesToList: [],
+    departureDayHere: '',
+    returnDay: '',
     dateStartThere: '',
     dateBackTo: '',
     loadingCitiesFrom: false,
@@ -122,10 +124,18 @@ export const trainSlice = createSlice({
         },
 //////////////cityFrom
         departureDay: (state, action) => {
-            state.dateStartThere = action.payload;
+            state.departureDayHere = action.payload;
         },
 
         returnDay: (state, action) => {
+            state.returnDayBack = action.payload;
+        },
+
+        startDate: (state, action) => {
+            state.dateStartThere = action.payload;
+        },
+
+        backDay: (state, action) => {
             state.dateBackTo = action.payload;
         },
 ///////////////
@@ -225,6 +235,8 @@ export const {
     selectTrain, 
     departureDay,
     returnDay,
+    startDate,
+    backDay,
     citiesItemThere,
     citiesItemTo,
     citiesItemThereId,

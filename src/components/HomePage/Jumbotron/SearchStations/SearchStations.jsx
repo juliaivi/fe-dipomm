@@ -10,7 +10,7 @@ const SearchbarDropdown = (props) => {
     const inputRef = useRef(); 
     const dispatch = useDispatch();
 
-    console.log(citiesFromList, 'citiesFromList', citiesToList, 'citiesToList')
+    // console.log(citiesFromList, 'citiesFromList', citiesToList, 'citiesToList')
 
     useEffect(() => {
         inputRef.current.addEventListener('click', (event) => { 
@@ -73,7 +73,7 @@ const SearchbarDropdown = (props) => {
                             type='button'
                             onClick={(e) => {
                                 inputRef.current.value = option;
-                                console.log(option , 'option')
+                                // console.log(option , 'option')
                                 if (title === 'Откуда') {
                                     dispatch(citiesItemThere(option));
                                     dispatch(citiesItemThereId(citiesFromList[0]._id))

@@ -18,93 +18,20 @@ import LatestTickets from './LatestTickets/LatestTickets';
 import AccordionInfo from './AccordionInfi/AccordionInfo';
 import AddCalendar from '../../../HomePage/Jumbotron/AddCalendar';
 
-
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function SelectionMenu () {
-    // const [range, setRange] = useState('1920');
-    // const [span, setSpean] = useState('');
-    // const [inputColor, setInputColor] = useState("#3E3C41");
-
-    // const [checkedHere, setCheckedHere] = useState(false);
-    // const [checkedBack, setCheckedBack] = useState(false);
-
-        //дата
-        const [showCalendarHere, setShowCalendarHere] = useState(false);//показывать 1
-        const [showCalendarBack, setShowCalendarBack] = useState(false);//показывать 2
-        const [dateHere, setDateHere] = useState('');//пустой -1-календарь
-        const [dateBack, setDateBack] = useState('');//пустой -2-календарь
-        const [valueStart] = useState(new Date());// от даты 1
-        const [valueBack] = useState(new Date());
-        
-        const [dateStart, setDateStart] = useState(null);//сегодняшней  дата to 1 
-        const [dateEnd, setDateEnd] = useState(null);
-        let iconClick = false;
-        let valid = false;
     
-        const onChange = (value) => { //toLocaleDateString() возвращает строку с языкозависимым представлением части с датой в этой дате
-            const time = value.toLocaleDateString('en-ca'); //ту дату которую передали из календаря
-            const start = valueStart.toLocaleDateString('en-ca');//текущая дата
-            if (value > valueStart || (new Date(time).getTime() === new Date(start).getTime())) {//getTime()экземпляров Dateвозвращает количество миллисекунд для этой даты с эпохи 
-                setDateStart(time);
-                setDateHere(dateToString(value)); //dateToString -Преобразует объект даты в строку в соответствии с заданным пользователем форматом
-                setShowCalendarHere(false);// закрыть календарь
-            }
-        }
-    
-         //выбор даты - конец
-        const onChangeBack = (value) => {
-            if (value > new Date(dateStart)) {
-                setDateEnd(value.toLocaleDateString('en-ca'));
-                setDateBack(dateToString(value));
-                setShowCalendarBack(false);// закрыть календарь
-            }
-        }
-    
-        const dateToString = (date) => {
-            const result = date.toLocaleString('ru-Ru', { //toLocaleString() возвращает строку с языкозависимым представлением даты
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-            });
-    
-            return result.replace(/[,%]/g,''); //находит и заменяет символы
-        } 
-
-   
     return (
         <>
             <aside className="sidebar">
                 <div className="sidebar__options">
                     <form className='sidebar__form'>
                         <div className="date datego">
-                        <div className='sidebar__datego'>
-                        <h4 className="datego__title">Дата поездки</h4>
-                            <div className='form__date-box form__date-box_to'>
-                                {/* <AddCalendar /> */}
-
-                                {showCalendarHere &&  
-                                    <>
-                                        <Calendar onChange={onChange} value={valueStart} defaultValue='month'/>
-                                        <div className='triangle date__here__triangle'></div> 
-                                   </>
-                                }
-                                <input id='date__here' className='date__here' placeholder='ДД/ММ/ГГ' defaultValue={dateHere} onClick={() => setShowCalendarHere(!showCalendarHere)}/>
-                    
-                            </div>
-                            </div>
-
-                            <div className='sidebar__dateback'>
-                            <h4 className="datego__title">Дата возвращения</h4> 
-                            <div className='form__date-box form__date-box_back'>  
-                                {showCalendarBack &&  
-                                     <>
-                                        <Calendar onChange={onChangeBack} value={valueBack}/>
-                                        <div className='triangle date__back__triangle'></div> 
-                                    </>
-                                }
-                                <input  id='date__back' className='date__back' placeholder='ДД/ММ/ГГ' defaultValue={dateBack} onClick={() => setShowCalendarBack(!showCalendarBack)}/>
-                            </div>
-                            </div> 
+                            <h4 className="datego__title">Дата поездки</h4>
+                            <AddCalendar>
+                                <h4 className="datego__title">Дата возвращения</h4> 
+                            </AddCalendar>
                         </div>
 
                         <div className='options list__options'>
