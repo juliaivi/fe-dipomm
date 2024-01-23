@@ -8,15 +8,15 @@ import arrowLeft from '../../../../../img/arrow-left.svg';
 export default function AccordionInfo() {
     return(
         <>
-            <Accordion defaultActiveKey="0">
+            <Accordion defaultActiveKey={['0', '1']} alwaysOpen>
             <Accordion.Item eventKey="0">
                 <Accordion.Header>
                 <img src={arrowLeft} className='back__info__img' alt='arrowLeft'></img> Туда</Accordion.Header>
                 <Accordion.Body>
                     <h2 className='timet__departures'>Время отбытия</h2>
-                    <AddRange min={0} max={24}/>
+                    <AddRange min={0} max={24} type={'departure-from'}/>
                     <h2 className='time__arrivals'>Время прибытия</h2>
-                    <AddRange min={0} max={24}/>
+                    <AddRange min={0} max={24} type={'departure-to'}/>
                 </Accordion.Body>
             </Accordion.Item>      
              <div className='accordion__line' />
@@ -27,9 +27,9 @@ export default function AccordionInfo() {
          
                 <Accordion.Body>
                     <h2 className='timet__departures'>Время отбытия</h2>
-                    <AddRange min={0} max={24}/>
+                    <AddRange min={0} max={24} type={'arrival-from'}/>
                     <h2 className='time__arrivals'>Время прибытия</h2>
-                    <AddRange min={0} max={24}/>
+                    <AddRange min={0} max={24} type={'arrival-to'}/>
                 </Accordion.Body>
             </Accordion.Item>
             </Accordion>

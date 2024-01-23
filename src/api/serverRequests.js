@@ -56,6 +56,7 @@ export function getRoutes (url) {
 //     .then( data => console.log( data ));
 
 export function getSeats (id) {
+    // return fetch( `https://students.netoservices.ru/fe-diplom/routes/${id}/seats?${url}` )
     return fetch( `https://students.netoservices.ru/fe-diplom/routes/${id}/seats` )
     .then( response => response.json())
     .then( data => {return data});

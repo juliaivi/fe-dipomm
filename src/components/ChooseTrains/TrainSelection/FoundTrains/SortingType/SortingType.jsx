@@ -1,14 +1,16 @@
 import data from './dropdownSorting.json'
 import './sortingType.css';
 import { useState } from 'react';
+import {selectSortType, changeValidForm } from '../../../../../redux/slice/trainSlice';
+import {useDispatch } from 'react-redux';
 
 export default function SortingType({selected, setSelected}) {
     const [isActive, setIsActive] = useState(false);
 
+    const dispatch = useDispatch();
+
     return (
         <>
-        {console.log(data[0])}
-
             <div className='dropdown sorting__type'>
                 <div className='dropdown-btn' onClick={(e) => {
                         setIsActive(!isActive)}
@@ -23,7 +25,9 @@ export default function SortingType({selected, setSelected}) {
                                     className='dropdown-item' 
                                     key={index} 
                                     onClick={(e) => {
-                                        setSelected(el.name); 
+                                        setSelected(el.name);
+                                        dispatch(changeValidForm(true))
+                                        dispatch(selectSortType(el.type));
                                         setIsActive(false);
                                     }}
                                 >{el.name}</div>  

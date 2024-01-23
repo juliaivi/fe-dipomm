@@ -1,27 +1,87 @@
-import calendar from '../../../../img/calendar.svg';
-import coupe from '../../../../img/coupe.svg';
-import reservedseat from '../../../../img/reservedSeat.svg';
-import seat from '../../../../img/seat.svg';
-import star from '../../../../img/star.svg';
-import wifi from '../../../../img/wifi.svg';
-import express from '../../../../img/express.svg';
-import arrowRight from '../../../../img/arrow-right.svg';
-import arrowLeft from '../../../../img/arrow-left.svg';
-import mug from '../../../../img/mug.svg';
 import './selectionMenu.css';
-import 'react-calendar/dist/Calendar.css';
-import Calendar from 'react-calendar';
-
 import AddRange from './AddRange/AddRange';
-import { useState } from 'react';
+import {useEffect} from 'react';
 import LatestTickets from './LatestTickets/LatestTickets';
 import AccordionInfo from './AccordionInfi/AccordionInfo';
 import AddCalendar from '../../../HomePage/Jumbotron/AddCalendar';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { lastRoutesRequest, trainsListRequest, changeValidForm, addLastRoutesItem} from '../../../../redux/slice/trainSlice';
+import AddListOptoins from './ListOptions/ListOptions';
 
 export default function SelectionMenu () {
-    
+    const { validForm, lastRoutesItem, lastRoutes, sort, limit, endArrivalHourTo, endArrivalHourFrom, startArrivalHourTo, startArrivalHourFrom, endDepartureHourTo, endDepartureHourFrom, startDepartureHourTo, startDepartureHourFrom, options, priceFrom, priceTo, cityFromId, cityToId, dateStartThere, dateBackTo} = useSelector(state => state.train);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(lastRoutesRequest())
+    }, []);
+
+    useEffect(() => {
+        if (cityFromId !== '' && cityToId !== '' && validForm === true) {   
+            if(lastRoutesItem !== null){
+                dispatch(addLastRoutesItem(null)); 
+            } 
+
+            const form = {
+                'from_city_id': cityFromId,
+                'to_city_id': cityToId,
+                'date_start': dateStartThere,
+                'date_end': dateBackTo,
+                'have_second_class': options[0].check,
+                'have_third_class': options[1].check,
+                'have_fourth_class': options[2].check,
+                'have_first_class': options[3].check,
+                'have_wifi': options[4].check,
+                'have_express': options[5].check,
+                'have_air_conditioning': false,
+                'price_min': 500,
+                'price_from': priceFrom,
+                'price_to': priceTo,
+                'start_departure_hour_from': startDepartureHourFrom,
+                'start_departure_hour_to': startDepartureHourTo,
+                'end_departure_hour_from': endDepartureHourFrom,
+                'end_departure_hour_to':  endDepartureHourTo,
+                'start_arrival_hour_from': startArrivalHourFrom,
+                'start_arrival_hour_to': startArrivalHourTo,
+                'end_arrival_hour_from': endArrivalHourFrom,
+                'end_arrival_hour_to': endArrivalHourTo,
+                'sort':sort,
+                'limit': limit,
+                'offset': 0
+            }
+            dispatch(changeValidForm(false));
+            dispatch(trainsListRequest(form));
+        }
+    }, [priceFrom, 
+        priceTo, 
+        startDepartureHourFrom,
+        startDepartureHourTo,
+        endDepartureHourFrom,
+        endDepartureHourTo,
+        startArrivalHourFrom,
+        startArrivalHourTo,
+        endArrivalHourFrom,
+        endArrivalHourTo,
+        options[0].check,
+        options[1].check,
+        options[2].check,
+        options[3].check,
+        options[4].check,
+        options[5].check,
+        priceFrom, 
+        priceTo, 
+        startDepartureHourFrom,
+        startDepartureHourTo,
+        endDepartureHourFrom,
+        endDepartureHourTo,
+        startArrivalHourFrom,
+        startArrivalHourTo,
+        endArrivalHourFrom,
+        endArrivalHourTo,
+        sort,
+        limit])
+
     return (
         <>
             <aside className="sidebar">
@@ -35,47 +95,7 @@ export default function SelectionMenu () {
                         </div>
 
                         <div className='options list__options'>
-                            <div className='item item__options'>
-                                <img src={coupe}  className='item__img item__options__img' alt='coupe'></img>
-                                <p className='item__title item__options__title'>Купе</p>
-                                <input type="checkbox" id='check1' className='item__check item__options__check'/>
-                                <label htmlFor='check1'className='button__check'></label>
-                            </div>
-
-                            <div className='item item__options'>
-                                <img src={reservedseat} className='item__img item__options__img' alt='reservedseat'></img>
-                                <p className='item__title item__options__title'>Плацкарт</p>
-                                <input type="checkbox" id='check2' className='item__check item__options__check'/>
-                                <label htmlFor='check2'className='button__check'></label>
-                            </div>
-
-                            <div className='item item__options'>
-                                <img src={seat} className='item__img item__options__img' alt='seat'></img>
-                                <p className='item__title item__options__title'>Сидячий</p>
-                                <input type="checkbox" id='check3' className='item__check item__options__check'/>
-                                <label htmlFor='check3'className='button__check'></label>
-                            </div>
-
-                            <div className='item item__options'>
-                                <img src={star} className='item__img item__options__img' alt='star'></img>
-                                <p className='item__title item__options__title'>Люкс</p>
-                                <input type="checkbox" id='check4' className='item__check item__options__check'/>
-                                <label htmlFor='check4'className='button__check'></label>
-                            </div>
-
-                            <div className='item item__options'>
-                                <img src={wifi} className='item__img item__options__img' alt='wifi'></img>
-                                <p className='item__title item__options__title'>Wi-Fi</p>
-                                <input type="checkbox" id='check5' className='item__check item__options__check'/>
-                                <label htmlFor='check5'className='button__check'></label>
-                            </div>
-
-                            <div className='item item__options'>
-                                <img src={express} className='item__img item__options__img' alt='express'></img>
-                                <p className='item__title item__options__title'>Экспресс</p>
-                                <input type="checkbox" id='check6' className='item__check item__options__check'/>
-                                <label htmlFor='check6'className='button__check'></label>
-                            </div>
+                            <AddListOptoins />
                         </div>
 
                         <div className='price'>
@@ -85,7 +105,7 @@ export default function SelectionMenu () {
                                 <div className='price__limit__before'>до</div>
                             </div>
                             <div className='range'>
-                                <AddRange min={1920} max={7000}/>
+                                <AddRange min={1920} max={7000} type={'price'}/>
                             </div>
                         </div>
 
@@ -95,7 +115,7 @@ export default function SelectionMenu () {
                 </div>
                 <div className="sidebar sidebar__info">
                     <h3 className='sidebar__title'>Последние билеты</h3>
-                    <LatestTickets />      
+                    <LatestTickets lastRoutes={lastRoutes}/>      
                 </div>
             </aside>
         </>

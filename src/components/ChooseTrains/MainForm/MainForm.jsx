@@ -12,9 +12,6 @@ export default function MainForm() {
     // console.log(cityFrom, cityFromId, cityTo, cityToId, dateBackTo, dateStartThere, trainsList, 'cityFrom, cityFromId, cityTo, cityToId, dateBackTo, dateStartThere, trainsList')
     // cityFrom, cityFromId, cityTo, cityToId, dateBackTo, dateStartThere, trainsList
 
-
-
-    
     // console.log(passengers, 'passengers')    
     const location = useLocation()
 

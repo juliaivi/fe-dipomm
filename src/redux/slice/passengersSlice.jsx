@@ -24,43 +24,40 @@ const initialState = {
     seatsThere: [
     {
         type: 'adult',
-        count: 0,
-        seats: [],
-        price: 0
+        count: 1,
     },
     {
         type: 'child',
         count: 0,
-        seats: [],
-        price: 0,
     },
     {
         type: 'child_no_eats',
         count: 0,
-        seats: [],
-        price: 0
     }
    ],
+
+
    seatsBack: [
     {
         type: 'adult',
-        count: 0,
-        seats: [],
-        price: 0
+        count: 1,
     },
     {
         type: 'child',
         count: 0,
-        seats: [],
-        price: 0,
     },
     {
         type: 'child_no_eats',
         count: 0,
-        seats: [],
-        price: 0
     }
    ],
+   typeSeatsThere: null,
+   typeSeatsBack: null,
+    selectedPlacesThere: [],
+    selectedPlacesBack: [],
+    ticketPricesThere: null,
+    ticketPricesBack: null,
+
    order: null,
    loadingOrder: false,
    errorOrder: null,
@@ -75,62 +72,77 @@ export const passengersSlice = createSlice({
         setCountNoSeatsThere: (state, action) => {
             state.seatsThere[2].count = action.payload;
         },
-         //установить количество мест без мест
-         setCountNoSeatsBack: (state, action) => {
+        setCountNoSeatsBack: (state, action) => {
             state.seatsBack[2].count = action.payload;
         },
+        setCountSeatsChildThere: (state, action) => {
+            state.seatsThere[1].count = action.payload;
+        },
+        setCountSeatsChildBack: (state, action) => {
+            state.seatsBack[1].count = action.payload;
+        },
+        setCountSeatsAdultThere: (state, action) => {
+            state.seatsThere[0].count = action.payload;
+        },
+        setCountSeatsAdultBack: (state, action) => {
+            state.seatsBack[0].count = action.payload;
+        },
+
+        // выбор купе и т.д. - тип
+        choicetypeSeatsThere: (state, action) => {
+            state.typeSeatsThere = action.payload;
+        },
+
+        choicetypeSeatsBack: (state, action) => {
+            state.typeSeatsBack = action.payload;
+        },
+
          //сидячие места 
-        addSeatThere: (state, action) => {
+        addSeatThere: (state, action ) => {
             // сохраняем состояние
-            const { data } = action.payload;
-            //определяем тип (взрослый или детский) и сохраняем его индекс 
-            const index = state.seatsThere.findIndex(item => item.type === data.type);
-            // берем всех сидящих
-            const selectSeats = state.seatsThere[index].seats;
-            //ищим совпадени по месту и вагону, если нашел то просто вовращает
-            const indexSeat = state.seatsThere[index].seats.findIndex(seat => {
-                if (seat.seat_id === data.seat_id && seat.vagon_id === data.vagon_id) {
-                    return seat
-                }
-            })
+           
+            const { seat_id, vagon_id, typeSeat } = action.payload;
+            //ищим совпадени по месту и вагону, если нашел то просто вовращает 
+            if (typeSeat === state.selectedPlacesThere[0]?.typeSeat ) {
+
+            
+            const indexSeat = state.selectedPlacesThere.findIndex(seat => (seat.seat_id === seat_id && seat.vagon_id === vagon_id))
             // если не нашел записывает данное место, а если нашел удаляет
             if (indexSeat === -1) {
-                selectSeats.push(data);
+                state.selectedPlacesThere =  [...state.selectedPlacesThere, action.payload];
             } else {
-                selectSeats.splice(indexSeat, 1);
+                state.selectedPlacesThere.splice(indexSeat, 1);
             }
-            // все старые вносит и перезаписывает те данные которые обновились (место, количество мест, общую стоимость)
-            state.seatsThere[index] = {
-                ...state.seatsThere[index],
-                seats: selectSeats,
-                count: selectSeats.length,
-                price: selectSeats.map(item => item.price).reduce((sum, current) => Number(sum) + Number(current), 0)
-            }
+         }  else {
+            state.selectedPlacesThere = [action.payload]
+            // let newArr = state.selectedPlacesThere;
+            // let a = newArr.filter(element => element.typeSeat !== typeSeat);
+            // state.selectedPlacesThere = [...a, action.payload ];
+         }
         },
         
         addSeatBack: (state, action) => {
-            const { data } = action.payload;
-            const index = state.seatsBack.findIndex(item => item.type === data.type);
-            const selectSeats = state.seatsBack[index].seats;
-            const indexSeat = state.seatsBack[index].seats.findIndex(seat => {
-                if (seat.seat_id === data.seat_id && seat.vagon_id === data.vagon_id) {
-                    return seat
-                }
-            })
+            const { seat_id, vagon_id } = action.payload;
+            //ищим совпадени по месту и вагону, если нашел то просто вовращает
+            const indexSeat = state.selectedPlacesBack.findIndex(seat => (seat.seat_id === seat_id && seat.vagon_id === vagon_id))
+            // если не нашел записывает данное место, а если нашел удаляет
             if (indexSeat === -1) {
-                selectSeats.push(data);
+                state.selectedPlacesBack =  [...state.selectedPlacesBack, action.payload];
             } else {
-                selectSeats.splice(indexSeat, 1);
-            }
-
-            state.seatsBack[index] = {
-                ...state.seatsBack[index],
-                seats: selectSeats,
-                count: selectSeats.length,
-                price: selectSeats.map(item => item.price).reduce((sum, current) => Number(sum) + Number(current), 0)
-            }
+                state.selectedPlacesBack.splice(indexSeat, 1);
+            }   
         },
-// дата отправления
+
+        //итоговая стоимость
+        setTicketPricesThere:(state, action) => {
+            state.ticketPricesThere = action.payload;
+        },
+
+        setTicketPricesBack:(state, action) => {
+            state.ticketPricesBack = action.payload;
+        },
+
+
         setDataThere: (state, action) => {
             const { data } = action.payload;
             if (data.seat) {
@@ -299,7 +311,7 @@ export const passengersSlice = createSlice({
 })
 
 export const {
-    setCountNoSeats,
+    setCountNoSeatsThere,
     setCountNoSeatsBack,
     addSeatThere,
     addSeatBack,
@@ -315,7 +327,15 @@ export const {
     orderRequest,
     orderFailure,
     orderSuccess,
-    orderResult
+    orderResult,
+    setCountSeatsChildThere,
+    setCountSeatsChildBack,
+    setCountSeatsAdultThere,
+    setCountSeatsAdultBack,
+    choicetypeSeatsThere, 
+    choicetypeSeatsBack,
+    setTicketPricesThere,
+    setTicketPricesBack
 } = passengersSlice.actions;
 
 export default passengersSlice.reducer;

@@ -136,7 +136,7 @@
 }
 
 .place_item_free {
-    background: var(--color-light-gray);
+    background: var(--bg-color-ligth-grey-successful-order);
     color: var(--color-black);
     border: 1px solid var(--color-light-gray);
     cursor: pointer;

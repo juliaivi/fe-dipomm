@@ -1,11 +1,11 @@
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startDate, backDay, departureDay, returnDay } from '../../../redux/slice/trainSlice';
 
 export default function AddCalendar({ children }) {
-    const {dateStartThere, returnDayBack,departureDayHere} = useSelector(state => state.train);
+    const {dateStartThere, returnDayBack, departureDayHere} = useSelector(state => state.train);
     const dispatch = useDispatch();
     const [valueStart] = useState(new Date());// от даты 1
     const [valueBack] = useState(new Date());
@@ -15,8 +15,11 @@ export default function AddCalendar({ children }) {
 
     const [showCalendarHere, setShowCalendarHere] = useState(false);
     const [showCalendarBack, setShowCalendarBack] = useState(false);//показывать 2
-    // const [dateStart, setDateStart] = useState(dateStartThere ? dateStartThere : null);//сегодняшней  дата to 1 
-    // const [dateEnd, setDateEnd] = useState(dateBackTo ? dateBackTo : null);
+
+    useEffect(() => {
+        setDateBack(returnDayBack );
+        setDateHere(departureDayHere);
+    }, [departureDayHere, returnDayBack])
 
     const onChange = (value) => { //toLocaleDateString() возвращает строку с языкозависимым представлением части с датой в этой дате
         const time = value.toLocaleDateString('en-ca'); //ту дату которую передали из календаря
@@ -24,15 +27,12 @@ export default function AddCalendar({ children }) {
         if (value > valueStart || (new Date(time).getTime() === new Date(start).getTime())) {//getTime()экземпляров Dateвозвращает количество миллисекунд для этой даты с эпохи 
             dispatch(departureDay(dateToString(value)));
             dispatch(startDate(time));
-            setDateHere(dateToString(value)); //dateToString -Преобразует объект даты в строку в соответствии с заданным пользователем форматом
             setShowCalendarHere(false);// закрыть календарь
         }
     }
 
     const onChangeBack = (value) => {
         if (value > new Date(dateStartThere)) {
-            // setDateEnd(value.toLocaleDateString('en-ca'));
-            setDateBack(dateToString(value));
             dispatch(returnDay(dateToString(value)));
             dispatch(backDay(value.toLocaleDateString('en-ca')));
             setShowCalendarBack(false);// закрыть календарь
@@ -58,7 +58,7 @@ export default function AddCalendar({ children }) {
                         <div className='triangle date__here__triangle'></div> 
                     </>
                 }
-                    <input id='date__here' className='date__here' placeholder='ДД/ММ/ГГ' defaultValue={dateHere} onClick={() => setShowCalendarHere(!showCalendarHere)}/>       
+                    <input id='date__here' className='date__here' placeholder='ДД/ММ/ГГ' value={dateHere} onChange={() =>setDateHere(departureDayHere) } onClick={() => setShowCalendarHere(!showCalendarHere)}/>       
             </div>
             { children }
             <div className='form__date-box form__date-box_back'>  
@@ -68,7 +68,7 @@ export default function AddCalendar({ children }) {
                         <div className='triangle date__back__triangle'></div> 
                     </>
                 }
-            <input id='date__back' className='date__back' placeholder='ДД/ММ/ГГ' defaultValue={dateBack}  onClick={() => setShowCalendarBack(!showCalendarBack)}/>                      
+            <input id='date__back' className='date__back' placeholder='ДД/ММ/ГГ' value={dateBack} onChange={() => setDateBack(returnDayBack)} onClick={() => setShowCalendarBack(!showCalendarBack)}/>                      
             </div> 
         </>
     )

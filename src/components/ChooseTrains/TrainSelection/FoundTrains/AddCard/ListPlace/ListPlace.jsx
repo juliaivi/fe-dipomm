@@ -1,26 +1,13 @@
 import "./stylelistplace.css";
-import Tooltip from "./Tooltip/Tooltip";
+import AddDepartureService from "../AddDepartureService";
 
-export default function ListPlace(props) {
-   
+export default function ListPlace({departure , index}) {  
     return (
         <>
-            {props.informationplace.map((el, index) => {
-               return (
-                            <div className="item__place__info_box" key={index}>
-                                <p className="view__place">{el.type}</p>
-                                <div className="item__place__info">
-                                    <Tooltip text={el.description}>
-                                        <p className="number__seats">{el.quantity}</p>
-                                    </Tooltip>
-                                    <p className="price__from">от</p>
-                                    <p className="price__number">{el.price}</p>
-                                    <p className="price__type__currency">₽</p> 
-                                </div>   
-                            </div>
-                )
-            })}
-                
+            {(departure.have_first_class === true) ? <AddDepartureService index={index} type={'first'} text={'Люкс' } availableSeatsInfo={departure.available_seats_info.first} priceInfo={departure.price_info.first} /> : ''}
+            {(departure.have_fourth_class=== true) ? <AddDepartureService index={index} type={'fourth'} text={'Сидячие' } availableSeatsInfo={departure.available_seats_info.fourth} priceInfo={departure.price_info.fourth} /> : ''}
+            {(departure.have_second_class === true) ? <AddDepartureService index={index} type={'second'} text={'Купе' } availableSeatsInfo={departure.available_seats_info.second} priceInfo={departure.price_info.second} /> : ''}
+            {(departure.have_third_class === true) ? <AddDepartureService index={index} type={'third'} text={'Плацкарт' } availableSeatsInfo={departure.available_seats_info.third} priceInfo={departure.price_info.third} /> : ''}
         </>
     )
 }

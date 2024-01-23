@@ -76,10 +76,14 @@ const SearchbarDropdown = (props) => {
                                 // console.log(option , 'option')
                                 if (title === 'Откуда') {
                                     dispatch(citiesItemThere(option));
-                                    dispatch(citiesItemThereId(citiesFromList[0]._id))
+                                    if (citiesFromList[0]?._id !== undefined) {
+                                      dispatch(citiesItemThereId(citiesFromList[0]?._id));  
+                                    }                                   
                                 } else {
                                     dispatch(citiesItemTo(option));
-                                    dispatch(citiesItemToId(citiesToList[0]._id))
+                                    if (citiesToList[0]?._id !== undefined) {
+                                        dispatch(citiesItemToId(citiesToList[0]?._id));
+                                    }
                                 }
                                 
                             }}

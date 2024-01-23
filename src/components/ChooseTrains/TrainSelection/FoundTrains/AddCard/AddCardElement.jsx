@@ -9,83 +9,104 @@ import wifi from '../../../../../img/wifi.svg';
 import express from '../../../../../img/express.svg';
 import mug from '../../../../../img/mug.svg';
 
+import {trainSeatsRequest, selectTrain, trainSeatsBackRequest} from '../../../../../redux/slice/trainSlice';
+import { useDispatch} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import {convertingSecondsHours} from "./convertingSecondsHours";
 
+export default function AddCardElement({el, index }) {
+    // const convertingSecondsHours = (seconds) => {
+    //     return new Date(seconds * 1000).toISOString().substring(11, 16);
+    // }
 
-export default function AddCardElement({el, key}) {
-
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    // для пагинации
+    // let arrey = []
+    // for (let i = (page-1)* limit; index < (page* limit); i++) {
+    //     arrey.push(users[i])
+    // }
+    // return arrey; 
+    const SelectSeatsInfo = (id) => {
+        dispatch(trainSeatsRequest(id));
+        dispatch(selectTrain(el));
+        if (el?.arrival !== undefined) {
+            dispatch(trainSeatsBackRequest(el?.arrival._id));
+        } 
+    
+        navigate(`/trains/${id}`);
+    }
+  
     return (
-        <>
-         <div className="cart__item" key={key}>
+         <div className="cart__item" key={index}>
                 <div className="cart__info">
                     <img src={train} alt="train" className="train__icon"></img>
-                    <h2 className="train__name">{el.itemcard.traininformation.name}</h2>
-                    <p className="path__name">{el.itemcard.traininformation.initialstart}</p>
-                    {(el.itemcard.traininformation.from !== null) ? <p className="path__name">{el.itemcard.traininformation.from}</p> : <></> }
-                    <p className="path__name">{el.itemcard.traininformation.to}</p>
+                    <h2 className="train__name">{el?.departure.train.name}</h2>
+                    <p className="path__name">{el?.departure.from.city.name} →</p>
+                    {/* {(el.itemcard.traininformation.from !== null) ? <p className="path__name">{el.itemcard.traininformation.from}</p> : <></> } */}
+                    <p className="path__name">{el?.departure.to.city.name}</p>
                 </div>
                 <div className="train__info_box">
                     <div className='train__info'>
-                    <div className="train__schedule__there">
-                        <div className="train__departure">
-                            <div className="departure__time">{el.itemcard.pathinformationfrom.timefrom}</div>
-                            <div className="departure__city">{el.itemcard.pathinformationfrom.cityfrom}</div>
-                            <div className="departure__station">{el.itemcard.pathinformationfrom.railwaystationfrom}</div>
-                        </div>
-
-                        <div className="travel__info">
-                            <div className="travel__time">{el.itemcard.pathinformationfrom.timefrom}</div>
-                            <img src={arrowrigth} alt="" className="travel__img"></img>
-                        </div>
-
-                        <div className="train__arrival">
-                            <div className="arrival__time">{el.itemcard.pathinformationfrom.timeto}</div>
-                            <div className="arrival__city">{el.itemcard.pathinformationfrom.cityto}</div>
-                            <div className="arrival__station">{el.itemcard.pathinformationfrom.railwaystationto}</div>
-                        </div>
-                    </div>
-
-                    {el.itemcard.pathinformationto !==null ? <>
-                            <div className="train__schedule__there">
-                                <div className="train__departure">
-                                    <div className="departure__time">{el.itemcard.pathinformationto.timefrom}</div>
-                                    <div className="departure__city">{el.itemcard.pathinformationto.cityfrom}</div>
-                                    <div className="departure__station">{el.itemcard.pathinformationto.railwaystationfrom}</div>
-                                </div>
-
-                                <div className="travel__info">
-                                    <div className="travel__time">{el.itemcard.pathinformationto.timefrom}</div>
-                                    <img src={arrowleft} alt="" className="travel__img"></img>
-                                </div>
-
-                                <div className="train__arrival">
-                                    <div className="arrival__time">{el.itemcard.pathinformationto.timeto}</div>
-                                    <div className="arrival__city">{el.itemcard.pathinformationto.cityto}</div>
-                                    <div className="arrival__station">{el.itemcard.pathinformationto.railwaystationto}</div>
-                                </div>
+                        <div className="train__schedule__there">
+                            <div className="train__departure">
+                                <div className="departure__time">{convertingSecondsHours(el?.departure.from.datetime)}</div>
+                                <div className="departure__city">{el?.departure.from.city.name}</div>
+                                <div className="departure__station">{el?.departure.from.railway_station_name} вокзал</div>
                             </div>
-                        </> : <></>}
+
+                            <div className="travel__info">
+                                <div className="travel__time">{convertingSecondsHours(el.departure.duration)}</div>
+                                <img src={arrowrigth} alt="" className="travel__img"></img>
+                            </div>
+
+                            <div className="train__arrival">
+                                <div className="arrival__time">{convertingSecondsHours(el.departure.to.datetime)}</div>
+                                <div className="arrival__city">{el.departure.to.city.name}</div>
+                                <div className="arrival__station">{el.departure.to.railway_station_name} вокзал</div>
+                            </div>
+                        </div>
+                        {el?.arrival !== undefined ?
+                            <div className="train__schedule__there"> 
+                                    <div className="train__arrival">
+                                        <div className="arrival__time">{convertingSecondsHours(el.arrival.to.datetime)}</div>
+                                        <div className="arrival__city">{el.arrival.to.city.name}</div>
+                                        <div className="arrival__station">{el.arrival.to.railway_station_name} вокзал</div>
+                                    </div>
+
+                                    <div className="travel__info">
+                                        <div className="travel__time">{convertingSecondsHours(el.arrival.duration)}</div>
+                                        <img src={arrowleft} alt="" className="travel__img"></img>
+                                    </div>
+                                    
+                                    <div className="train__departure">
+                                        <div className="departure__time">{convertingSecondsHours(el.arrival.from.datetime)}</div>
+                                        <div className="departure__city">{el.arrival.from.city.name}</div>
+                                        <div className="departure__station">{el.arrival.from.railway_station_name} вокзал</div>
+                                    </div>        
+                            </div> : ''
+                        }
                     </div>
 
                     <div className='list__place__box'>    
                         <div className="list__place__info">
-                            <ListPlace  informationplace={el.itemcard.informationplace} />
+                            <ListPlace  departure={el.departure} index={index}/>
                         </div>  
 
                         <div className='list__services_box'>
                             <div className='item__services'>
-                                <img src={wifi} className='services__img' alt='wifi'></img>
-                                <img src={express} className='services__img' alt='express'></img>
-                                <img src={mug} className='services__img' alt='mug'></img>
+                                {el.departure.have_wifi !== false && <img src={wifi} className='services__img' alt='wifi'></img>}
+                                {el.departure.is_express !== false &&  <img src={express} className='services__img' alt='express'></img>}
+                                {el.departure.have_air_conditioning !== false && <img src={mug} className='services__img' alt='mug'></img>}   
                             </div>
      
-                            <button className='button btn__choose'>Выбрать места</button>
+                            <button className='button btn__choose' onClick={(e) => SelectSeatsInfo(el.departure._id)}>Выбрать места</button>
                        </div> 
                        
                    </div>
                 </div>
             </div>
 
-        </>
     )
 }
 

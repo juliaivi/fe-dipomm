@@ -1,19 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import SearchCity from './SearchStations/SearchStations';
 import { useNavigate } from 'react-router-dom';
-import { trainsListRequest, citiesItemThere, citiesItemTo , citiesItemToId, citiesItemThereId } from '../../../redux/slice/trainSlice';
+import { trainsListRequest, addLastRoutesItem,  citiesItemThere, citiesItemTo , citiesItemToId, citiesItemThereId } from '../../../redux/slice/trainSlice';
 import AddCalendar from './AddCalendar';
 
 
 export default function TicketSearchForm() {
-    const {citiesFromList, cityFrom, cityTo, cityFromId, citiesToList, cityToId, dateStartThere, dateBackTo} = useSelector(state => state.train);
-    // const {train} = useSelector(state => state);
+    const {citiesFromList, lastRoutesItem, cityFrom, cityTo, cityFromId, citiesToList, cityToId, dateStartThere, dateBackTo} = useSelector(state => state.train);
+    const {train} = useSelector(state => state);
     const dispatch = useDispatch();
     const navigate = useNavigate();
    
     let valid = false;
 
-    // console.log(train, 'train')
+    console.log(train, 'train')
     
     if (cityFrom !== '' && cityTo !== '' && dateStartThere   && dateBackTo) {
         valid = true
@@ -21,7 +21,9 @@ export default function TicketSearchForm() {
 
     const lookTickets = (e) => {
         e.preventDefault();
- 
+        if(lastRoutesItem !== null){
+            dispatch(addLastRoutesItem(null)); 
+        } 
         const form = {
             'from_city_id': cityFromId,
             'to_city_id': cityToId,
@@ -29,7 +31,7 @@ export default function TicketSearchForm() {
             'date_end': dateBackTo,
             'sort': 'date',
             'limit': 5,
-            'offset': 0
+            'offset': 0,
           }
 
         dispatch(trainsListRequest(form));

@@ -1,6 +1,6 @@
 import  './seatselection.css';
 import MainForm from '../ChooseTrains/MainForm/MainForm';
-import SeatSelectionCoupe from './SeatSelection/SeatSelectionCoupe';
+import SeatSelectionCoupe from './SeatSelectionCoupe/SeatSelectionCoupe';
 import SelectionMenu from '../ChooseTrains/TrainSelection/SelectionMenu/SelectionMenu';
 
 export default function SeatSelection() {

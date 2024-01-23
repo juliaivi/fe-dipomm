@@ -1,12 +1,15 @@
 [{
     "sortingtype": [
-        {
+        {   
+            "type": "date",
             "name": "времени"
         },
-        {
+        {   
+            "type": "price",
             "name": "стоимости"
         },
         {
+            "type": "duration",
             "name": "длительности"
         }
     ]

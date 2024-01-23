@@ -4,10 +4,10 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import './styleServiceBottons.css';
 import { useState } from 'react';
 
-export default function AddServiceButtons(props) {
+export default function AddServiceButtons({type, services}) {
     const [value, setValue] = useState([]);
 
-    const toggleElement = (e, type) => {
+    const toggleElement = (e) => {
         if (e.target.classList.contains(`service__${type}_not-active `)) {
             return;
         }
@@ -31,25 +31,22 @@ export default function AddServiceButtons(props) {
 
     return (
         <>
-            <div className='service__list__buttons'>
-                    {props.services.map((el, index) => (
-                        <OverlayTrigger
-                            key= {index}
+                    <OverlayTrigger
                             placement='bottom'
                             overlay={
                                 <Tooltip id='tooltip-bottom' className='service__tooltip' >
-                                    {el.text}
+                                    {type === 'condition' && 'Кондиционер'}
+                                    {type === 'wifi' && 'Wi-Fi'}
+                                    {type === 'food' && 'Еда'}
+                                    {type === 'bedding' && 'Кондиционер'}
                                 </Tooltip>
                             }
                         >
-                        {(el.active === true) ?
-                            <Button className={`service service__${el.type} service__active`} onClick={(e) => toggleElement(e, el.type)}></Button> : 
-                            <Button className={`service service__${el.type}`} onClick={toggleElement}></Button>
+                        {(services === true) ?
+                            <Button className={`service service__${type} service__active`} onClick={(e) => toggleElement(e)}></Button> : 
+                            <Button className={`service service__${type}`} onClick={toggleElement}></Button>
                         }
-                        </OverlayTrigger>
-                ))}
-                          
-            </div>
+                    </OverlayTrigger>
         </>
     )
 } 

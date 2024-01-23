@@ -8,7 +8,7 @@ const initialState = {
     citiesFromList: [],
     citiesToList: [],
     departureDayHere: '',
-    returnDay: '',
+    returnDayBack: '',
     dateStartThere: '',
     dateBackTo: '',
     loadingCitiesFrom: false,
@@ -25,6 +25,44 @@ const initialState = {
         'offset': 0,
         'price_min': 500,
     },
+    options: [
+        {
+            type:'coupe',
+            check:false,
+        },
+        {
+            type:'reservedseat',
+            check:false,
+        },
+        {
+            type:'seat',
+            check:false,
+        },
+        {
+            type:'star',
+            check:false,
+        },
+        {
+            type:'wifi',
+            check:false,
+        },
+        {
+            type:'express',
+            check:false,
+        },
+    ],
+    priceFrom: 1920,
+    priceTo: 7000,
+    startDepartureHourFrom: 0,
+    startDepartureHourTo: 24,
+    endDepartureHourFrom: 0,
+    endDepartureHourTo: 24,
+    startArrivalHourFrom: 0,
+    startArrivalHourTo: 24,
+    endArrivalHourFrom: 0,
+    endArrivalHourTo: 24,
+    sort:'sort',
+    limit: 5,
     trainsList: [],
     loadingTrainsList: false,
     errorTrainsList: null,
@@ -39,14 +77,25 @@ const initialState = {
     errorTrainSeatsBack: null,
     trainSeats: [],
     trainSeatsBack: [],
-    selectedTrain: []
+    selectedTrain: [],
+    validForm: false,
+    currentCountryPage: [],
+    lastRoutesItem: null
 }
 
 export const trainSlice = createSlice({
     name: 'train',
     initialState,
     reducers: {
-
+        addLastRoutesItem: (state, action) => {
+            state.lastRoutesItem = action.payload;            
+        },
+        changeValidForm: (state, action) => {
+            state.validForm = action.payload;            
+        },
+        changeCurrentCountryPage: (state, action) => {
+            state.currentCountryPage= action.payload;    
+        },
         //города Из списка Запросить
         citiesFromListRequest: (state, action) => {
             state.loadingCitiesFrom = true;
@@ -157,7 +206,8 @@ export const trainSlice = createSlice({
             state.loadingTrainsList = false;
             state.errorTrainsList = null;
         },
-        //последний запрос маршрутов
+
+        //последний запрос маршрутов ... вывела
         lastRoutesRequest: (state) => {
             state.loadingLastRoutes = true;
             state.errorLastRoutes = false;
@@ -172,11 +222,74 @@ export const trainSlice = createSlice({
             state.errorLastRoutes = null;
         },
 
+        // изменение состояния опций
+        changeOptions: (state, action) => {
+            const index = state.options.findIndex(item => item.type === action.payload);
+            if(index !== -1) {
+                state.options[index].check = state.options[index].check === false ? true : false;
+            }     
+        },
+        // цена
+        changePriceFrom: (state, action) => {
+            state.priceFrom = action.payload;
+        },
+
+        changePriceTo: (state, action) => {
+            state.priceTo = action.payload;
+        },
+
+        //время
+
+        changeStartDepartureFrom:(state, action) => {
+            state.startDepartureHourFrom = action.payload;
+        },
+
+        changeStartDepartureTo:(state, action) => {
+            state.startDepartureHourTo = action.payload;
+        },
+
+        changeEndDepartureFrom:(state, action) => {
+            state.endDepartureHourFrom = action.payload;
+        },
+
+        changeEndDepartureTo:(state, action) => {
+            state.endDepartureHourTo = action.payload;
+        },
+
+        changeStartArrivalFrom:(state, action) => {
+            state.startArrivalHourFrom = action.payload;
+        },
+
+        changeStartArrivalTo:(state, action) => {
+            state.startArrivalHourTo = action.payload;
+        },
+
+        changeEndArrivalFrom:(state, action) => {
+            state.endArrivalHourFrom = action.payload;
+        },
+
+        changeEndArrivalTo:(state, action) => {
+            state.endArrivalHourTo = action.payload;
+        },
+
+        // сортитровать по date, price, duration
+
+        selectSortType: (state, action) => {
+            state.sort = action.payload;
+        },
+
+        selectQuantity: (state, action) => {
+            state.limit = action.payload;
+        },
+
+        
+
         //сортировкаПоезда
         sortTrains: (state, action) => {
             state.form = action.payload;
         },
-        //поездМестаЗапрос
+
+        //поездМестаЗапрос start
         trainSeatsRequest: (state, action) => {
             state.trainId = action.payload;
             state.loadingTrainSeats = true;
@@ -191,6 +304,7 @@ export const trainSlice = createSlice({
             state.loadingTrainSeats = false;
             state.errorTrainSeats = null;
         },
+    //поездМестаЗапрос back
         trainSeatsBackRequest: (state, action) => {
             state.trainIdBack = action.payload;
             state.loadingTrainSeatsBack = true;
@@ -205,7 +319,8 @@ export const trainSlice = createSlice({
             state.loadingTrainSeatsBack = false;
             state.errorTrainSeatsBack = null;
         },
-        //выберитеПоезд
+
+        //сохранение выбранного поезда
         selectTrain: (state, action) => {
             state.selectedTrain = action.payload;
         }
@@ -241,6 +356,24 @@ export const {
     citiesItemTo,
     citiesItemThereId,
     citiesItemToId,
+    changeOptions,
+    changePriceFrom,
+    changePriceTo,
+
+  
+    changeStartDepartureFrom,
+    changeStartDepartureTo,
+    changeEndDepartureFrom,
+    changeEndDepartureTo,
+    changeStartArrivalFrom,
+    changeStartArrivalTo,
+    changeEndArrivalFrom,
+    changeEndArrivalTo,
+    selectSortType,
+    selectQuantity,
+    changeValidForm,
+    changeCurrentCountryPage,
+    addLastRoutesItem,
 
     } = trainSlice.actions;
 
