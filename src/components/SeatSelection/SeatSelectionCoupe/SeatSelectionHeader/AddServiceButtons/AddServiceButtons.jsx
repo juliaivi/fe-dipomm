@@ -44,7 +44,7 @@ export default function AddServiceButtons({type, services}) {
                         >
                         {(services === true) ?
                             <Button className={`service service__${type} service__active`} onClick={(e) => toggleElement(e)}></Button> : 
-                            <Button className={`service service__${type}`} onClick={toggleElement}></Button>
+                            <Button className={`service service__${type}`} onClick={(e) => toggleElement(e)}></Button>
                         }
                     </OverlayTrigger>
         </>

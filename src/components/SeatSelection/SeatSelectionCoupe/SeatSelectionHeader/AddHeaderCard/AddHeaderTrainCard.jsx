@@ -2,25 +2,19 @@ import './styleHeaderTrainCard.css';
 import arroWrigth from '../../../../../img/arrowrigth.svg';
 import littleTrain from '../../../../../img/littleTrain.svg';
 import clock from '../../../../../img/clock.svg';
-import { useState } from 'react';
-// import AddBtnType from './AddBtnType/AddBtnType';
 import AddBtnType from './AddBtnType/AddBtnType';
 import { convertingSecondsHours } from '../../../../ChooseTrains/TrainSelection/FoundTrains/AddCard/convertingSecondsHours';
-import {setCountNoSeatsThere, setCountNoSeatsBack, addSeatThere, addSeatBack,  setCountSeatsChildThere,
-    setCountSeatsChildBack,
-    setCountSeatsAdultThere,
-    setCountSeatsAdultBack } from '../../../../../redux/slice/passengersSlice';
+import {setCountNoSeatsThere,
+        setCountNoSeatsBack, 
+        setCountSeatsChildThere,
+        setCountSeatsChildBack,
+        setCountSeatsAdultThere,
+        setCountSeatsAdultBack } from '../../../../../redux/slice/passengersSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 
 export default function AddHeaderTrainCard({selectedTrain, type}) {
-    // const {passengers} = useSelector(state => state);
-    // console.log(passengers, 'passengers - AddHeaderTrainCard');
     const {seatsThere, seatsBack} = useSelector(state => state.passengers);
-    // const [valueInputChild, setValueInputChild] = useState(0);
-    // const [valueInputAdult, setValueInputAdult] = useState(1);
-    // const [valueInputChildNoSeats, setValueInputChildNoSeats] = useState(0);
-    // const [typeVagonBtn, setTypeVagonBtn] = useState(false);
     const dispatch = useDispatch();
 
     const changeInput = (e) => {
@@ -54,7 +48,6 @@ export default function AddHeaderTrainCard({selectedTrain, type}) {
     let timeDuration = time.split(':');
 
     return (
-        <>
             <div>
                 <div className={`train__information_box train__information_box-${type}`} >
                     <div className='train__information'>
@@ -100,7 +93,7 @@ export default function AddHeaderTrainCard({selectedTrain, type}) {
                         <div className='number__tickets__type number__tickets__type_adult'>
                             <div className='number__tickets__type_box'>
                                 <span className='number__tickets__input__text'>Взрослых   — </span>
-                                <input type='number' className={`number__tickets__input number__tickets__input_adult number__tickets__input_adult-${type}`} id='inputTypeTicketAdult'  value={type === 'there' ? seatsThere[0].count : seatsBack[0].count} onChange={changeInput} ></input>
+                                <input type='number' className={`number__tickets__input number__tickets__input_adult number__tickets__input_adult-${type}`} id='inputTypeTicketAdult'  value={type === 'there' ? seatsThere[0].count : seatsBack[0].count} onChange={(e) =>changeInput(e)} ></input>
                             </div>
                             {(Number(type === 'there' ? seatsThere[0].count : seatsBack[0].count) === 1 ) &&   <label htmlFor='inputTypeTicketAdult' className='number__tickets__adult__input__label' >Можно добавить еще 3 пассажиров</label> }
                             {( Number(type === 'there' ? seatsThere[0].count : seatsBack[0].count) === 2 ) &&   <label htmlFor='inputTypeTicketAdult' className='number__tickets__adult__input__label' >Можно добавить еще 2 пассажиров</label> }
@@ -110,7 +103,7 @@ export default function AddHeaderTrainCard({selectedTrain, type}) {
                         <div className='number__tickets__type number__tickets__type_child'>
                             <div className='number__tickets__type_box'>
                                 <span className='number__tickets__input__text' >Детских   — </span>
-                                <input type='number' className={`number__tickets__input number__tickets__input_child number__tickets__input_child-${type}`} id='inputTypeTicketChild'  value={type === 'there' ? seatsThere[1].count : seatsBack[2].count} onChange={changeInput}></input>
+                                <input type='number' className={`number__tickets__input number__tickets__input_child number__tickets__input_child-${type}`} id='inputTypeTicketChild'  value={type === 'there' ? seatsThere[1].count : seatsBack[2].count} onChange={(e) =>changeInput(e)}></input>
                             </div>
                            {( Number(type === 'there' ? seatsThere[1].count : seatsBack[1].count) === 1 ) &&   <label htmlFor='inputTypeTicketChild' className='number__tickets__child__input__label'>Можно добавить еще 3 детей до 10 лет.Свое место в вагоне, как у взрослых, но дешевле в среднем на 50-65%</label> }
                            {( Number(type === 'there' ? seatsThere[1].count : seatsBack[1].count) === 2 ) &&   <label htmlFor='inputTypeTicketChild' className='number__tickets__child__input__label'>Можно добавить еще 2 детей до 10 лет.Свое место в вагоне, как у взрослых, но дешевле в среднем на 50-65%</label> }
@@ -121,7 +114,7 @@ export default function AddHeaderTrainCard({selectedTrain, type}) {
                         <div className='number__tickets__type number__tickets__type_child-no-seats'>
                             <div className='number__tickets__type_box'>
                                 <span className='number__tickets__input__text'>Детских "без места"   — </span>
-                                <input type='number' className={`number__tickets__input input__child__no-seats input__child__no-seats-${type}`} value={type === 'there' ? seatsThere[2].count : seatsBack[2].count} onChange={changeInput} />
+                                <input type='number' className={`number__tickets__input input__child__no-seats input__child__no-seats-${type}`} value={type === 'there' ? seatsThere[2].count : seatsBack[2].count} onChange={(e) =>changeInput(e)} />
                             </div>
                         </div>
                     </div>
@@ -132,6 +125,5 @@ export default function AddHeaderTrainCard({selectedTrain, type}) {
                     <AddBtnType type={type}/>   
                 </div>
             </div>
-        </>
     )
 }

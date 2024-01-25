@@ -2,7 +2,6 @@ import './seatselectionheader.css';
 import arrowright from '../../../../img/arrow-right.svg';
 import AddHeaderTrainCard from './AddHeaderCard/AddHeaderTrainCard';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 export default function SeatSelectionHeader({selectedTrain, type}) {    
 const navigate = useNavigate();

@@ -100,37 +100,38 @@ export const passengersSlice = createSlice({
          //сидячие места 
         addSeatThere: (state, action ) => {
             // сохраняем состояние
-           
-            const { seat_id, vagon_id, typeSeat } = action.payload;
-            //ищим совпадени по месту и вагону, если нашел то просто вовращает 
-            if (typeSeat === state.selectedPlacesThere[0]?.typeSeat ) {
+            const { seat_id, vagon_id } = action.payload;
 
-            
-            const indexSeat = state.selectedPlacesThere.findIndex(seat => (seat.seat_id === seat_id && seat.vagon_id === vagon_id))
-            // если не нашел записывает данное место, а если нашел удаляет
-            if (indexSeat === -1) {
-                state.selectedPlacesThere =  [...state.selectedPlacesThere, action.payload];
+            //ищим совпадени по месту и вагону, если нашел то просто вовращает 
+            if (vagon_id === state.selectedPlacesThere[0]?.vagon_id || state.selectedPlacesThere.length === 0) { 
+                const indexSeat = state.selectedPlacesThere.findIndex(seat => (seat.seat_id === seat_id && seat.vagon_id === vagon_id))
+                // если не нашел записывает данное место, а если нашел удаляет
+                if (indexSeat === -1) {
+                    state.selectedPlacesThere =  [...state.selectedPlacesThere, action.payload];
+                } else {
+                    state.selectedPlacesThere.splice(indexSeat, 1);
+                }
             } else {
-                state.selectedPlacesThere.splice(indexSeat, 1);
+                state.selectedPlacesThere = [action.payload];
             }
-         }  else {
-            state.selectedPlacesThere = [action.payload]
-            // let newArr = state.selectedPlacesThere;
-            // let a = newArr.filter(element => element.typeSeat !== typeSeat);
-            // state.selectedPlacesThere = [...a, action.payload ];
-         }
         },
         
-        addSeatBack: (state, action) => {
+        addSeatBack: (state, action) => { 
+             if (action.payload !== undefined) {
+
+             }
             const { seat_id, vagon_id } = action.payload;
-            //ищим совпадени по месту и вагону, если нашел то просто вовращает
-            const indexSeat = state.selectedPlacesBack.findIndex(seat => (seat.seat_id === seat_id && seat.vagon_id === vagon_id))
-            // если не нашел записывает данное место, а если нашел удаляет
-            if (indexSeat === -1) {
-                state.selectedPlacesBack =  [...state.selectedPlacesBack, action.payload];
+            if (vagon_id === state.selectedPlacesBack[0]?.vagon_id || state.selectedPlacesBack.length === 0) { 
+                const indexSeat = state.selectedPlacesBack.findIndex(seat => (seat.seat_id === seat_id && seat.vagon_id === vagon_id))
+                // если не нашел записывает данное место, а если нашел удаляет
+                if (indexSeat === -1) {
+                    state.selectedPlacesBack =  [...state.selectedPlacesBack, action.payload];
+                } else {
+                    state.selectedPlacesBack.splice(indexSeat, 1);
+                }
             } else {
-                state.selectedPlacesBack.splice(indexSeat, 1);
-            }   
+                state.selectedPlacesBack = [action.payload];
+            }
         },
 
         //итоговая стоимость
@@ -312,7 +313,11 @@ export const passengersSlice = createSlice({
 
 export const {
     setCountNoSeatsThere,
-    setCountNoSeatsBack,
+    setCountNoSeatsBack, 
+    setCountSeatsChildThere,
+    setCountSeatsChildBack,
+    setCountSeatsAdultThere,
+    setCountSeatsAdultBack,
     addSeatThere,
     addSeatBack,
     setDataThere,
@@ -328,10 +333,6 @@ export const {
     orderFailure,
     orderSuccess,
     orderResult,
-    setCountSeatsChildThere,
-    setCountSeatsChildBack,
-    setCountSeatsAdultThere,
-    setCountSeatsAdultBack,
     choicetypeSeatsThere, 
     choicetypeSeatsBack,
     setTicketPricesThere,

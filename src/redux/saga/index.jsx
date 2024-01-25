@@ -109,7 +109,6 @@ function* watchSortTrainsSaga() {
 function* handleGetTrainSeatsSaga(action) {
     try {
         const data = yield getSeats(action.payload);
-        console.log(data)
         yield put(trainSeatsSuccess(data))
     } catch (e) {
         yield put(trainsListFailure(e.message));

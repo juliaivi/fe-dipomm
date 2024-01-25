@@ -7,13 +7,10 @@ import AddCalendar from './AddCalendar';
 
 export default function TicketSearchForm() {
     const {citiesFromList, lastRoutesItem, cityFrom, cityTo, cityFromId, citiesToList, cityToId, dateStartThere, dateBackTo} = useSelector(state => state.train);
-    const {train} = useSelector(state => state);
     const dispatch = useDispatch();
     const navigate = useNavigate();
    
     let valid = false;
-
-    console.log(train, 'train')
     
     if (cityFrom !== '' && cityTo !== '' && dateStartThere   && dateBackTo) {
         valid = true
