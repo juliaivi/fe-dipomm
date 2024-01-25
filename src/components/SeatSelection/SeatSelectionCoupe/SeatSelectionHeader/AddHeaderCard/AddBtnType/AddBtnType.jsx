@@ -33,7 +33,6 @@ import { useDispatch } from 'react-redux';
     const toggleActive = (e,index, el) => {
         e.preventDefault()  
         setBtnSteat({...btnSteat, activeObject: btnSteat.objects[index]});
-
         if (type === 'there') {
            dispatch(choicetypeSeatsThere(el)) 
         } else {

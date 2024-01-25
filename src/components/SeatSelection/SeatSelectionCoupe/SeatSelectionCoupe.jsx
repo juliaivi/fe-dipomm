@@ -29,7 +29,7 @@ export default function SeatSelectionCoupe() {
                     }
                 </form>
                 
-                <button className={`next__btn ${valid ? '' : 'button-find-disabled'}`} disabled={valid === true ? false : true} onClick={() =>  navigate('/trains')}>Далее</button>
+                <button className={`next__btn ${valid ? '' : 'next__btn-disabled'}`} disabled={valid === true ? false : true} onClick={() =>  navigate('/passengers')}>Далее</button>
                 
             </section>
         </>

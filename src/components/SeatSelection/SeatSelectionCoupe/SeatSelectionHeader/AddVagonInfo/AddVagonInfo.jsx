@@ -3,7 +3,7 @@ import './styleVagonInfo.css';
 import AddServiceButtons from '../AddServiceButtons/AddServiceButtons';
 import VagonPlacesList from './VagonPlacesList/VagonPlacesList';
 import { useSelector, useDispatch } from 'react-redux';
-import {setTicketPricesThere} from '../../../../../redux/slice/passengersSlice';
+import {setTicketPricesThere, setTicketPricesBack} from '../../../../../redux/slice/passengersSlice';
 
 export default function AddVagonInfo({type}) {
     const {typeSeatsThere, typeSeatsBack} = useSelector(state => state.passengers);
@@ -1998,8 +1998,10 @@ export default function AddVagonInfo({type}) {
 
 const toggleActive = (e, index) => {
     e.preventDefault();
-    if (toggleState !== index) {
+    if (toggleState !== index && type === 'there') {
         dispatch(setTicketPricesThere(0));
+    } else {
+        dispatch(setTicketPricesBack(0));
     }
     setToggleState(index);
 }
@@ -2076,16 +2078,17 @@ return (
                                                 <AddServiceButtons type={'condition'} services={el.have_air_conditioning} />    
                                                 <AddServiceButtons type={'wifi'} services={el.have_wifi} /> 
                                                 <AddServiceButtons type={'food'} services={el.is_linens_included} /> 
-                                                <AddServiceButtons type={'bedding'} services={el.is_linens_included} />                                          </div>
+                                                <AddServiceButtons type={'bedding'} services={el.is_linens_included} />              
                                             </div>       
                                         </div>
-                                   
+                                    </div>
 
                                     <div className='info__interest__people'>
                                         <div className='info__interest__people__title'>20 человек выбирают места в этом поезде</div>
                                     </div>
-                    
-                                    <VagonPlacesList type={type} listPlaces={el.seats} vagon={toggleState} price={el.coach.price === 0 ? el.coach.top_price : el.coach.price}/>
+                                  
+                                    <VagonPlacesList type={type} listPlaces={el.seats} price={el.coach.price === 0 ? el.coach.top_price : el.coach.price } vagon={toggleState}/>
+                                  
                                 </div>    
                                 
                             : ''
