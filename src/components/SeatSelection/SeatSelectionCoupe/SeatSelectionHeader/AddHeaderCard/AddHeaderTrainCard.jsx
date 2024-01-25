@@ -103,7 +103,7 @@ export default function AddHeaderTrainCard({selectedTrain, type}) {
                         <div className='number__tickets__type number__tickets__type_child'>
                             <div className='number__tickets__type_box'>
                                 <span className='number__tickets__input__text' >Детских   — </span>
-                                <input type='number' className={`number__tickets__input number__tickets__input_child number__tickets__input_child-${type}`} id='inputTypeTicketChild'  value={type === 'there' ? seatsThere[1].count : seatsBack[2].count} onChange={(e) =>changeInput(e)}></input>
+                                <input type='number' className={`number__tickets__input number__tickets__input_child number__tickets__input_child-${type}`} id='inputTypeTicketChild'  value={type === 'there' ? seatsThere[1].count : seatsBack[1].count} onChange={(e) =>changeInput(e)}></input>
                             </div>
                            {( Number(type === 'there' ? seatsThere[1].count : seatsBack[1].count) === 1 ) &&   <label htmlFor='inputTypeTicketChild' className='number__tickets__child__input__label'>Можно добавить еще 3 детей до 10 лет.Свое место в вагоне, как у взрослых, но дешевле в среднем на 50-65%</label> }
                            {( Number(type === 'there' ? seatsThere[1].count : seatsBack[1].count) === 2 ) &&   <label htmlFor='inputTypeTicketChild' className='number__tickets__child__input__label'>Можно добавить еще 2 детей до 10 лет.Свое место в вагоне, как у взрослых, но дешевле в среднем на 50-65%</label> }
