@@ -9,42 +9,50 @@ import {setCountNoSeatsThere,
         setCountSeatsChildThere,
         setCountSeatsChildBack,
         setCountSeatsAdultThere,
-        setCountSeatsAdultBack } from '../../../../../redux/slice/passengersSlice';
+        setCountSeatsAdultBack
+       } from '../../../../../redux/slice/passengersSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
-
 export default function AddHeaderTrainCard({selectedTrain, type}) {
-    const {seatsThere, seatsBack} = useSelector(state => state.passengers);
+    const { seatsThere, seatsBack} = useSelector(state => state.passengers);
     const dispatch = useDispatch();
-
+    let deleteThereActive = false;
+ 
     const changeInput = (e) => {
-        if (e.target.value > '4') {
+        e.preventDefault();
+
+        if ( e.target.value > '4') {
             return;
         }
 
-        if (e.target.classList.contains('number__tickets__input_child-there')) {
+        if (e.target.classList.contains('number__tickets__input_child-there') && 0 <= e.target.value) {
             dispatch(setCountSeatsChildThere(e.target.value));
         } 
-        if (e.target.classList.contains('number__tickets__input_child-back')) {
+        if (e.target.classList.contains('number__tickets__input_child-back') && 0 <= e.target.value) {
             dispatch(setCountSeatsChildBack(e.target.value));
         } 
 
-        if (e.target.classList.contains('input__child__no-seats-there')) {
+        if (e.target.classList.contains('input__child__no-seats-there') && 0 <= e.target.value) {
             dispatch(setCountNoSeatsThere(e.target.value));
         } 
-        if (e.target.classList.contains('input__child__no-seats-back')) {
+        if (e.target.classList.contains('input__child__no-seats-back') && 0 <= e.target.value) {
             dispatch(setCountNoSeatsBack(e.target.value));
         } 
 
-        if (e.target.classList.contains('number__tickets__input_adult-there')) {
+        if (e.target.classList.contains('number__tickets__input_adult-there') && 0 <= e.target.value) {
+
             dispatch(setCountSeatsAdultThere(e.target.value));
         } 
-        if (e.target.classList.contains('number__tickets__input_adult-back')) {
+        if (e.target.classList.contains('number__tickets__input_adult-back') && 0 <= e.target.value) {
             dispatch(setCountSeatsAdultBack(e.target.value));
         }  
     }
-    
-    let time = new Date(selectedTrain.duration * 1000).toISOString().substring(11, 16);
+
+    if (deleteThereActive === true ) {
+        deleteThereActive = false;
+    }
+
+    let time = convertingSecondsHours(selectedTrain.duration); 
     let timeDuration = time.split(':');
 
     return (
@@ -55,7 +63,6 @@ export default function AddHeaderTrainCard({selectedTrain, type}) {
                         <div className='train__direction'>
                             <div className='train__direction_number'>{selectedTrain.train.name}</div>
                             <div className='train__direction_points'>{selectedTrain.from.city.name}→</div>
-                            {/* <div className='train__direction_depature'>Москва →</div> */}
                             <div className='train__direction_point-arrival'>{selectedTrain.to.city.name}</div>
                         </div>
                     </div>
@@ -93,7 +100,13 @@ export default function AddHeaderTrainCard({selectedTrain, type}) {
                         <div className='number__tickets__type number__tickets__type_adult'>
                             <div className='number__tickets__type_box'>
                                 <span className='number__tickets__input__text'>Взрослых   — </span>
-                                <input type='number' className={`number__tickets__input number__tickets__input_adult number__tickets__input_adult-${type}`} id='inputTypeTicketAdult'  value={type === 'there' ? seatsThere[0].count : seatsBack[0].count} onChange={(e) =>changeInput(e)} ></input>
+                                <input 
+                                    type='number' 
+                                    className={`number__tickets__input number__tickets__input_adult number__tickets__input_adult-${type}`} 
+                                    id='inputTypeTicketAdult'  
+                                    value={type === 'there' ? seatsThere[0].count : seatsBack[0].count} 
+                                    onChange={(e) =>changeInput(e)}
+                                ></input>
                             </div>
                             {(Number(type === 'there' ? seatsThere[0].count : seatsBack[0].count) === 1 ) &&   <label htmlFor='inputTypeTicketAdult' className='number__tickets__adult__input__label' >Можно добавить еще 3 пассажиров</label> }
                             {( Number(type === 'there' ? seatsThere[0].count : seatsBack[0].count) === 2 ) &&   <label htmlFor='inputTypeTicketAdult' className='number__tickets__adult__input__label' >Можно добавить еще 2 пассажиров</label> }
@@ -103,18 +116,35 @@ export default function AddHeaderTrainCard({selectedTrain, type}) {
                         <div className='number__tickets__type number__tickets__type_child'>
                             <div className='number__tickets__type_box'>
                                 <span className='number__tickets__input__text' >Детских   — </span>
-                                <input type='number' className={`number__tickets__input number__tickets__input_child number__tickets__input_child-${type}`} id='inputTypeTicketChild'  value={type === 'there' ? seatsThere[1].count : seatsBack[1].count} onChange={(e) =>changeInput(e)}></input>
+                                <input 
+                                    type='number' 
+                                    className={`number__tickets__input number__tickets__input_child number__tickets__input_child-${type}`} 
+                                    id='inputTypeTicketChild'  value={type === 'there' ? seatsThere[1].count : seatsBack[1].count} 
+                                    onChange={(e) =>changeInput(e)}
+                                ></input>
                             </div>
-                           {( Number(type === 'there' ? seatsThere[1].count : seatsBack[1].count) === 1 ) &&   <label htmlFor='inputTypeTicketChild' className='number__tickets__child__input__label'>Можно добавить еще 3 детей до 10 лет.Свое место в вагоне, как у взрослых, но дешевле в среднем на 50-65%</label> }
-                           {( Number(type === 'there' ? seatsThere[1].count : seatsBack[1].count) === 2 ) &&   <label htmlFor='inputTypeTicketChild' className='number__tickets__child__input__label'>Можно добавить еще 2 детей до 10 лет.Свое место в вагоне, как у взрослых, но дешевле в среднем на 50-65%</label> }
-                           {( Number(type === 'there' ? seatsThere[1].count : seatsBack[1].count) === 3 ) &&   <label htmlFor='inputTypeTicketChild' className='number__tickets__child__input__label'>Можно добавить еще 1 ребенка до 10 лет.Свое место в вагоне, как у взрослых, но дешевле в среднем на 50-65%</label> }
-                           {( Number(type === 'there' ? seatsThere[1].count : seatsBack[1].count) >= 4 ) &&   <label htmlFor='inputTypeTicketChild' className='number__tickets__child__input__label'>Можно добавить не более 4 детей до 10 лет.Свое место в вагоне, как у взрослых, но дешевле в среднем на 50-65%</label> }
+                           {( Number(type === 'there' ? seatsThere[1].count : seatsBack[1].count) === 1 ) &&   
+                                <label htmlFor='inputTypeTicketChild' className='number__tickets__child__input__label'>Можно добавить еще 3 детей до 10 лет.Свое место в вагоне, как у взрослых, но дешевле в среднем на 50-65%</label> }
+                           
+                           {( Number(type === 'there' ? seatsThere[1].count : seatsBack[1].count) === 2 ) && 
+                                <label htmlFor='inputTypeTicketChild' className='number__tickets__child__input__label'>Можно добавить еще 2 детей до 10 лет.Свое место в вагоне, как у взрослых, но дешевле в среднем на 50-65%</label> }
+                           
+                           {( Number(type === 'there' ? seatsThere[1].count : seatsBack[1].count) === 3 ) && 
+                              <label htmlFor='inputTypeTicketChild' className='number__tickets__child__input__label'>Можно добавить еще 1 ребенка до 10 лет.Свое место в вагоне, как у взрослых, но дешевле в среднем на 50-65%</label> }
+                           
+                           {( Number(type === 'there' ? seatsThere[1].count : seatsBack[1].count) >= 4 ) && 
+                              <label htmlFor='inputTypeTicketChild' className='number__tickets__child__input__label'>Можно добавить не более 4 детей до 10 лет.Свое место в вагоне, как у взрослых, но дешевле в среднем на 50-65%</label> }
                         </div>
 
                         <div className='number__tickets__type number__tickets__type_child-no-seats'>
                             <div className='number__tickets__type_box'>
                                 <span className='number__tickets__input__text'>Детских "без места"   — </span>
-                                <input type='number' className={`number__tickets__input input__child__no-seats input__child__no-seats-${type}`} value={type === 'there' ? seatsThere[2].count : seatsBack[2].count} onChange={(e) =>changeInput(e)} />
+                                <input 
+                                    type='number' 
+                                    className={`number__tickets__input input__child__no-seats input__child__no-seats-${type}`} 
+                                    value={type === 'there' ? seatsThere[2].count : seatsBack[2].count} 
+                                    onChange={(e) =>changeInput(e)} 
+                                />
                             </div>
                         </div>
                     </div>

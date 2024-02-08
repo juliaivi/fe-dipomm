@@ -30,6 +30,7 @@ import { useDispatch } from 'react-redux';
     ]
     })
     const dispatch = useDispatch();
+    
     const toggleActive = (e,index, el) => {
         e.preventDefault()  
         setBtnSteat({...btnSteat, activeObject: btnSteat.objects[index]});

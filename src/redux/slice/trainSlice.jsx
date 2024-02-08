@@ -87,21 +87,38 @@ export const trainSlice = createSlice({
     name: 'train',
     initialState,
     reducers: {
+    //добавление - выбраного последнего билета и очистка поисковика ранее
         addLastRoutesItem: (state, action) => {
-            state.lastRoutesItem = action.payload;            
+            state.lastRoutesItem = action.payload;
+            state.citiesFromList= [];
+            state.citiesToList= [];
+            state.trainId= null;
+            state.trainIdBack= null;
+            state.trainsList=[];
+            state.form= {
+                'from_city_id': '',
+                'to_city_id': '',
+                'date_start': '',
+                'date_end': '',
+                'sort': 'date',
+                'limit': 5,
+                'offset': 0,
+                'price_min': 500,
+            };
         },
+// AddRange, SortingType - validForm
         changeValidForm: (state, action) => {
             state.validForm = action.payload;            
         },
+//изменить текущую страницу страны ????????????
         changeCurrentCountryPage: (state, action) => {
             state.currentCountryPage= action.payload;    
         },
-        //города Из списка Запросить
+//название городов из списка
         citiesFromListRequest: (state, action) => {
             state.loadingCitiesFrom = true;
             state.errorCitiesFrom = false;
             state.cityFrom = action.payload;
-            // !action.payload ? state.citiesFromList = [] : state.cityFrom = action.payload;
             state.cityFromId = '';
         },
         
@@ -109,16 +126,15 @@ export const trainSlice = createSlice({
             state.loadingCitiesTo = true;
             state.errorCitiesTo = false;
             state.cityTo = action.payload;
-            // !action.payload ? state.citiesToList = [] : state.cityTo = action.payload;
             state.cityToId = '';
         },
-
+// добавление данных от до -города и айдишника
         citiesItemThere: (state, action) => {
             state.loadingCitiesFrom = true;
             state.errorCitiesFrom = false;
-            // (action.payload !== state.cityFrom ) ? state.cityFrom = action.payload : state.cityFrom;
             state.cityFrom = action.payload;
             state.cityFromId = '';
+            
         },       
         
         citiesItemTo: (state, action) => {
@@ -139,10 +155,7 @@ export const trainSlice = createSlice({
             state.errorCitiesTo = false;
             state.cityToId  = action.payload;
         },
-
- 
-
-
+//
         citiesFromListFailure: (state, action) => {
             state.loadingCitiesFrom = false;
             state.errorCitiesFrom = action.payload;
@@ -151,7 +164,8 @@ export const trainSlice = createSlice({
             state.loadingCitiesTo = false;
             state.errorCitiesTo = action.payload;
         },
-        //города Из списка Успех
+
+        //города Из списка туда
         citiesFromListSuccess: (state, action) => {
             state.citiesFromList = action.payload;
             if (action.payload[0].name === state.cityFrom) {
@@ -171,7 +185,7 @@ export const trainSlice = createSlice({
                 state.citiesToList = [];
             }
         },
-//////////////cityFrom
+// дата - день отъезда, день возвращения (дублирование даты, т.к. нужна в разных форматах. dateStartThere - через тире)
         departureDay: (state, action) => {
             state.departureDayHere = action.payload;
         },
@@ -187,8 +201,8 @@ export const trainSlice = createSlice({
         backDay: (state, action) => {
             state.dateBackTo = action.payload;
         },
-///////////////
-// поиск направления
+
+// поиск направления - выдача результатов
         trainsListRequest: (state, action) => {
             state.form = action.payload;
             if (state.form.sort === 'price') {
@@ -196,15 +210,20 @@ export const trainSlice = createSlice({
             }
             state.loadingTrainsList = true;
             state.errorTrainsList = false;
+            state.lastRoutesItem = null;
+            state.citiesFromList = [];
+            state.citiesToList = [];
+
         },
         trainsListFailure: (state, action) => {
             state.loadingTrainsList = false;
             state.errorTrainsList = action.payload;
         },
+
         trainsListSuccess: (state, action) => {
             state.trainsList = action.payload;
             state.loadingTrainsList = false;
-            state.errorTrainsList = null;
+            state.errorTrainsList = false;
         },
 
         //последний запрос маршрутов ... вывела
@@ -229,7 +248,7 @@ export const trainSlice = createSlice({
                 state.options[index].check = state.options[index].check === false ? true : false;
             }     
         },
-        // цена
+        // цена- опция
         changePriceFrom: (state, action) => {
             state.priceFrom = action.payload;
         },
@@ -238,8 +257,7 @@ export const trainSlice = createSlice({
             state.priceTo = action.payload;
         },
 
-        //время
-
+        //время- опция
         changeStartDepartureFrom:(state, action) => {
             state.startDepartureHourFrom = action.payload;
         },
@@ -282,14 +300,12 @@ export const trainSlice = createSlice({
             state.limit = action.payload;
         },
 
-        
-
         //сортировкаПоезда
         sortTrains: (state, action) => {
             state.form = action.payload;
         },
 
-        //поездМестаЗапрос start
+        //записываем какой поезд вбран туда - id
         trainSeatsRequest: (state, action) => {
             state.trainId = action.payload;
             state.loadingTrainSeats = true;
@@ -304,7 +320,7 @@ export const trainSlice = createSlice({
             state.loadingTrainSeats = false;
             state.errorTrainSeats = null;
         },
-    //поездМестаЗапрос back
+    ////записываем какой поезд вбран обратно - id (если есть arrival)
         trainSeatsBackRequest: (state, action) => {
             state.trainIdBack = action.payload;
             state.loadingTrainSeatsBack = true;
@@ -323,6 +339,69 @@ export const trainSlice = createSlice({
         //сохранение выбранного поезда
         selectTrain: (state, action) => {
             state.selectedTrain = action.payload;
+        },
+        // очиста стейта когда заказ оформлен
+        resetData: (state) => {
+            state.cityFrom = '';
+            state.cityFromId = '';
+            state.cityTo='';
+            state.cityToId='';
+            state.departureDayHere='';
+            state.returnDayBack='';
+            state.dateStartThere='';
+            state.dateBackTo='';
+            state.options=[
+                {
+                    type:'coupe',
+                    check:false,
+                },
+                {
+                    type:'reservedseat',
+                    check:false,
+                },
+                {
+                    type:'seat',
+                    check:false,
+                },
+                {
+                    type:'star',
+                    check:false,
+                },
+                {
+                    type:'wifi',
+                    check:false,
+                },
+                {
+                    type:'express',
+                    check:false,
+                },
+            ];
+            state.priceFrom=1920;
+            state.priceTo=7000;
+            state.startDepartureHourFrom=0;
+            state.startDepartureHourTo=24;
+            state.endDepartureHourFrom=0;
+            state.endDepartureHourTo=24;
+            state.startArrivalHourFrom=0;
+            state.startArrivalHourTo=24;
+            state.endArrivalHourFrom=0;
+            state.endArrivalHourTo=24;
+            state.trainSeats=[];
+            state.trainSeatsBack=[];
+            state.selectedTrain=[];
+            state.trainsList=[];
+            state.form = {
+                'from_city_id': '',
+                'to_city_id': '',
+                'date_start': '',
+                'date_end': '',
+                'sort': 'date',
+                'limit': 5,
+                'offset': 0,
+                'price_min': 500,
+            };
+            state.trainId = null;
+            state.trainIdBack = null;
         }
     }
 })
@@ -359,8 +438,6 @@ export const {
     changeOptions,
     changePriceFrom,
     changePriceTo,
-
-  
     changeStartDepartureFrom,
     changeStartDepartureTo,
     changeEndDepartureFrom,
@@ -374,6 +451,7 @@ export const {
     changeValidForm,
     changeCurrentCountryPage,
     addLastRoutesItem,
+    resetData,
 
     } = trainSlice.actions;
 

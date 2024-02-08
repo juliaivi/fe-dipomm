@@ -1,7 +1,5 @@
 import "./stylecard.css";
-import data from './datalistplace.json';
 import ListPlace from "./ListPlace/ListPlace";
-
 import train from '../../../../../img/train.svg';
 import arrowrigth from '../../../../../img/arrowrigth.svg';
 import arrowleft from '../../../../../img/arrowleft.svg';
@@ -9,16 +7,14 @@ import wifi from '../../../../../img/wifi.svg';
 import express from '../../../../../img/express.svg';
 import mug from '../../../../../img/mug.svg';
 
-import {trainSeatsRequest, selectTrain, trainSeatsBackRequest} from '../../../../../redux/slice/trainSlice';
-import { useDispatch} from 'react-redux';
+import {trainSeatsRequest, selectTrain, trainSeatsBackRequest, citiesItemThere, citiesItemTo, citiesItemToId, citiesItemThereId} from '../../../../../redux/slice/trainSlice';
+import { useDispatch, useSelector} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {convertingSecondsHours} from "./convertingSecondsHours";
+import { useEffect } from "react";
 
 export default function AddCardElement({el, index }) {
-    // const convertingSecondsHours = (seconds) => {
-    //     return new Date(seconds * 1000).toISOString().substring(11, 16);
-    // }
-
+    const {lastRoutesItem} = useSelector(state => state.train);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // для пагинации
@@ -27,6 +23,15 @@ export default function AddCardElement({el, index }) {
     //     arrey.push(users[i])
     // }
     // return arrey; 
+    useEffect(() => {
+            if( lastRoutesItem !== null) {
+                dispatch(citiesItemThere(lastRoutesItem.departure.from.city.name));
+                dispatch(citiesItemTo(lastRoutesItem.departure.to.city.name));
+                dispatch(citiesItemThereId(lastRoutesItem.departure.from.city._id));
+                dispatch(citiesItemToId(lastRoutesItem.departure.from.city._id));
+            }
+    }, [])
+
     const SelectSeatsInfo = (id) => {
         dispatch(trainSeatsRequest(id));
         dispatch(selectTrain(el));
@@ -43,7 +48,6 @@ export default function AddCardElement({el, index }) {
                     <img src={train} alt="train" className="train__icon"></img>
                     <h2 className="train__name">{el?.departure.train.name}</h2>
                     <p className="path__name">{el?.departure.from.city.name} →</p>
-                    {/* {(el.itemcard.traininformation.from !== null) ? <p className="path__name">{el.itemcard.traininformation.from}</p> : <></> } */}
                     <p className="path__name">{el?.departure.to.city.name}</p>
                 </div>
                 <div className="train__info_box">

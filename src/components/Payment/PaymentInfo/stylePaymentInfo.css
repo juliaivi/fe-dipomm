@@ -145,4 +145,18 @@ input:-moz-placeholder {
     border: 1px solid var(--bg-color-error);
 }
 
+.buy__ticket__btn.disabled {
+    background: var(--color-gray);
+    border-color: 1px solid var(--color-gray);
+}
+
+.initials__input.surname.error {
+    border: 1px solid var(--bg-color-error);
+}
+
+.name-personal {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 

@@ -88,14 +88,12 @@
 .vagon__places__list {
     display: flex;
     flex-wrap: wrap;
-
     width: 100%;
     height: 137px;
     margin-bottom: 84px;
     padding-left: 164px;
     padding-top: 24px;   
     padding-bottom: 47px;
-    /* background: url(../../../../../img/luxSeatType1.jpg) no-repeat; */
     background-position: center;
     padding-top: 72px;
     padding-right: 91px;
@@ -152,8 +150,6 @@
 
 .vagon__places__list_lux .first_row .place__number {
     height: 59px;
-    /* margin-left: 16px;
-    margin-right: -17px; */
 }
 
 .vagon__places__list_lux {
@@ -175,20 +171,8 @@
     background: url(../../../../../img/luxSeatType1.jpg) no-repeat;
     background-position: center;
 }
-/* .vagon__places__list_coupe .vagon__places__list .place__number {
-    height:28px;
-} */
-
-/* .vagon__places__list_lux .vagon__places__list .place__number_2 {
-    left: 151px;
-} */
-
-/* .vagon__places__list_lux .vagon__places__list .place__number_1 {
-    left: 151px;
-} */
 
 .vagon__places__list_lux .vagon__places__list .place__number {
-    /* left: 151px; */
     bottom: 53px;
     height: 59px;
 }
@@ -486,7 +470,6 @@
 
 
 .vagon__places__list_sedentary .vagon__places__list .place__number  {
-    /* position: absolute; */
     margin-right: 20px;
     margin-bottom: 3px;
     width: 24px; 

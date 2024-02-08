@@ -22,7 +22,6 @@
     width: 100%;
     height: 321px;
     margin-top: 111px !important;
-    /* margin-left: 216px !important; */
     margin: auto;
     padding: 25px 21px 59px 43px;
     background: rgba(41, 41, 41, 0.80) !important;
@@ -62,16 +61,6 @@
 .btn_reverse {
     margin-top: 0;
     margin: auto;
-}
-
-.form__order__date .form__date .form__date-box_to .react-calendar {
-    bottom: -243px;
-    right: 400px;
-}
-
-.form__order__date .form__date .form__date-box_back .react-calendar {
-    bottom: -243px;
-    right: 36px;
 }
 
 /* line error  -полоса*/
@@ -189,10 +178,6 @@
 
   
 /*trains trains trains*/
-
-
-
-
 /* line error  -полоса*/
 .registration__stage { 
   width: 100%;
@@ -259,4 +244,16 @@
 .order__box .date {
   position: relative;
   z-index: 5;
+}
+
+
+.form__date  .form__date-box_to.main__from .react-calendar {
+  position: absolute;
+  bottom: -175px;
+  right: 401px;
+}
+
+.form__date  .form__date-box_back.main__from .react-calendar {
+  right: 40px;
+  bottom: -175px;
 }

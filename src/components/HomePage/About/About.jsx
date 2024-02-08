@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import './about.css';
 
 export default function About({setProgress}) {
-
     useEffect(() => {
         setProgress(35);
     }, []);

@@ -1,6 +1,5 @@
 .check__order__box {
     color: var(--bg-and-color-dark);
-
 }
 
 .train__info__title {
@@ -25,12 +24,12 @@
 }
 
 .passengers__info__item {
- display: flex;
- margin-top: 30px;
- padding-bottom: 34px;
- padding-left: 30px;
- font-size: 18px;
- border-bottom: 1px dotted var(--color-light-gray);
+    display: flex;
+    margin-top: 30px;
+    padding-bottom: 34px;
+    padding-left: 30px;
+    font-size: 18px;
+    border-bottom: 1px dotted var(--color-light-gray);
 }
 
 .passsengers__info__list {

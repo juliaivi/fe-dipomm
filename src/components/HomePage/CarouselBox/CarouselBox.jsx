@@ -3,9 +3,7 @@ import Slider from './Sliders/Sliders';
 import './carouselBox.css';
 import { useEffect } from 'react';
 
-
 export default function CarouselBox({setProgress}) {
-
     useEffect(() => {
         setProgress(100);
     }, []);

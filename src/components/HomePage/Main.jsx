@@ -2,13 +2,12 @@ import Jumbotron from "./Jumbotron/Jumbotron";
 import About from "./About/About";
 import HowWorks from "./HowWorks/HowWorks";
 import CarouselBox from "./CarouselBox/CarouselBox";
-
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 export default function Main() {
     const [progress, setProgress] = useState(0);
-
+    
     // первый варинт полосы прогресса при загрузке страницы
     // console.log()
     //  const progressInterval = useRef(null);

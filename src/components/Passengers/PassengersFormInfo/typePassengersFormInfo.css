@@ -1,4 +1,4 @@
-.passengers__forms__box {
+.passengers__details__box .passengers__forms__box {
     width: 960px;
 }
 
@@ -202,7 +202,8 @@
 .passengers__detailed__info .react-calendar {
     position: absolute;
     top: 31px;
-    left: 241px;
+    left: 260px;
+    z-index: 1;
 }
 
 .detailed__info__mobility {
@@ -339,7 +340,6 @@
 
 .next__passenger__control {
     display: flex;
-    /* justify-content: space-between; */
     padding-right: 31px;
     padding-top: 49px;
     padding-bottom: 49px;
@@ -454,13 +454,11 @@
 .next__passenger__control.error {
     background: var(--bg-color-error);
     padding-left: 24px;
-    padding-top: 44px;
-    padding-bottom: 44px;
-
+    padding-top: 49px;
+    padding-bottom: 49px;
 }
 
 .error__text {
-    width: 480px;
     padding-top: 6px;
     font-size: 18px;
     text-align: left;
@@ -525,4 +523,14 @@
 .accordion__passengers__header__btn {
     width: 32px;
     height: 32px;
+}
+
+.date__birth.error {
+    border: 1px solid var(--bg-color-error);
+}
+
+.further-btn.disabled {
+    background: var(--color-gray);
+    color: var(--bg-and-color-white);
+    border: 1px solid var(--color-gray)
 }

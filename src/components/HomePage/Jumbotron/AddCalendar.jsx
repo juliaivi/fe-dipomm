@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startDate, backDay, departureDay, returnDay } from '../../../redux/slice/trainSlice';
 
-export default function AddCalendar({ children }) {
+export default function AddCalendar({classElem, children  }) {
     const {dateStartThere, returnDayBack, departureDayHere} = useSelector(state => state.train);
     const dispatch = useDispatch();
     const [valueStart] = useState(new Date());// от даты 1
@@ -51,20 +51,20 @@ export default function AddCalendar({ children }) {
 
     return (
         <>
-            <div className='form__date-box form__date-box_to'>                         
+            <div className={`form__date-box form__date-box_to ${classElem}__from`}>                         
                 {showCalendarHere &&  
                     <>
-                        <Calendar  onChange={onChange} value={valueStart} defaultValue='month'/>
+                        <Calendar tooltipAccessor={() => ""} onChange={onChange} value={valueStart} defaultValue='month'/>
                         <div className='triangle date__here__triangle'></div> 
                     </>
                 }
                     <input id='date__here' className='date__here' placeholder='ДД/ММ/ГГ' value={dateHere} onChange={() =>setDateHere(departureDayHere) } onClick={() => setShowCalendarHere(!showCalendarHere)}/>       
             </div>
             { children }
-            <div className='form__date-box form__date-box_back'>  
+            <div className={`form__date-box form__date-box_back ${classElem}__from`}>  
                 {showCalendarBack &&  
                     <>
-                        <Calendar onChange={onChangeBack} value={valueBack}/>
+                        <Calendar tooltipAccessor={() => ""} onChange={onChangeBack} value={valueBack}/>
                         <div className='triangle date__back__triangle'></div> 
                     </>
                 }

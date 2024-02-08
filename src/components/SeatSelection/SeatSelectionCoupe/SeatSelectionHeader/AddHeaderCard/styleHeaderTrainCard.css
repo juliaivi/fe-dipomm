@@ -187,8 +187,6 @@ input::-webkit-inner-spin-button {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    /* padding-left: 49px;
-    padding-right: 131px;    */
 }
 
 .type__vagon__btn {

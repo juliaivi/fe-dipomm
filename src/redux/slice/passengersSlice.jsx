@@ -1,74 +1,58 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    allSeats: {
-        departure: [],
-        arrival: []
-    },
-    totalPrice: 0,
-    totalPriceBack: 0,
-    passengers: [],
-    personalData: {
-        name: '',
-        surname: '',
-        secondName: '',
-        mail: '',
-        telephone: '',
-        payment: '' 
-    },
-    email: '',
+    passengersInfo: [],
+    personalData: null,
     loading: false,
     success: null,
     error: null,
-    train: {},
+    email: null,
+
     seatsThere: [
-    {
-        type: 'adult',
-        count: 1,
-    },
-    {
-        type: 'child',
-        count: 0,
-    },
-    {
-        type: 'child_no_eats',
-        count: 0,
-    }
-   ],
-
-
-   seatsBack: [
-    {
-        type: 'adult',
-        count: 1,
-    },
-    {
-        type: 'child',
-        count: 0,
-    },
-    {
-        type: 'child_no_eats',
-        count: 0,
-    }
-   ],
-   typeSeatsThere: null,
-   typeSeatsBack: null,
+        {
+            type: 'adult',
+            count: 0,
+        },
+        {
+            type: 'child',
+            count: 0,
+        },
+        {
+            type: 'child_no_eats',
+            count: 0,
+        }
+    ],
+    seatsBack: [
+        {
+            type: 'adult',
+            count: 0,
+        },
+        {
+            type: 'child',
+            count: 0,
+        },
+        {
+            type: 'child_no_eats',
+            count: 0,
+        }
+    ],
+    typeSeatsThere: null,
+    typeSeatsBack: null,
     selectedPlacesThere: [],
     selectedPlacesBack: [],
     ticketPricesThere: null,
     ticketPricesBack: null,
-
-   order: null,
-   loadingOrder: false,
-   errorOrder: null,
-   successOrder: null
+    order: null,
+    loadingOrder: false,
+    errorOrder: null,
+    successOrder: null
 }
 
 export const passengersSlice = createSlice({
     name: 'passengers',
     initialState, 
     reducers: {  
-        //установить количество мест без мест
+        //установить количество мест 
         setCountNoSeatsThere: (state, action) => {
             state.seatsThere[2].count = action.payload;
         },
@@ -97,7 +81,7 @@ export const passengersSlice = createSlice({
             state.typeSeatsBack = action.payload;
         },
 
-         //сидячие места 
+         //записавание мест и удаление
         addSeatThere: (state, action ) => {
             // сохраняем состояние
             const { seat_id, vagon_id } = action.payload;
@@ -117,9 +101,9 @@ export const passengersSlice = createSlice({
         },
         
         addSeatBack: (state, action) => { 
-             if (action.payload !== undefined) {
+            if (action.payload !== undefined) {
 
-             }
+            }
             const { seat_id, vagon_id } = action.payload;
             if (vagon_id === state.selectedPlacesBack[0]?.vagon_id || state.selectedPlacesBack.length === 0) { 
                 const indexSeat = state.selectedPlacesBack.findIndex(seat => (seat.seat_id === seat_id && seat.vagon_id === vagon_id))
@@ -134,6 +118,14 @@ export const passengersSlice = createSlice({
             }
         },
 
+        deleteSeatThere:(state, action) => {
+            state.selectedPlacesThere = [];
+        },
+
+        deleteSeatBack:(state, action) => {
+            state.selectedPlacesBack = [];
+        },
+
         //итоговая стоимость
         setTicketPricesThere:(state, action) => {
             state.ticketPricesThere = action.payload;
@@ -142,86 +134,41 @@ export const passengersSlice = createSlice({
         setTicketPricesBack:(state, action) => {
             state.ticketPricesBack = action.payload;
         },
-
-
-        setDataThere: (state, action) => {
-            const { data } = action.payload;
-            if (data.seat) {
-                const index = state.allSeats.departure.findIndex((item) => {
-                    if (item.seat.seat_id === data.seat.seat_id && item.id === data.id) {
-                        return item
-                    }
-                })
-
-                if (index === -1) {
-                    state.allSeats.departure = [...state.allSeats.departure.concat(data)];
-                } else {
-                    const seats = state.allSeats.departure;
-                    seats.splice(index, 1)
-                    state.allSeats.departure = seats;
-                }
-            }
-            state.totalPrice = state.allSeats.departure.map(item => item.seat.price).reduce((sum, current) => Number(sum) + Number(current), 0);
-        },
-        //данные поезда
-        setTrain: (state, action) => {
-            state.train = action.payload;
-        },
-// дата обратно
-        setDataBack: (state, action) => {
-            const { data } = action.payload;
-            if (data.seat) {
-                const index = state.allSeats.arrival.findIndex((item) => {
-                    if (item.seat.seat_id === data.seat.seat_id && item.id === data.id) {
-                        return item
-                    }
-                })
-                if (index === -1) {
-                    state.allSeats.arrival = [...state.allSeats.arrival.concat(data)];
-                } else {
-                    const seats = state.allSeats.arrival;
-                    seats.splice(index, 1)
-                    state.allSeats.arrival = seats
-                }
-            }
-            state.totalPriceBack = state.allSeats.arrival.map(item => item.seat.price).reduce((sum, current) => Number(sum) + Number(current), 0);
-        },
+        
         // добаление пасажира
         addPassengers: (state, action) => {
-            const { data } = action.payload;
-            const index = state.passengers.findIndex(item => item.id === data.id);
+            const {id} = action.payload;
+            const index = state.passengersInfo.findIndex(item => item.id === id);
+
             if (index === -1) {
-                state.passengers = [...state.passengers.concat(data)]
+                state.passengersInfo = [...state.passengersInfo.concat(action.payload)]
             } else {
-                const persons = state.passengers;
-                persons.splice(index, 1)
-                persons.push(data)
-                state.passengers = persons;
+                const persons = state.passengersInfo;
+                persons[index] = action.payload;
+                state.passengersInfo = persons;
             }
         },
         //удаление пасажира
         deletePassenger: (state, action) => {
-            const { id } = action.payload;
-            const passengers = state.passengers;
-            const index = passengers.findIndex(item => item.id === id);
+            const index = state.passengersInfo.findIndex(item => item.id === action.payload);
             if (index !== -1) {
-                passengers.splice(index, 1);
-                state.passengers = passengers;
+                const persons = state.passengersInfo;
+                persons.splice(index, 1)
+                state.passengersInfo = persons;
             }
         },
 
         //установить Персональные данные
         setPersonalData: (state, action) => {
-            const { data } = action.payload;
-            state.personalData = data;
+            state.personalData = action.payload;
         },
-
+        
         //получить запрос на подписку
         getSubscribeRequest: (state, action) => {
             state.email = action.payload;
             state.loading = true;
         },
-        //получить успешную подписку
+
         getSubscribeSuccess: (state, action) => {
             state.loading = false;
             state.success = action.payload;
@@ -231,7 +178,7 @@ export const passengersSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
-        //заказать Запрос
+        //успешность заказа
         orderRequest: (state, action) => {
             state.order = action.payload;
             state.loadingOrder = true;
@@ -251,19 +198,16 @@ export const passengersSlice = createSlice({
                 {
                     type: 'adult',
                     count: 0,
-                    seats: [],
                     price: 0
                 },
                 {
                     type: 'child',
                     count: 0,
-                    seats: [],
                     price: 0,
                 },
                 {
                     type: 'child_no_eats',
                     count: 0,
-                    seats: [],
                     price: 0
                 }
             ]
@@ -271,34 +215,35 @@ export const passengersSlice = createSlice({
                 {
                     type: 'adult',
                     count: 0,
-                    seats: [],
                     price: 0
                 },
                 {
                     type: 'child',
                     count: 0,
-                    seats: [],
                     price: 0,
                 },
                 {
                     type: 'child_no_eats',
                     count: 0,
-                    seats: [],
                     price: 0
                 }
             ];
-            state.allSeats = {
-                departure: [],
-                arrival: []
-            };
-            state.passengers = [];
-        },
-       // результат заказа
-        orderResult: (state) => {
+            state.passengers = [];            
             state.successOrder = null;
-            state.totalPrice = 0;
-            state.totalPriceBack = 0;
-            state.personalData ={
+            state.passengersInfo =[];
+            state.typeSeatsThere = null;
+            state.typeSeatsBack = null;
+            state.selectedPlacesThere = [];
+            state.selectedPlacesBack = [];    
+            state.ticketPricesBack = null;
+        },
+        
+       //очистка формы
+        orderResult: (state) => {
+            state.successOrder= null;
+            state.order = null;
+            state.ticketPricesThere = null;
+            state.personalData = {
                 name: '',
                 surname: '',
                 secondName: '',
@@ -336,7 +281,9 @@ export const {
     choicetypeSeatsThere, 
     choicetypeSeatsBack,
     setTicketPricesThere,
-    setTicketPricesBack
+    setTicketPricesBack,
+    deleteSeatThere,
+    deleteSeatBack
 } = passengersSlice.actions;
 
 export default passengersSlice.reducer;

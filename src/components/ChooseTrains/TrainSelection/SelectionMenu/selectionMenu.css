@@ -87,9 +87,10 @@
   
   .item__options {
     display: flex;
+    justify-content: space-between; 
     margin-top: 11px;
-    justify-content: space-between;
     margin-bottom: 33px;
+    padding-right: 6px;
   }
   
   .price {
@@ -263,7 +264,7 @@
   /* calendar */
   .sidebar__form .datego .form__date-box {
     position: relative;
-    z-index: 1;
+    /* z-index: 1; */
   }
 
   .sidebar__form .datego .form__date-box .date__here, .sidebar__form .datego .form__date-box .date__back {
@@ -281,6 +282,7 @@
     left: 0px;
     top: 69px;
     bottom: 0;
+    z-index: 1;
   }
 
   .react-calendar__viewContainer {

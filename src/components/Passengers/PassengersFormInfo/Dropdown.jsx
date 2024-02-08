@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function Dropdown({selected, setSelected, options, setCheckDocument, checkDocument}) {
+export default function Dropdown({selected, setSelected, options, setCheckDocument, checkDocument, setNumberChildValue, setNumberValue, setSeriesValue}) {
     const [isActive, setIsActive] = useState(false);
 
     return (
@@ -14,6 +14,15 @@ export default function Dropdown({selected, setSelected, options, setCheckDocume
                         <div onClick={()=> {
                             setSelected(el);
                             setIsActive(false);
+                            if (el.type === 'passport') {
+                                setNumberChildValue({number:'', error: false, valid: false});
+                            }
+
+                            if (el.type === 'birth-certificate') {
+                                setSeriesValue({number:'', error: false, valid: false});
+                                setNumberValue({number:'', error: false, valid: false});
+                            }
+                            
                             if (setCheckDocument !== undefined) {
                                 setCheckDocument(false);
                             }

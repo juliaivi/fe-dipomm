@@ -94,7 +94,6 @@
 }
 
 .form__date-box {
-  /* position: relative; */
   display: flex;
   height: 61px;
   width: 322px;
@@ -194,7 +193,8 @@ input {
 } 
   
 .list-grop-item-action {
-  padding: 3px;
+  padding-left: 30px;
+  text-align: left;
   border: none;
 }
 
@@ -226,8 +226,6 @@ input {
   border: 1px solid var(--color-gray);
 }
 
-/* <ProgressBar now={60} />; <ProgressBar now={60} />;*/    
-
 .loading__bar {
   position: relative;
   top: 833px;
@@ -247,3 +245,12 @@ input {
   top: 151px;
 }
 
+.form__date-main .form__date-box_to .react-calendar {
+  bottom: -172px;
+  right: 412px;
+}
+
+.form__date-main .form__date-box_back .react-calendar {
+  bottom: -172px;
+  right: 46px;
+}

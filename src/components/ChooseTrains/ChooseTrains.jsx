@@ -1,12 +1,15 @@
+import { useSelector } from "react-redux";
 import MainForm from "./MainForm/MainForm";
 import TrainSelection from "./TrainSelection/TrainSelection";
 
 export default function ChooseTrains() {
+    const {loadingTrainsList, errorTrainsList} = useSelector(state => state.train)
+
     return (
         <>
-            <main className="main">
+            <main className="main">  
                 <MainForm />
-                <TrainSelection />
+                {(!loadingTrainsList && !errorTrainsList ) &&  <TrainSelection />}
             </main>
         </>
     )

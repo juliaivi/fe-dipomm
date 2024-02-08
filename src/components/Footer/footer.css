@@ -168,4 +168,14 @@
 .social_twiter svg:active path {
     fill: var(--bg-color-orange)
 }
-  
+
+.subscribe__input.error {
+    border: 1px solid var(--bg-color-error);
+    background: var(--bg-color-error);
+}
+
+.button__subcribe.disabled {
+    background: var(--bg-color-dark);
+    color: var(--bg-and-color-white);
+    border: 1px solid var(--bg-and-color-white);
+}

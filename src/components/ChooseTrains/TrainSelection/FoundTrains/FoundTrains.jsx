@@ -6,9 +6,10 @@ import AddCardElement from './AddCard/AddCardElement.jsx';
 
 import { useSelector } from 'react-redux';
 
-export default function FoundTrains () {
+export default function FoundTrains() {
     const {trainsList, lastRoutesItem} = useSelector(state => state.train);
-    const [selected, setSelected] = useState("времени");  
+    const [selected, setSelected] = useState("времени"); 
+    
     // для пагинации
     // const [page, setPage] = useState(1); //текущая страница которая будет показваться
     // let arreyLists = []
@@ -63,12 +64,12 @@ export default function FoundTrains () {
                 </div>
             </div>
             {lastRoutesItem !== null &&
-                <AddCardElement el={lastRoutesItem} index={lastRoutesItem.departure._id} />    
+                <AddCardElement classElem={"train__list"} el={lastRoutesItem} index={lastRoutesItem.departure._id} />    
             }
 
-            {trainsList.total_count > 0 && <>
+            {trainsList.total_count > 0 && lastRoutesItem === null && <>
                {trainsList.items.map((el, index) => (
-                 <AddCardElement el={el} index={index} />))}
+                 <AddCardElement classElem={"train__list"} el={el} index={index} />))}
             </>}
             {/* пагинацию нужно доработать в зависимости от того что прийдет с сервера, сейчас она работает частично и то если пришел весь массив с данными, а не 5 постов */}
             {/* <ul className='pagination'>

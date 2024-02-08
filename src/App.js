@@ -23,12 +23,13 @@ function App() {
             <Header />          
               <Routes>
                 <Route path="/" element={<Main />}/>
-                <Route path='/trains' element={<ChooseTrains/>}/>
-                <Route path='/trains/:id' element={<SeatSelection />}/>
-                <Route path='/passengers' element={<PassengersInfo/>} />
-                <Route path='/payment' element={<Payment/>} />
-                <Route path='/checkorder' element={<CheckOrder/>} />
-                <Route path='/result' element={<SuccessfulOrder/>} />
+                  <Route path='trains' element={<ChooseTrains/>}/>
+                  <Route path='trains/:id' element={<SeatSelection />}/>
+                  <Route path='passengers' element={<PassengersInfo/>} />
+                  <Route path='payment' element={<Payment/>} />
+                  <Route path='checkorder' element={<CheckOrder/>} />
+                  <Route path='result' element={<SuccessfulOrder/>} />
+    
               </Routes>
               <Footer />
         </Router>  

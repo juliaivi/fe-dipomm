@@ -4,14 +4,16 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export default function SeatSelectionCoupe() {
-    const {selectedTrain, validForm} = useSelector(state => state.train);
-    const {passengers} = useSelector(state => state);
-    console.log(passengers, 'passengers')
+    const { seatsThere, seatsBack,  selectedPlacesThere, selectedPlacesBack} = useSelector(state => state.passengers);
+    const {selectedTrain} = useSelector(state => state.train);
     const navigate = useNavigate();
     let valid = false;
-    // if (seatsThere[0] + seatsThere[1] == selectedPlacesThere.length && seatsBack[0] + seatsBack[1] == selectedPlacesBack.length) {
-    //     valid = true
-    // }
+
+    if ((Number(seatsThere[0]?.count) + Number(seatsThere[1]?.count)) === selectedPlacesThere.length && (Number(seatsBack[0]?.count) + Number(seatsBack[1]?.count)) === selectedPlacesBack.length) {
+        valid = true;
+    } else {
+        valid = false;
+    }
 
     return (
         <>
@@ -29,8 +31,10 @@ export default function SeatSelectionCoupe() {
                     }
                 </form>
                 
-                <button className={`next__btn ${valid ? '' : 'next__btn-disabled'}`} disabled={valid === true ? false : true} onClick={() =>  navigate('/passengers')}>Далее</button>
-                
+                <button 
+                    className={`next__btn ${valid === false? '' : 'active'}`} 
+                    disabled={valid === true ? false : true} 
+                    onClick={() =>  navigate('/passengers')}>Далее</button>
             </section>
         </>
     )

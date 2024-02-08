@@ -27,8 +27,6 @@
     background-position: center;
 }
 
-
-
 .service__condition:hover, .service__bedding:hover, .service__wifi:hover, .service__food:hover {
     background-color: var(--bg-color-orange);
 }

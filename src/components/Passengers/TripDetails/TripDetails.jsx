@@ -7,51 +7,13 @@ import arrowleft from '../../../img/arrowleft.svg';
 import arrowrigth from '../../../img/arrowrigth.svg';
 import human from '../../../img/human.svg';
 import './styleTripDetails.css';
+import { useSelector } from 'react-redux';
+import {conversionData} from './conversionData';
 
 export default function TripDetails() {
-
-    const data = {
-        detailsInfo :{
-            there: {
-                data: '30.08.2018',
-                trainNumber:'116C',
-                namePlacePoint: 'Адлер',
-                namePlaceCity: 'Санкт-Петербург',
-                departureDate: '30.08.2018',
-                departureTime: '00:10', 
-                arrivalDate: '31.08.2018', 
-                arrivalTime: '09:52',
-                travelTime: '9:42',
-                nameDepartureCity: "Москва",
-                nameDepartureStation: "Курский вокзал",
-                nameCityArrival: "Санкт-Петербург",
-                nameArrivalStation: "Ладожский вокзал",
-            },
-
-            to: {
-                data: '09.09.2018',
-                trainNumber:'116C',
-                namePlacePoint: 'Адлер',
-                namePlaceCity: 'Санкт-Петербург',
-                departureDate: '08.09.2018',
-                departureTime: '09:52', 
-                arrivalDate: '09.08.2018', 
-                arrivalTime: '00:10',
-                travelTime: '9:42',
-                nameDepartureCity: "Санкт-Петербург",
-                nameDepartureStation: "Ладожский вокзал",
-                nameCityArrival: "Москва",
-                nameArrivalStation: "Курский вокзал",
-            },
-            passengersInfo: {
-                numberAdultTickets: 2,
-                numberChildrenTickets: 1,
-                costAdultTickets: 5840,
-                costChildrenTickets: 1920,
-                totalAmount: 7760,
-            }
-        }
-    }
+    const { form, selectedTrain} = useSelector(state => state.train);
+    const {seatsThere,  selectedPlacesThere, ticketPricesThere} = useSelector(state => state.passengers);
+    
     return (
         <>
             <aside className="sidebar">
@@ -62,28 +24,30 @@ export default function TripDetails() {
                             <Accordion.Header>
                                 <img src={arrowRight} className='back__info__img' alt='arrowRight' />
                                 <span className='details__text'>Туда</span>
-                                <span className='details__data'>{data.detailsInfo.there.data}</span> 
+                                <span className='details__data'>{conversionData(form.date_start)}</span> 
                             </Accordion.Header>
                             <Accordion.Body>
                                 <div className='details__info__there'>
-                                    <AddDetailsInfo data={data.detailsInfo.there}  arrow={arrowrigth}/>
+                                    <AddDetailsInfo data={selectedTrain.departure}  arrow={arrowrigth}/>
                                 </div>
                             </Accordion.Body>
                         </Accordion.Item>      
                         <div className='accordion__line' />
-                        <Accordion.Item eventKey="1">
-                            <Accordion.Header> 
-                                <img src={arrowLeft} className='back__info__img' alt='arrowLeft' />
-                                <span className='details__text'>Обратно</span>
-                                <span className='details__data'>{data.detailsInfo.to.data}</span> 
-                            </Accordion.Header>
-                    
-                            <Accordion.Body>
-                                <div className='details__info__to'>
-                                    <AddDetailsInfo data={data.detailsInfo.to}  arrow={arrowleft}/>
-                                </div>
-                            </Accordion.Body>
-                        </Accordion.Item>
+                        {selectedTrain.arrival && 
+                            <Accordion.Item eventKey="1">
+                                <Accordion.Header> 
+                                    <img src={arrowLeft} className='back__info__img' alt='arrowLeft' />
+                                    <span className='details__text'>Обратно</span>
+                                    <span className='details__data'>{conversionData(form.date_end)}</span> 
+                                </Accordion.Header>
+                        
+                                <Accordion.Body>
+                                    <div className='details__info__to'>
+                                        <AddDetailsInfo data={selectedTrain.arrival}  arrow={arrowleft}/>
+                                    </div>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        }
                         <Accordion.Item eventKey="2">
                             <Accordion.Header> 
                                 <img src={human} className='back__info__img' alt='human' />
@@ -94,24 +58,26 @@ export default function TripDetails() {
                             <Accordion.Body>
                                 <div className='passengers__info'>
                                     <div className='passengers__item'>
-                                        <span className='number__adult__tickets'>{data.detailsInfo.passengersInfo.numberAdultTickets}</span>
+                                        <span className='number__adult__tickets'>{seatsThere[0].count}</span>
                                         <span className='passengers__text'> Взрослых</span>
                                     </div>
                                     <div className='cost__adult_tickets'>
-                                        {data.detailsInfo.passengersInfo.costAdultTickets}
+                                        {Number(seatsThere[0].count) * selectedPlacesThere[0].price}
                                         <span className='currency__sign'> ₽</span>
                                     </div>
                                 </div>
-                                <div className='passengers__info'>
-                                    <div className='passengers__item'>
-                                        <span className='number__children__tickets'>{data.detailsInfo.passengersInfo.numberChildrenTickets}</span>
-                                        <span className='passengers__text'> Ребенок</span>
+                                {Number(seatsThere[1].count) > 0  &&
+                                    <div className='passengers__info'>
+                                        <div className='passengers__item'>
+                                            <span className='number__children__tickets'>{Number(seatsThere[1].count) + Number(seatsThere[2].count)}</span>
+                                            <span className='passengers__text'> Ребенок</span>
+                                        </div>
+                                        <div className='cost__children__tickets'>
+                                            {Number(seatsThere[0].count) * selectedPlacesThere[0].price}
+                                            <span className='currency__sign'> ₽</span>
+                                        </div>
                                     </div>
-                                    <div className='cost__children__tickets'>
-                                        {data.detailsInfo.passengersInfo.costChildrenTickets}
-                                        <span className='currency__sign'> ₽</span>
-                                    </div>
-                                </div>   
+                                }  
                             </Accordion.Body>
                         </Accordion.Item>
                     </Accordion>
@@ -120,7 +86,7 @@ export default function TripDetails() {
                         <div className='information__total__amount__info'>
                             <div className='information__total__amount__title'>Итог</div>
                             <div className='information__total__amount'>
-                                <span className='total__amount'>{data.detailsInfo.passengersInfo.totalAmount}</span>
+                                <span className='total__amount'>{ticketPricesThere}</span>
                                 <span className='currency__sign'> ₽</span>
                             </div>
                         </div>

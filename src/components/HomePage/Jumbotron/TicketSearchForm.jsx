@@ -5,19 +5,20 @@ import { trainsListRequest, addLastRoutesItem,  citiesItemThere, citiesItemTo , 
 import AddCalendar from './AddCalendar';
 
 
-export default function TicketSearchForm() {
+export default function TicketSearchForm(props) {
     const {citiesFromList, lastRoutesItem, cityFrom, cityTo, cityFromId, citiesToList, cityToId, dateStartThere, dateBackTo} = useSelector(state => state.train);
     const dispatch = useDispatch();
     const navigate = useNavigate();
    
     let valid = false;
-    
+
     if (cityFrom !== '' && cityTo !== '' && dateStartThere   && dateBackTo) {
         valid = true
     }
 
     const lookTickets = (e) => {
         e.preventDefault();
+        //очиска выбранного последнего билета, если он был выбран
         if(lastRoutesItem !== null){
             dispatch(addLastRoutesItem(null)); 
         } 
@@ -65,8 +66,8 @@ export default function TicketSearchForm() {
 
                         <div className='date'>
                             <p className='form__title'>Дата</p>
-                            <div className='form__date'> 
-                                < AddCalendar />                        
+                            <div className='form__date '> 
+                                <AddCalendar classElem={props.classElem}/>                        
                             </div>
                         </div>
                     </div>

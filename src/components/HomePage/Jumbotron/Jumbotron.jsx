@@ -12,7 +12,7 @@ export default function Jumbotron() {
                             <p className="jumbotron__title">Вся жизнь -</p>
                             <h2 className="jumbotron__title strong">путешествие!</h2>
                         </div>
-                        <TicketSearchForm />   
+                        <TicketSearchForm classElem={'jumbotron'}/>   
                     </div>
                 </div>
             </div> 

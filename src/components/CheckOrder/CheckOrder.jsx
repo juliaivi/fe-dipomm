@@ -1,4 +1,3 @@
-import './styleCheckOrder.css';
 import MainForm from '../ChooseTrains/MainForm/MainForm';
 import TripDetails from '../Passengers/TripDetails/TripDetails';
 import CheckOrderPage from './CheckOrderPage/CheckOrderPage';

@@ -3,10 +3,9 @@ import Nav from './Nav/Nav';
 import './header.css';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function Header() {
-
     const navigate = useNavigate();
+
     return (
         <>
             <header className="header"  id="logo">

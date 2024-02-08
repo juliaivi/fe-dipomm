@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-// import city from '../../../../data/listCity.json';
 import {  useSelector, useDispatch} from 'react-redux';
 import {citiesFromListRequest,citiesItemThere, citiesItemTo,  citiesItemThereId, citiesItemToId, citiesToListRequest} from '../../../../redux/slice/trainSlice';
 
@@ -10,13 +9,10 @@ const SearchbarDropdown = (props) => {
     const inputRef = useRef(); 
     const dispatch = useDispatch();
 
-    // console.log(citiesFromList, 'citiesFromList', citiesToList, 'citiesToList')
-
     useEffect(() => {
         inputRef.current.addEventListener('click', (event) => { 
             // stopPropagation()интерфейса Event предотвращает дальнейшее распространение текущего события на этапах захвата и барботирования.
             event.stopPropagation();
-
             // показать блок подсказки
             ulRef.current.style.display = 'flex';
             onInputChange(event);
@@ -29,18 +25,6 @@ const SearchbarDropdown = (props) => {
             }    
         });
     }, []);
-
-
-    // if (cityFrom !== "" && inputRef.current?.value !== '' && inputRef.current?.value  === undefined) {
-
-    //     if (cityFrom !== inputRef.current?.value && inputRef.current?.placeholder === 'Откуда'  && inputRef.current !== undefined) {
-    //         inputRef.current.value = cityFrom;
-    //     }  
-    
-    //     if (cityTo !== inputRef.current?.value && inputRef.current?.placeholder !== 'Откуда' && inputRef.current !== undefined) {
-    //         inputRef.current.value = cityTo;
-    //     }  
-    // }
     
 // если значения уже есть, то заполняем инпут
     let valueCity = '';
@@ -73,7 +57,6 @@ const SearchbarDropdown = (props) => {
                             type='button'
                             onClick={(e) => {
                                 inputRef.current.value = option;
-                                // console.log(option , 'option')
                                 if (title === 'Откуда') {
                                     dispatch(citiesItemThere(option));
                                     if (citiesFromList[0]?._id !== undefined) {
@@ -84,8 +67,7 @@ const SearchbarDropdown = (props) => {
                                     if (citiesToList[0]?._id !== undefined) {
                                         dispatch(citiesItemToId(citiesToList[0]?._id));
                                     }
-                                }
-                                
+                                }                             
                             }}
                             className='list-group-item list-grop-item-action'
                             key={index}
@@ -112,9 +94,9 @@ export default function SearchCity(props) {
         }
 
         if (props.title === 'Откуда') {
-             dispatch(citiesFromListRequest(e.target.value.toLowerCase()))
+            dispatch(citiesFromListRequest(e.target.value.toLowerCase()));
         } else {
-             dispatch(citiesToListRequest(e.target.value.toLowerCase()))
+            dispatch(citiesToListRequest(e.target.value.toLowerCase()));
         }
 
         props.listcites.forEach((el) => {

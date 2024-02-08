@@ -6,7 +6,6 @@ import {useDispatch } from 'react-redux';
 
 export default function SortingType({selected, setSelected}) {
     const [isActive, setIsActive] = useState(false);
-
     const dispatch = useDispatch();
 
     return (

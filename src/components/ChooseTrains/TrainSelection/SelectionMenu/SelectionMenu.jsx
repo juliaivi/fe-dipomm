@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { lastRoutesRequest, trainsListRequest, changeValidForm, addLastRoutesItem} from '../../../../redux/slice/trainSlice';
 import AddListOptoins from './ListOptions/ListOptions';
 
-export default function SelectionMenu () {
+export default function SelectionMenu (props) {
     const { validForm, lastRoutesItem, lastRoutes, sort, limit, endArrivalHourTo, endArrivalHourFrom, startArrivalHourTo, startArrivalHourFrom, endDepartureHourTo, endDepartureHourFrom, startDepartureHourTo, startDepartureHourFrom, options, priceFrom, priceTo, cityFromId, cityToId, dateStartThere, dateBackTo} = useSelector(state => state.train);
     const dispatch = useDispatch();
 
@@ -89,9 +89,9 @@ export default function SelectionMenu () {
                     <form className='sidebar__form'>
                         <div className="date datego">
                             <h4 className="datego__title">Дата поездки</h4>
-                            <AddCalendar>
+                            <AddCalendar classElem={props.classElem}>
                                 <h4 className="datego__title">Дата возвращения</h4> 
-                            </AddCalendar>
+                            </AddCalendar >
                         </div>
 
                         <div className='options list__options'>

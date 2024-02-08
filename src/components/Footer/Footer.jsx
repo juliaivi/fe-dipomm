@@ -1,17 +1,38 @@
-// import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import ContactsItem from "./ContactsItem/ContactsItem";
 import './footer.css';
 import {Link} from 'react-scroll';
-// import { useHistory ,useLocation } from 'react-router-dom';
-
+import { getSubscribeRequest } from "../../redux/slice/passengersSlice";
+import { useDispatch} from "react-redux";
 
 export default function Footer() {
-    // const location = useLocation()
-    //     console.log(location.pathname, 'location.pathname')
+    const [emailValue, setEmailValue] = useState({name: '', error: false});
+    const regEmail = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/gm;
+    const dispatch = useDispatch();
+
+    const checkEmailValue = (obj, elem) => {   
+        if(obj === undefined || obj.length === 0) {
+            elem({name:obj, error:false});
+        } else {
+            if (obj.match(regEmail)) {
+                elem({name:obj, error:false});
+            } else {
+            elem({name:obj, error:true});
+            }
+        }
+    }
+
+    const onSubscribe = (e) => {
+        e.preventDefault(); 
+        if (emailValue.name !== '' && emailValue.error === false && emailValue.name !== undefined) {
+            dispatch(getSubscribeRequest(emailValue.name));
+            setEmailValue({name: '', error: false})
+        }
+    }
 
     return (
         <>
-            <footer className="footer">
+            <footer className="footer" id='contacts'>
                 <div className="footer__box">
                     <div className="contacts">
                         <h3 className="contacts__title footer__title">Свяжитесь с нами</h3>
@@ -25,8 +46,18 @@ export default function Footer() {
                         <form className="subscribe__form">
                             <label htmlFor="mail" className="subscribe__text">Будьте в курсе событий</label>
                             <div className="">
-                                <input type="mail" id="mail" className="subscribe__input" placeholder="e-mail" required/>
-                                <button className="button button__subcribe">Отправить</button>
+                                <input 
+                                    type="mail" 
+                                    id="mail" 
+                                    className={`subscribe__input ${emailValue.error === true ? 'error' : ''} `}  
+                                    value={emailValue.name}  
+                                    onChange={(e) => { 
+                                        checkEmailValue(e.target.value, setEmailValue);
+                                    }} 
+                                    placeholder="e-mail" 
+                                    required
+                                />
+                                <button className={`button button__subcribe ${(emailValue.error === true || emailValue.name === '' ) ? 'disabled' : ''}`} onClick={(e) =>  onSubscribe(e)} disabled={(emailValue.error === true || emailValue.name === '') ? true : false} >Отправить</button>
                             </div>
                         </form>
                         <h3 className="footer__title">Подписывайтесь на нас</h3>
