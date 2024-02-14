@@ -12,7 +12,7 @@ import {conversionData} from './conversionData';
 
 export default function TripDetails() {
     const { form, selectedTrain} = useSelector(state => state.train);
-    const {seatsThere,  selectedPlacesThere, ticketPricesThere} = useSelector(state => state.passengers);
+    const {seatsThere,  selectedPlacesThere, ticketPricesThere, selectedPlacesBack} = useSelector(state => state.passengers);
     
     return (
         <>
@@ -33,7 +33,7 @@ export default function TripDetails() {
                             </Accordion.Body>
                         </Accordion.Item>      
                         <div className='accordion__line' />
-                        {selectedTrain.arrival && 
+                        {(selectedPlacesBack.length > 0 && selectedTrain.arrival )&& 
                             <Accordion.Item eventKey="1">
                                 <Accordion.Header> 
                                     <img src={arrowLeft} className='back__info__img' alt='arrowLeft' />

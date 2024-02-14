@@ -118,10 +118,13 @@
   }
   
   .list__number {
+    display: flex;
+    justify-content: center;
     width: 60px;
     height: 60px;
     margin-left: 136px;
     margin-right: 24px;
+    align-items: center;
     border: 3px solid;
     border-radius: 32px;
   }

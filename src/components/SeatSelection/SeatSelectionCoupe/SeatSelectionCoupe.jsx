@@ -9,7 +9,7 @@ export default function SeatSelectionCoupe() {
     const navigate = useNavigate();
     let valid = false;
 
-    if ((Number(seatsThere[0]?.count) + Number(seatsThere[1]?.count)) === selectedPlacesThere.length && (Number(seatsBack[0]?.count) + Number(seatsBack[1]?.count)) === selectedPlacesBack.length) {
+    if ((Number(seatsThere[0]?.count) + Number(seatsThere[1]?.count)) === selectedPlacesThere.length && (Number(seatsBack[0]?.count) + Number(seatsBack[1]?.count)) === selectedPlacesBack.length && selectedPlacesThere.length !== 0) {
         valid = true;
     } else {
         valid = false;
