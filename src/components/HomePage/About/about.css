@@ -1,6 +1,7 @@
 .about {
     width: 1470px;
     margin: auto;
+    margin-top: 132px;
     padding: 143px 44px 98px;
     color: var( --bg-and-color-dark);
   }

@@ -1,3 +1,13 @@
 .train__selection {
     justify-content: space-between;
+    padding-bottom: 30px;
   }
+
+  .train__selection span {
+    text-transform:none;
+  }
+
+  .train__direction__city, .train__direction__station, .departure__city, .arrival__city, .path__name, .city__name, .train__direction_points, .train__direction_point-arrival {
+    text-transform: capitalize;
+  }
+  

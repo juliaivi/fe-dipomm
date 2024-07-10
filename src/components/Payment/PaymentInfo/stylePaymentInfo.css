@@ -1,162 +1,164 @@
 .passengers__forms__box {
-    color: var(--bg-and-color-dark);
-    background: var(--bg-and-color-white);
-    border: 1px solid var(--color-gray-border);
+  color: var(--bg-and-color-dark);
+}
+
+.payment__details__box section .passengers__forms__box {
+  background: var(--bg-and-color-white);
+  border: 1px solid var(--color-gray-border);
 }
 
 .passengers__forms__box .form__title {
-    padding-top: 34px;
-    padding-bottom: 36px;
-    padding-left: 35px;
-    font-size: 30px;
-    background: var(--bg-color-ligth-grey-type);
-    border-bottom: 1px dotted;
+  padding-top: 34px;
+  padding-bottom: 36px;
+  padding-left: 35px;
+  font-size: 30px;
+  background: var(--bg-color-ligth-grey-type);
+  border-bottom: 1px dotted;
 }
 
 .telephone__info {
-    margin-top: 54px;
-    margin-left: 35px;
+  margin-top: 54px;
+  margin-left: 35px;
 }
 
 .email__info {
-    margin-top: 38px;
-    padding-left: 35px;
-    border-bottom: 1px dotted; ;
+  margin-top: 38px;
+  padding-left: 35px;
+  border-bottom: 1px dotted;
 }
 
-.telephone__info__input, .email__info__input {
-    width: 360px;
-    height: 50px;
-    margin-top: 8px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: 15px;
-    font-size: 24px;
-    border: 1px solid var(--color-gray);
-    border-radius: 6px;
+.telephone__info__input,
+.email__info__input {
+  width: 360px;
+  height: 50px;
+  margin-top: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 15px;
+  font-size: 24px;
+  border: 1px solid var(--color-gray);
+  border-radius: 6px;
 }
 
 .email__info__input {
-    margin-bottom: 89px;
+  margin-bottom: 89px;
 }
 
 .payment__method__title {
-    padding-top: 33px;
-    padding-bottom: 37px;
-    padding-left: 35px;
-    font-size: 30px;
-    border-bottom: 1px dotted;
-
+  padding-top: 33px;
+  padding-bottom: 37px;
+  padding-left: 35px;
+  font-size: 30px;
+  border-bottom: 1px dotted;
 }
 
 .checkbox__online__payment .checkbox__lable::before {
-    top: 50px;
-    left: 36px;
-    
+  top: 50px;
+  left: 36px;
 }
 
 .checkbox__online__payment .checkbox__lable::after {
-    top: 52px;
-    left: 38px;
+  top: 52px;
+  left: 38px;
 }
 
 .checkbox__online__payment {
-    padding-top: 52px;
-    padding-bottom: 28px;
+  padding-top: 52px;
+  padding-bottom: 28px;
 }
 
-.checkbox__online__payment .checkbox__lable, .checkbox__cash__payment .checkbox__lable {
-    color: var(--color-gray);
+.checkbox__online__payment .checkbox__lable,
+.checkbox__cash__payment .checkbox__lable {
+  color: var(--color-gray);
 }
 
 .checkbox__cash__payment .checkbox__lable::before {
-    top: 50px;
-    left: 36px;
+  top: 50px;
+  left: 36px;
 }
 
 .checkbox__cash__payment .checkbox__lable::after {
-    top: 52px;
-    left: 38px;
+  top: 52px;
+  left: 38px;
 }
 
 .online__payment__list {
-    display: flex; 
-    padding-bottom: 64px;
-    font-size: 24px;
-    font-weight: 700;    
-    border-bottom: 1px dotted;
+  display: flex;
+  padding-bottom: 64px;
+  font-size: 24px;
+  font-weight: 700;
+  border-bottom: 1px dotted;
 }
 
 .online__payment__item {
-    width: 189px;
-    margin-right: 52px;
-    padding-left: 36px;
+  width: 189px;
+  margin-right: 52px;
+  padding-left: 36px;
 }
 
 .checkbox__cash__payment {
-    padding-top: 52px;
-    padding-bottom: 82px;
+  padding-top: 52px;
+  padding-bottom: 82px;
 }
 
 .buy__ticket__btn {
-    margin-top: 106px;
-    margin-bottom: 173px;
-    padding: 16px 57px;   
-    float: right;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--bg-and-color-white);
-    text-transform: uppercase;
-    background: var(--bg-color-orange);
-    border: 1px solid var(--bg-color-orange);
-    border-radius: 6px;
+  margin-top: 106px;
+  margin-bottom: 173px;
+  padding: 16px 57px;
+  float: right;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--bg-and-color-white);
+  text-transform: uppercase;
+  background: var(--bg-color-orange);
+  border: 1px solid var(--bg-color-orange);
+  border-radius: 6px;
 }
 
 .buy__ticket__btn:hover {
-    box-shadow: 2px 3px 3px 1px rgba(98, 98, 99, 0.2);
+  box-shadow: 2px 3px 3px 1px rgba(98, 98, 99, 0.2);
 }
 
 .buy__ticket__btn:active {
-    color: var(--bg-color-orange);
-    background: var(--bg-and-color-white);
-    box-shadow: 2px 3px 3px 1px rgba(98, 98, 99, 0.2);
+  color: var(--bg-color-orange);
+  background: var(--bg-and-color-white);
+  box-shadow: 2px 3px 3px 1px rgba(98, 98, 99, 0.2);
 }
 
-.checkbox__input:checked + .checkbox__lable::before{
-    border: 1px solid var(--bg-color-orange);
+.checkbox__input:checked + .checkbox__lable::before {
+  border: 1px solid var(--bg-color-orange);
 }
 
 .checkbox__input + .checkbox__lable.error::before {
-    border: 1px solid var(--bg-color-error);
+  border: 1px solid var(--bg-color-error);
 }
 
 .main {
-    background: var(--bg-color-ligth-grey-type-tickets);
+  background: var(--bg-color-ligth-grey-type-tickets);
 }
 
 input::-webkit-input-placeholder,
 input::placeholder,
 input:-moz-placeholder {
-    color:var(--color-gray-border)
+  color: var(--color-gray-border);
 }
 
-.telephone__info__input.error, .email__info__input.error {
-    color: var(--bg-color-error);
-    border: 1px solid var(--bg-color-error);
+.telephone__info__input.error,
+.email__info__input.error {
+  color: var(--bg-color-error);
+  border: 1px solid var(--bg-color-error);
 }
 
 .buy__ticket__btn.disabled {
-    background: var(--color-gray);
-    border-color: 1px solid var(--color-gray);
+  background: var(--color-gray);
+  border-color: 1px solid var(--color-gray);
 }
 
 .initials__input.surname.error {
-    border: 1px solid var(--bg-color-error);
+  border: 1px solid var(--bg-color-error);
 }
 
 .name-personal {
-    margin-left: 10px;
-    margin-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
-
-

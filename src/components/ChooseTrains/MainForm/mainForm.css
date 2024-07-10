@@ -1,191 +1,71 @@
 .main__form_box .jumbotron__banner {
-    background-image: url('../../../img/banner2.jpg');
-    height: 598px !important;
-  }
+  height: 598px !important;
+  background-image: url('../../../img/banner2.jpg');
+}
 
-.main__form { 
-    height: 531px;
+.main__form {
+  height: 531px;
 }
-  
+
 .main__form_box {
-    position: relative;
-    top: -160px;
-    height: 691px;
+  position: relative;
+  top: -160px;
+  height: 691px;
 }
-  
+
 .main__form__info .form__order .direction .form__title {
-    padding-left: 7px;
+  padding-left: 7px;
 }
-  
+
 .main__form__info .form__order {
-    width: 1489px !important;
-    width: 100%;
-    height: 321px;
-    margin-top: 111px !important;
-    margin: auto;
-    padding: 25px 21px 59px 43px;
-    background: rgba(41, 41, 41, 0.80) !important;
-} 
-  
+  width: 100%;
+  height: 321px;
+  margin-top: 111px !important;
+  margin: auto;
+  padding: 25px 21px 59px 43px;
+  background: rgba(41, 41, 41, 0.8) !important;
+}
+
 .main__form__info .form__order .order__box {
-    display: flex;
-    margin-bottom: 0;
+  display: flex;
+  margin-bottom: 0;
 }
-  
+
 .main__form__info .form__order .order__box .direction {
-    margin-right: 44px;
+  margin-right: 44px;
 }
-  
-.main__form__infox .form__order .order__box .direction .form__title{
-    padding-left: 0;
+
+.main__form__infox .form__order .order__box .direction .form__title {
+  padding-left: 0;
 }
-  
+
 .main__form__info .form__order .order__box .date .form__date .form__date-box {
-    margin-right: 41px;
+  margin-right: 41px;
 }
-  
+
 .main__form__info .form__order .button-find {
-    font-size: 24px;
-    margin-right: 18px;
-    margin-top: -10px;
+  font-size: 24px;
+  margin-right: 18px;
+  margin-top: -10px;
 }
 
 .form__order_direction {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .form__order__date {
-    margin-left: -12px;
+  margin-left: -12px;
 }
 
 .btn_reverse {
-    margin-top: 0;
-    margin: auto;
+  margin-top: 0;
+  margin: auto;
 }
 
-/* line error  -полоса*/
-.registration__stage { 
-    width: 100%;
-    height: 99px;
-    background-color: var(--color-darck-gray) ;
-    z-index: -1;
-  }
-  
-  .registration__stage__box {
-    display: flex;
-  }
-  
-  .operation__name {
-    text-align: center;
-    font-size: 36px;
-    color: var(--bg-and-color-white);
-  }
-  
-  .stage { 
-    flex-grow: 1;
-  }
-  
-  .stage_active {
-    display: flex;
-    background: orange;
-  }
-  
-  .arrow {
-    width: 72px;
-    height: 72px;
-    display: inline-block;
-    margin: 13px 0 0 -37px;
-    border-top: 3px solid var(--bg-and-color-white)!important;
-    border-right: 3px solid var(--bg-and-color-white) !important;
-    transform: rotate(45deg);
-    transition: 1s;
-    border-radius: 2px; 
-    z-index: 4;
-  }
-  
-  .arrow_active {
-    width: 72px;
-    height: 72px;  
-    margin: 13px 0 0 -37px;
-    display: inline-block;
-    border-top: 3px solid var(--bg-and-color-white)!important;
-    border-right: 3px solid var(--bg-and-color-white) !important;
-    transform: rotate(45deg);
-    transition: 1s;
-    background-color: orange;
-    border-radius: 2px;
-    z-index: 1;
-  }
-  
-  .list__number {
-    display: flex;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    margin-left: 136px;
-    margin-right: 24px;
-    align-items: center;
-    border: 3px solid;
-    border-radius: 32px;
-  }
-  
-  .operation__name .list__title {
-    margin-top: 8px;
-    z-index: 2;
-  }
-  
-  .stage__tickets {
-    width: 582px;
-    height: 99px;
-  }
-  
-  .stage__passengers {
-    width: 361px;
-    margin-left: -35px;
-  }
-  
-  .stage__passengers .operation__name {
-    margin-left: -65px;
-  }
-  
-  .stage__payment {
-    width: 361px;
-    margin-left: -35px;
-  }
-  
-  .stage__payment .operation__name {
-    margin-left: -65px;
-  }
-  
-  .stage__check {
-    flex-grow: 2;
-    margin-left: -35px;
-  }
-  
-  .registration__stage__box .status__check {
-    flex-grow: 1;
-  }
-  .stage__check .operation__name {
-    margin-left: -65px;
-  }
-  
-  .operation__name {
-    display: flex;
-    margin-top: 22px;
-    margin-left: 92px;
-  }
-  
-  .status {
-    display: flex;
-  }
-
-  
-/*trains trains trains*/
-/* line error  -полоса*/
-.registration__stage { 
+.registration__stage {
   width: 100%;
   height: 99px;
-  background-color: var(--color-darck-gray) ;
+  background-color: var(--color-darck-gray);
   z-index: -1;
 }
 
@@ -199,7 +79,7 @@
   color: var(--bg-and-color-white);
 }
 
-.stage { 
+.stage {
   flex-grow: 1;
 }
 
@@ -213,20 +93,136 @@
   height: 72px;
   display: inline-block;
   margin: 13px 0 0 -37px;
-  border-top: 3px solid var(--bg-and-color-white)!important;
+  border-top: 3px solid var(--bg-and-color-white) !important;
   border-right: 3px solid var(--bg-and-color-white) !important;
   transform: rotate(45deg);
   transition: 1s;
-  border-radius: 2px; 
+  border-radius: 2px;
   z-index: 4;
 }
 
 .arrow_active {
   width: 72px;
-  height: 72px;  
+  height: 72px;
   margin: 13px 0 0 -37px;
   display: inline-block;
-  border-top: 3px solid var(--bg-and-color-white)!important;
+  border-top: 3px solid var(--bg-and-color-white) !important;
+  border-right: 3px solid var(--bg-and-color-white) !important;
+  transform: rotate(45deg);
+  transition: 1s;
+  background-color: orange;
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.list__number {
+  display: flex;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin-left: 136px;
+  margin-right: 24px;
+  align-items: center;
+  border: 3px solid;
+  border-radius: 32px;
+}
+
+.operation__name .list__title {
+  margin-top: 8px;
+  z-index: 2;
+}
+
+.stage__tickets {
+  width: 582px;
+  height: 99px;
+}
+
+.stage__passengers {
+  width: 361px;
+  margin-left: -35px;
+}
+
+.stage__passengers .operation__name {
+  margin-left: -65px;
+}
+
+.stage__payment {
+  width: 361px;
+  margin-left: -35px;
+}
+
+.stage__payment .operation__name {
+  margin-left: -65px;
+}
+
+.stage__check {
+  flex-grow: 2;
+  margin-left: -35px;
+}
+
+.registration__stage__box .status__check {
+  flex-grow: 1;
+}
+.stage__check .operation__name {
+  margin-left: -65px;
+}
+
+.operation__name {
+  display: flex;
+  margin-top: 22px;
+  margin-left: 92px;
+}
+
+.status {
+  display: flex;
+}
+
+/*trains trains trains*/
+.registration__stage {
+  width: 100%;
+  height: 99px;
+  background-color: var(--color-darck-gray);
+  z-index: -1;
+}
+
+.registration__stage__box {
+  display: flex;
+}
+
+.operation__name {
+  text-align: center;
+  font-size: 36px;
+  color: var(--bg-and-color-white);
+}
+
+.stage {
+  flex-grow: 1;
+}
+
+.stage_active {
+  display: flex;
+  background: orange;
+}
+
+.arrow {
+  width: 72px;
+  height: 72px;
+  display: inline-block;
+  margin: 13px 0 0 -37px;
+  border-top: 3px solid var(--bg-and-color-white) !important;
+  border-right: 3px solid var(--bg-and-color-white) !important;
+  transform: rotate(45deg);
+  transition: 1s;
+  border-radius: 2px;
+  z-index: 4;
+}
+
+.arrow_active {
+  width: 72px;
+  height: 72px;
+  margin: 13px 0 0 -37px;
+  display: inline-block;
+  border-top: 3px solid var(--bg-and-color-white) !important;
   border-right: 3px solid var(--bg-and-color-white) !important;
   transform: rotate(45deg);
   transition: 1s;
@@ -243,20 +239,18 @@
   border: 3px solid;
   border-radius: 32px;
 }
-.main__form__info 
-.order__box .date {
+.main__form__info .order__box .date {
   position: relative;
   z-index: 5;
 }
 
-
-.form__date  .form__date-box_to.main__from .react-calendar {
+.form__date .form__date-box_to.main__from .react-calendar {
   position: absolute;
   bottom: -175px;
   right: 401px;
 }
 
-.form__date  .form__date-box_back.main__from .react-calendar {
+.form__date .form__date-box_back.main__from .react-calendar {
   right: 40px;
   bottom: -175px;
 }

@@ -1,24 +1,23 @@
 .jumbotron {
   position: relative;
-    height: 825px;
-  }
+  height: 825px;
+}
 
 .jumbotron__box {
   position: relative;
   height: 985px;
   top: -160px;
-
 }
-  
+
 .jumbotron__banner {
   width: 100%;
   height: 100%;
-  padding-top: 160px; 
+  padding-top: 160px;
   background: url('../../../img/bunner.jpg') no-repeat center;
   background-size: cover;
   z-index: -1;
-} 
-  
+}
+
 .jumbotron__info {
   position: relative;
   z-index: 2;
@@ -26,12 +25,12 @@
   justify-content: space-evenly;
   margin-top: 251px;
 }
-  
+
 .jumbotron__title {
   color: var(--bg-and-color-white);
   font-size: 72px;
   font-weight: 100;
-}  
+}
 
 .jumbotron__title__box {
   margin-left: 137px;
@@ -43,7 +42,7 @@
 
 .jumbotron__form__order {
   width: 723px;
-  height: 574px; 
+  height: 574px;
   margin-right: 24px;
   padding: 82px 10px 62px 15px;
 }
@@ -52,27 +51,27 @@
   margin-top: -30px;
   font-weight: 700;
 }
-  
+
 .order__box {
   margin-bottom: 92px;
 }
-  
+
 .form__order {
   position: relative;
-  background: rgba(41, 41, 41, 0.80);
+  background: rgba(41, 41, 41, 0.8);
   color: var(--bg-and-color-white);
 }
-  
+
 .form__title {
   margin-bottom: 22px;
   padding-left: 8px;
   font-size: 30px;
 }
-  
+
 .from__direction {
   display: flex;
   margin-top: -5px;
-  margin-left: -0px;    
+  margin-left: -0px;
   justify-content: space-evenly;
 }
 
@@ -84,7 +83,7 @@
 }
 
 .form-control:focus {
-  box-shadow:none;
+  box-shadow: none;
 }
 .form__date {
   display: flex;
@@ -117,7 +116,7 @@
 
 input .form-control {
   position: relative;
-  outline:none; 
+  outline: none;
 }
 
 .direction__input {
@@ -127,7 +126,7 @@ input .form-control {
 .direction {
   margin-bottom: 61px;
 }
-  
+
 .direction__input {
   width: 290px !important;
   height: 61px;
@@ -143,7 +142,7 @@ input:focus {
 }
 
 input {
-  outline:none;
+  outline: none;
 }
 
 .from__direction .btn_reverse {
@@ -152,7 +151,7 @@ input {
   margin: auto 6px;
   background-image: url(../../../img/vector-arrow.svg);
   background-repeat: no-repeat;
-  background-position: center; 
+  background-position: center;
   border: none;
 }
 
@@ -167,7 +166,7 @@ input {
   width: 325px;
   height: 60px;
   margin-right: 9px;
-  float: right; 
+  float: right;
   color: var(--bg-and-color-dark);
   font-weight: 700 !important;
   font-size: 24px;
@@ -175,23 +174,24 @@ input {
   background-color: var(--bg-color-orange);
   border: 1px solid var(--bg-color-orange);
   border-radius: 6px;
-} 
+}
 
 .button-find:hover {
   box-shadow: 2px 5px 7px rgb(24, 20, 18);
 }
 
 .button-find:active {
-  background-color:  var(--bg-and-color-white);
+  background-color: var(--bg-and-color-white);
   color: var(--bg-color-orange);
 }
-  
-.date__here, .date__back {
+
+.date__here,
+.date__back {
   width: 290px;
   height: 35px;
   border: none;
-} 
-  
+}
+
 .list-grop-item-action {
   padding-left: 30px;
   text-align: left;
@@ -202,7 +202,7 @@ input {
   background-color: var(--bg-color-light-orange);
 }
 
-.list-group{
+.list-group {
   margin-top: 2px;
   border-radius: 0 0 6px 6px;
 }
@@ -211,12 +211,13 @@ input {
   margin-left: 5px;
 }
 
-.date__back, .date__here {
+.date__back,
+.date__here {
   padding-right: 17px;
   background: white url('../../../img/calendar.svg') right no-repeat;
 }
 
-.react-calendar__tile--rangeBothEnds{
+.react-calendar__tile--rangeBothEnds {
   background-color: var(--bg-color-orange) !important;
 }
 
@@ -236,11 +237,11 @@ input {
   margin-top: -159px;
   height: 9px;
   background-color: var(--bg-color-orange);
-  border-radius: unset;  
+  border-radius: unset;
   z-index: 5;
 }
 
-.progress__bar{  
+.progress__bar {
   position: relative;
   top: 151px;
 }

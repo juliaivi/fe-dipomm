@@ -1,49 +1,49 @@
 .seat__selection {
-    width: 959px;
-    margin-right: 24px;
-    color: var( --color-black);   
+  width: 959px;
+  margin-right: 24px;
+  color: var(--color-black);
 }
 
-.seat__selection__there, .seat__selection__to {
-   border: 1px solid var(--color-gray-border); 
+.seat__selection__there,
+.seat__selection__to {
+  border: 1px solid var(--color-gray-border);
 }
 
 .seat__selection_title {
-    padding-top: 7px;
-    font-size: 27px;
-    font-weight: 600;
-    text-transform: uppercase;
+  padding-top: 7px;
+  font-size: 27px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .seat__selection__there {
-    margin-top: 57px;
-    padding: 19px 0px 0px;
+  margin-top: 57px;
+  padding: 19px 0px 0px;
 }
 
 .seat__selection__to {
-    margin-top: 29px;
+  margin-top: 29px;
 }
 
 .next__btn {
-    margin-top: 101px;
-    padding: 15px 69px;
-    float: right;
-    color: var(--bg-and-color-white);
-    font-size: 24px;
-    font-weight: 700;
-    background: var(--color-gray);
-    border:  1px solid var(--color-gray);
-    border-radius: 6px;
-    text-transform: uppercase;  
+  margin-top: 101px;
+  padding: 15px 69px;
+  float: right;
+  color: var(--bg-and-color-white);
+  font-size: 24px;
+  font-weight: 700;
+  background: var(--color-gray);
+  border: 1px solid var(--color-gray);
+  border-radius: 6px;
+  text-transform: uppercase;
 }
 
 .next__btn.active {
-    color: var(--bg-and-color-white);
-    background: var(--bg-color-orange);
-    border:  1px solid var(--bg-color-orange);
+  color: var(--bg-and-color-white);
+  background: var(--bg-color-orange);
+  border: 1px solid var(--bg-color-orange);
 }
 
 .vagon__info__amount {
-    margin: auto 0;
+  margin: auto 0;
 }
-
