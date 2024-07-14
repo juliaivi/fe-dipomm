@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SvgSelector } from '../SvgSelector/SvgSelector';
 import AddVagonInfo from '../../AddVagonInfo/AddVagonInfo';
 import {
   choicetypeSeatsThere,
   choicetypeSeatsBack,
+  setTicketPricesThere,
+  deleteSeatThere,
+  setTicketPricesBack,
+  deleteSeatBack,
 } from '../../../../../../redux/slice/passengersSlice';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -36,14 +40,26 @@ export default function AddBtnType({ type }) {
   });
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (type === 'there') {
+      dispatch(setTicketPricesThere(0));
+      dispatch(deleteSeatThere());
+    } else {
+      dispatch(setTicketPricesBack(0));
+      dispatch(deleteSeatBack());
+    }
+  }, [btnSteat]);
+
   const toggleActive = (e, index, el) => {
     e.preventDefault();
-    setBtnSteat({ ...btnSteat, activeObject: btnSteat.objects[index] });
+
     if (type === 'there') {
       dispatch(choicetypeSeatsThere(el));
     } else {
       dispatch(choicetypeSeatsBack(el));
     }
+
+    setBtnSteat({ ...btnSteat, activeObject: btnSteat.objects[index] });
   };
 
   const toggleActiveState = (index) => {

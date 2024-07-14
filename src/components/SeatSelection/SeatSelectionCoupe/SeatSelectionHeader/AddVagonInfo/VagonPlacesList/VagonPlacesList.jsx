@@ -46,37 +46,41 @@ export default function VagonPlacesList({ type, listPlaces, price, vagon }) {
         ),
       );
     }
-  }, [selectedPlacesThere, selectedPlacesBack]);
+  }, [selectedPlacesThere, selectedPlacesBack, vagon]);
 
-  const toggleElement = (e) => {
+  debugger; // eslint-disable-line no-debugger
+  const toggleElement = (e, selectedPlaces, addSeat, seats, vagon) => {
     if (e.target.classList.contains('place_item_busy')) {
       return;
     }
 
     // добавление места
-    if (type === 'there') {
-      addingPlace(e, selectedPlacesThere, seatsThere);
-    } else {
-      addingPlace(e, selectedPlacesBack, seatsBack);
-    }
-  };
-
-  const addingPlace = (e, listPlaces, numberSeats) => {
-    // из списка находит место  по которому кликнули в том вагоне
-    let indexVagon = listPlaces.findIndex(
-      (seat) =>
-        seat.seat_id === e.target.textContent && seat.vagon_id === vagon,
+    let indexSeat = selectedPlaces.findIndex(
+      (seat) => seat.seat_id === e.target.textContent,
     );
-    let indexTypeSeat = listPlaces.findIndex((seat) => seat.vagon_id === vagon);
-    // места взрослые + дети с местами не равно количеству выбранных мест и это
+    let indexVagon = selectedPlaces.findIndex((el) => el.vagon_id === vagon);
+
+    if (indexSeat !== -1 && indexVagon !== -1) {
+      if (e.target.classList.contains('place_item_free-active')) {
+        e.target.classList.remove('place_item_free-active');
+      }
+      dispatch(
+        addSeat({
+          seat_id: e.target.textContent,
+          vagon_id: vagon,
+          price: price,
+        }),
+      );
+      return;
+    }
+
     if (
-      (Number(numberSeats[0].count) + Number(numberSeats[1].count) !==
-        listPlaces.length &&
-        indexVagon === -1) ||
-      (Number(numberSeats[0].count) + Number(numberSeats[1].count) >=
-        listPlaces.length &&
+      (Number(seats[0].count) + Number(seats[1].count) >=
+        selectedPlaces.length + 1 &&
+        selectedPlaces.length !== 0 &&
         indexVagon !== -1) ||
-      (listPlaces.length > 0 && indexTypeSeat === -1)
+      (selectedPlaces.length == 0 &&
+        Number(seats[0].count) + Number(seats[1].count) > 0)
     ) {
       if (e.target.classList.contains('place_item_free-active')) {
         e.target.classList.remove('place_item_free-active');
@@ -84,27 +88,13 @@ export default function VagonPlacesList({ type, listPlaces, price, vagon }) {
         e.target.classList.add('place_item_free-active');
       }
 
-      if (type === 'there') {
-        dispatch(
-          addSeatThere({
-            seat_id: e.target.textContent,
-            vagon_id: vagon,
-            price: price,
-          }),
-        );
-      }
-
-      if (type === 'back') {
-        dispatch(
-          addSeatBack({
-            seat_id: e.target.textContent,
-            vagon_id: vagon,
-            price: price,
-          }),
-        );
-      }
-    } else {
-      return;
+      dispatch(
+        addSeat({
+          seat_id: e.target.textContent,
+          vagon_id: vagon,
+          price: price,
+        }),
+      );
     }
   };
 
@@ -139,157 +129,58 @@ export default function VagonPlacesList({ type, listPlaces, price, vagon }) {
     typeSeats = typeSeatsBack;
   }
 
-  switch (typeSeats) {
-    case 'fourth':
-      return (
-        <>
-          <div className="vagon__places__list_sedentary">
-            <div className="vagon__places__list">
-              {listPlaces.map((el) => (
-                <div
-                  className={`place__number place__number_${el.index} ${el.available === true ? 'place_item_free' : 'place_item_busy'}`}
-                  key={el.index}
-                  onClick={(e) => {
-                    toggleElement(e);
-                  }}
-                >
-                  {el.index}
-                </div>
-              ))}
+  return (
+    <>
+      <div
+        className={`vagon__places__list_${typeSeats === 'fourth' ? 'sedentary' : typeSeats === 'third' ? 'reserved-seat' : typeSeats === 'second' ? 'coupe' : typeSeats === 'first' ? 'lux' : ''}`}
+      >
+        <div className="vagon__places__list">
+          {listPlaces.map((el) => (
+            <div
+              className={`place__number place__number_${el.index} ${el.available === true ? 'place_item_free' : 'place_item_busy'}`}
+              key={el.index}
+              onClick={(e) => {
+                type === 'there'
+                  ? toggleElement(
+                      e,
+                      selectedPlacesThere,
+                      addSeatThere,
+                      seatsThere,
+                      vagon,
+                    )
+                  : toggleElement(
+                      e,
+                      selectedPlacesBack,
+                      addSeatBack,
+                      seatsBack,
+                      vagon,
+                    );
+              }}
+            >
+              {el.index}
             </div>
-          </div>
+          ))}
+        </div>
+      </div>
 
-          {selectedPlacesThere.length > 0 &&
-            ticketPricesThere !== 0 &&
-            type === 'there' && (
-              <div className="total__amount__tickets">
-                {type === 'there' ? ticketPricesThere : ticketPricesBack}{' '}
-                <span className="currency__sign">₽</span>
-              </div>
-            )}
-          {selectedPlacesBack.length > 0 &&
-            ticketPricesBack !== 0 &&
-            type === 'back' && (
-              <div className="total__amount__tickets">
-                {type === 'there' ? ticketPricesThere : ticketPricesBack}{' '}
-                <span className="currency__sign">₽</span>
-              </div>
-            )}
-        </>
-      );
-    case 'third':
-      return (
-        <>
-          <div className="vagon__places__list_reserved-seat">
-            <div className="vagon__places__list">
-              {listPlaces.map((el) => (
-                <div
-                  className={`place__number place__number_${el.index} ${el.available === true ? 'place_item_free' : 'place_item_busy'}`}
-                  key={el.index}
-                  onClick={(e) => {
-                    toggleElement(e);
-                  }}
-                >
-                  {el.index}
-                </div>
-              ))}
-            </div>
+      {selectedPlacesThere.length > 0 &&
+        ticketPricesThere !== 0 &&
+        type === 'there' && (
+          <div className="total__amount__tickets">
+            {type === 'there' ? ticketPricesThere : ticketPricesBack}{' '}
+            <span className="currency__sign">₽</span>
           </div>
-          {selectedPlacesThere.length > 0 &&
-            ticketPricesThere !== 0 &&
-            type === 'there' && (
-              <div className="total__amount__tickets">
-                {type === 'there' ? ticketPricesThere : ticketPricesBack}{' '}
-                <span className="currency__sign">₽</span>
-              </div>
-            )}
-          {selectedPlacesBack.length > 0 &&
-            ticketPricesBack !== 0 &&
-            type === 'back' && (
-              <div className="total__amount__tickets">
-                {type === 'there' ? ticketPricesThere : ticketPricesBack}{' '}
-                <span className="currency__sign">₽</span>
-              </div>
-            )}
-        </>
-      );
-    case 'second':
-      return (
-        <>
-          <div className="vagon__places__list_coupe">
-            <div className="vagon__places__list">
-              {listPlaces.map((el) => (
-                <div
-                  className={`place__number place__number_${el.index} ${el.available === true ? 'place_item_free' : 'place_item_busy'}`}
-                  key={el.index}
-                  onClick={(e) => {
-                    toggleElement(e);
-                  }}
-                >
-                  {el.index}
-                </div>
-              ))}
-            </div>
+        )}
+      {selectedPlacesBack.length > 0 &&
+        ticketPricesBack !== 0 &&
+        type === 'back' && (
+          <div className="total__amount__tickets">
+            {type === 'there' ? ticketPricesThere : ticketPricesBack}{' '}
+            <span className="currency__sign">₽</span>
           </div>
-
-          {selectedPlacesThere.length > 0 &&
-            ticketPricesThere !== 0 &&
-            type === 'there' && (
-              <div className="total__amount__tickets">
-                {type === 'there' ? ticketPricesThere : ticketPricesBack}{' '}
-                <span className="currency__sign">₽</span>
-              </div>
-            )}
-          {selectedPlacesBack.length > 0 &&
-            ticketPricesBack !== 0 &&
-            type === 'back' && (
-              <div className="total__amount__tickets">
-                {type === 'there' ? ticketPricesThere : ticketPricesBack}{' '}
-                <span className="currency__sign">₽</span>
-              </div>
-            )}
-        </>
-      );
-    case 'first':
-      return (
-        <>
-          <div className="vagon__places__list_lux">
-            <div className="vagon__places__list">
-              {listPlaces.map((el) => (
-                <div
-                  className={`place__number place__number_${el.index} ${el.available === true ? 'place_item_free' : 'place_item_busy'}`}
-                  key={el.index}
-                  onClick={(e) => {
-                    toggleElement(e);
-                  }}
-                >
-                  {el.index}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {selectedPlacesThere.length > 0 &&
-            ticketPricesThere !== 0 &&
-            type === 'there' && (
-              <div className="total__amount__tickets">
-                {type === 'there' ? ticketPricesThere : ticketPricesBack}{' '}
-                <span className="currency__sign">₽</span>
-              </div>
-            )}
-          {selectedPlacesBack.length > 0 &&
-            ticketPricesBack !== 0 &&
-            type === 'back' && (
-              <div className="total__amount__tickets">
-                {type === 'there' ? ticketPricesThere : ticketPricesBack}{' '}
-                <span className="currency__sign">₽</span>
-              </div>
-            )}
-        </>
-      );
-    default:
-      return '';
-  }
+        )}
+    </>
+  );
 }
 
 VagonPlacesList.propTypes = {

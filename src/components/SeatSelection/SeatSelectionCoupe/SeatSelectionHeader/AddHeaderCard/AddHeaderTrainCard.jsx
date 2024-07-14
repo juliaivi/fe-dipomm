@@ -270,7 +270,7 @@ export default function AddHeaderTrainCard({ selectedTrain, type }) {
           <div className="number__tickets__type number__tickets__type_child-no-seats">
             <div className="number__tickets__type_box">
               <span className="number__tickets__input__text">
-                Детских `&quot;`без места`&ldquo;` —{' '}
+                Детских &quot;без места&ldquo; —{' '}
               </span>
               <input
                 type="number"

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/fe-dipomm/static/css/main.80449ad6.css",
-    "main.js": "/fe-dipomm/static/js/main.616ae759.js",
+    "main.css": "/fe-dipomm/static/css/main.10320ce6.css",
+    "main.js": "/fe-dipomm/static/js/main.e7d30742.js",
     "static/js/787.e48b22b6.chunk.js": "/fe-dipomm/static/js/787.e48b22b6.chunk.js",
     "static/media/bannerOrder.jpg": "/fe-dipomm/static/media/bannerOrder.1eab801b9ed7100830c9.jpg",
     "static/media/vector-arrow.svg": "/fe-dipomm/static/media/vector-arrow.42994bfe6957accfca83.svg",
@@ -63,12 +63,12 @@
     "static/media/minus.svg": "/fe-dipomm/static/media/minus.3398a03358569454cfe7.svg",
     "static/media/circleMinus.svg": "/fe-dipomm/static/media/circleMinus.6dad5a5ed3ae3bc4dfdb.svg",
     "static/media/star.svg": "/fe-dipomm/static/media/star.331955b821e33f471c9d75058937ca74.svg",
-    "main.80449ad6.css.map": "/fe-dipomm/static/css/main.80449ad6.css.map",
-    "main.616ae759.js.map": "/fe-dipomm/static/js/main.616ae759.js.map",
+    "main.10320ce6.css.map": "/fe-dipomm/static/css/main.10320ce6.css.map",
+    "main.e7d30742.js.map": "/fe-dipomm/static/js/main.e7d30742.js.map",
     "787.e48b22b6.chunk.js.map": "/fe-dipomm/static/js/787.e48b22b6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.80449ad6.css",
-    "static/js/main.616ae759.js"
+    "static/css/main.10320ce6.css",
+    "static/js/main.e7d30742.js"
   ]
 }

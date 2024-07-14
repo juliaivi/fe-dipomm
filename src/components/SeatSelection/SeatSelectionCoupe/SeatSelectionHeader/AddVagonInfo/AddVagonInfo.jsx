@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import './styleVagonInfo.css';
 import AddServiceButtons from '../AddServiceButtons/AddServiceButtons';
 import VagonPlacesList from './VagonPlacesList/VagonPlacesList';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  setTicketPricesThere,
-  setTicketPricesBack,
-} from '../../../../../redux/slice/passengersSlice';
+import { useSelector } from 'react-redux';
+// import {useEffect,, useDispatch
+//   setTicketPricesThere,
+//   setTicketPricesBack,
+//   deleteSeatThere,
+//   deleteSeatBack,
+// } from '../../../../../redux/slice/passengersSlice';
 import PropTypes from 'prop-types';
 
 export default function AddVagonInfo({ type }) {
@@ -14,19 +16,24 @@ export default function AddVagonInfo({ type }) {
     (state) => state.passengers,
   );
   const { trainSeats, trainSeatsBack } = useSelector((state) => state.train);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const [toggleState, setToggleState] = useState();
+  const [toggleState, setToggleState] = useState(null);
   let typeSeats;
   let trainSeatsInfo;
 
+  // useEffect(() => {
+  //   if (type === 'there') {
+  //     dispatch(setTicketPricesThere(0));
+  //     dispatch(deleteSeatThere());
+  //   } else {
+  //     dispatch(setTicketPricesBack(0));
+  //     dispatch(deleteSeatBack());
+  //   }
+  // }, [toggleState]);
+
   const toggleActive = (e, index) => {
     e.preventDefault();
-    if (toggleState !== index && type === 'there') {
-      dispatch(setTicketPricesThere(0));
-    } else {
-      dispatch(setTicketPricesBack(0));
-    }
     setToggleState(index);
   };
 
@@ -47,7 +54,7 @@ export default function AddVagonInfo({ type }) {
             el.coach.class_type === typeSeats ? (
               <button
                 key={index}
-                className={`btn vagon__info__number  ${toggleState === index ? 'vagon__number__active' : ''}`}
+                className={`btn vagon__info__number  ${toggleState === index && toggleState !== null ? 'vagon__number__active' : ''}`}
                 onClick={(e) => toggleActive(e, index)}
               >
                 {index}
@@ -138,16 +145,19 @@ export default function AddVagonInfo({ type }) {
                 <div className="service__list__buttons">
                   <AddServiceButtons
                     type={'condition'}
-                    services={el.have_air_conditioning}
+                    services={el.coach.have_air_conditioning}
                   />
-                  <AddServiceButtons type={'wifi'} services={el.have_wifi} />
+                  <AddServiceButtons
+                    type={'wifi'}
+                    services={el.coach.have_wifi}
+                  />
                   <AddServiceButtons
                     type={'food'}
-                    services={el.is_linens_included}
+                    services={el.coach.is_linens_included}
                   />
                   <AddServiceButtons
                     type={'bedding'}
-                    services={el.is_linens_included}
+                    services={el.coach.is_linens_included}
                   />
                 </div>
               </div>
