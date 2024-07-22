@@ -57,10 +57,8 @@ export default function MainForm() {
                           </div>
                         </div>
                         <div
-                          className={`${location.pathname === '/passengers' || location.pathname === 'payment' || location.pathname === '/checkorder' ? 'arrow_active ' : 'arrow'}`}
-                        >
-                          {' '}
-                        </div>
+                          className={`${location.pathname === '/passengers' || location.pathname === '/payment' || location.pathname === '/checkorder' ? 'arrow_active ' : 'arrow'}`}
+                        ></div>
                       </div>
 
                       <div className="status status__payment">
@@ -74,9 +72,7 @@ export default function MainForm() {
                         </div>
                         <div
                           className={`${location.pathname === '/payment' || location.pathname === '/checkorder' ? 'arrow_active ' : 'arrow'}`}
-                        >
-                          {' '}
-                        </div>
+                        ></div>
                       </div>
 
                       <div className="status status__check">

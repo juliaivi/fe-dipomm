@@ -49,7 +49,6 @@ export default function PassengersFormInfo() {
   ) {
     valid = passengersInfo.some((el) => el.validForm === false);
   }
-
   return (
     <section className="passengers__forms__box">
       {passengersInfo.length !== 0 &&

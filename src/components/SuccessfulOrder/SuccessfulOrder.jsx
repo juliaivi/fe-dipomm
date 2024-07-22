@@ -100,7 +100,7 @@ export default function SuccessfulOrder() {
               <div className="result__order__notice">
                 <h2 className="result__order__notice__title">
                   {' '}
-                  {personalData.name + ' ' + personalData.secondName}!
+                  {personalData.name + ' ' + personalData.two_surname}!
                 </h2>
                 <p className="result__order__notice__text">
                   Ваш заказ успешно оформлен.

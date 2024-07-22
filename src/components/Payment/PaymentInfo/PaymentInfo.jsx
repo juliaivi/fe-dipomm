@@ -1,192 +1,206 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './stylePaymentInfo.css';
 import { setPersonalData } from '../../../redux/slice/passengersSlice';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+// import { DevTool } from '@hookform/devtools';
 
 export default function PaymentInfo() {
   const { personalData } = useSelector((state) => state.passengers);
-  const [surname, setSurname] = useState({ name: '', error: false });
-  const [name, setName] = useState({ name: '', error: false });
-  const [twoSurname, setTwoSurname] = useState({ name: '', error: false });
-  const [telephoneValue, setTelephoneValue] = useState({
-    number: '',
-    error: false,
+
+  const form = useForm({
+    defaultValues: async () => {
+      return {
+        surname: personalData !== null ? personalData.surname : '',
+        name: personalData !== null ? personalData.name : '',
+        two_surname: personalData !== null ? personalData.two_surname : '',
+        telephone: personalData !== null ? personalData.telephone : '',
+        payment: personalData !== null ? personalData.payment : '',
+        email: personalData !== null ? personalData.email : '',
+      };
+    },
   });
-  const [emailValue, setEmailValue] = useState({ name: '', error: false });
-  const [paymentType, setPaymentType] = useState('');
   const dispatch = useDispatch();
   const navigete = useNavigate();
+  const { register, handleSubmit, formState, reset } = form;
+  const { errors, isSubmitSuccessful, isValid } = formState;
 
-  const [validForm, setValidForm] = useState(false);
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+      navigete('/checkorder');
+    }
+  }, [isSubmitSuccessful, reset]);
   const regName = /^([А-Я]{1}[а-яё]{1,23})$/gm;
-  const regTelefone =
-    /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?(\(?\d{3}\)?[\- ]?)?(\(?\d{2}\)?[\- ]?)?[\d\- ]{2}$/gm; // eslint-disable-line
   const regEmail = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/gm;
 
-  useEffect(() => {
-    if (personalData !== null) {
-      setSurname({ name: personalData.surname, error: false });
-      setName({ name: personalData.name, error: false });
-      setTwoSurname({ name: personalData.secondName, error: false });
-      setTelephoneValue({ number: personalData.telephone, error: false });
-      setEmailValue({ name: personalData.mail, error: false });
-    }
-  }, []);
+  const onSubmit = (data) => {
+    dispatch(setPersonalData(data));
+  };
+  const PATTERN = /\D/g;
+  const getInputNamberValue = (value) => {
+    return value.replace(PATTERN, '');
+  };
 
-  useEffect(() => {
+  const handlePhoneInput = (event) => {
+    const input = event.target;
+    let inputNumberValue = getInputNamberValue(input.value);
+    let formattedInputValue = '';
+
+    if (!inputNumberValue) {
+      return (input.value = '');
+    }
+
+    if (['7', '8', '9'].indexOf(inputNumberValue[0] > -1)) {
+      if (inputNumberValue[0] === '9') {
+        inputNumberValue = '7' + inputNumberValue;
+      }
+
+      const firstSymbols = inputNumberValue[0] === '8' ? '8' : '+7';
+      formattedInputValue = firstSymbols + ' ';
+
+      if (inputNumberValue.length > 1) {
+        formattedInputValue += '(' + inputNumberValue.substring(1, 4);
+      }
+
+      if (inputNumberValue.length >= 5) {
+        formattedInputValue += ') ' + inputNumberValue.substring(4, 7);
+      }
+
+      if (inputNumberValue.length >= 8) {
+        formattedInputValue += '-' + inputNumberValue.substring(7, 9);
+      }
+
+      if (inputNumberValue.length >= 10) {
+        formattedInputValue += '-' + inputNumberValue.substring(9, 11);
+      }
+    } else {
+      formattedInputValue = '+' + inputNumberValue.substring(0, 16);
+    }
+
+    input.value = formattedInputValue;
+  };
+
+  const handlePhoneKeyDown = (event) => {
+    const input = event.target;
     if (
-      surname.error !== true &&
-      name.error !== true &&
-      twoSurname.error !== true &&
-      telephoneValue.error !== true &&
-      emailValue.error !== true &&
-      paymentType !== undefined &&
-      paymentType !== ''
+      event.key === 'Backspace' &&
+      getInputNamberValue(input.value).length === 1
     ) {
-      setValidForm(true);
+      input.value = '';
     }
-  }, [
-    surname.name,
-    name.name,
-    twoSurname.name,
-    telephoneValue.number,
-    emailValue.name,
-    paymentType,
-  ]);
 
-  const changePaymentType = (e) => {
-    if (paymentType !== e.target.value || e.target.checked === false) {
-      e.target.checked = true;
-      setPaymentType(e.target.value);
-    }
+    return input;
   };
 
-  const checkFullNameData = (e, elem, regElem) => {
-    if (e === undefined || e.length === 0) {
-      elem({ name: e, error: true });
-      setValidForm(false);
-    } else {
-      if (e.match(regElem)) {
-        elem({ name: e, error: false });
-      } else {
-        elem({ name: e, error: true });
-        setValidForm(false);
+  const handlePhonePaste = (event) => {
+    const pasted = event.clipboardData || window.clipboardData;
+    const input = event.target;
+    let inputNumberValue = getInputNamberValue(input.value);
+
+    if (pasted) {
+      const pastedText = pasted.getData('Text');
+      if (PATTERN.test(pastedText)) {
+        input.value = inputNumberValue;
       }
-    }
-  };
-
-  const checkTelephoneValue = (obj, elem) => {
-    if (obj === undefined || obj.length === 0) {
-      elem({ number: obj, error: true });
-      setValidForm(false);
-    } else {
-      if (obj.match(regTelefone)) {
-        elem({ number: obj, error: false });
-      } else {
-        elem({ number: obj, error: true });
-        setValidForm(false);
-      }
-    }
-  };
-
-  const checkEmailValue = (obj, elem) => {
-    if (obj === undefined || obj.length === 0) {
-      elem({ name: obj, error: true });
-      setValidForm(false);
-    } else {
-      if (obj.match(regEmail)) {
-        elem({ name: obj, error: false });
-      } else {
-        elem({ name: obj, error: true });
-        setValidForm(false);
-      }
-    }
-  };
-
-  const VerificationForm = (e) => {
-    e.preventDefault();
-
-    const form = {
-      name: name.name,
-      surname: surname.name,
-      secondName: twoSurname.name,
-      mail: emailValue.name,
-      telephone: telephoneValue.number,
-      payment: paymentType,
-    };
-
-    checkFullNameData(surname.name, setSurname, regName);
-    checkFullNameData(name.name, setName, regName);
-    checkFullNameData(twoSurname.name, setTwoSurname, regName);
-    checkTelephoneValue(telephoneValue.number, setTelephoneValue);
-    checkEmailValue(emailValue.name, setEmailValue);
-
-    if (
-      name.error === false &&
-      surname.error === false &&
-      twoSurname.error === false &&
-      telephoneValue.error === false &&
-      emailValue.error === false &&
-      validForm === true
-    ) {
-      dispatch(setPersonalData(form));
-    }
-  };
-
-  const payTickets = (e) => {
-    VerificationForm(e);
-
-    if (validForm === true) {
-      navigete('/checkorder');
     }
   };
 
   return (
     <>
       <section>
-        <form className="form passengers__forms__box">
+        <form
+          className="form passengers__forms__box"
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+        >
           <div className="form__title">Персональные данные</div>
           <div className="initials__box">
             <label htmlFor="surname" className="initials__lable">
               <div className="initials__text">Фамилия</div>
               <input
-                className={`initials__input surname-personal surname ${surname.error === true ? 'error' : ''} `}
                 type="text"
-                name="name"
                 id="surname"
-                value={surname.name}
-                onChange={(e) => {
-                  checkFullNameData(e.target.value, setSurname, regName);
-                }}
+                {...register('surname', {
+                  required: {
+                    value: true,
+                    message: 'Введите фамилию',
+                  },
+                  pattern: {
+                    value: regName,
+                    message: 'Фамилия введено не правильно',
+                  },
+                  minLength: {
+                    value: 2,
+                    message: 'Фамилия должно быть не короче 2 символов',
+                  },
+                })}
+                className={`initials__input surname-personal surname ${errors?.surname?.message ? 'error' : ''} `}
                 required
-              ></input>
+              ></input>{' '}
+              {errors.surname?.message && (
+                <div className="form__clue__text error">
+                  {errors.surname?.message}
+                </div>
+              )}
             </label>
+
             <label htmlFor="name" className="initials__lable">
               <div className="initials__text ">Имя</div>
               <input
-                className={`initials__input name-personal name ${name.error === true ? 'error' : ''} `}
+                className={`initials__input name-personal name ${errors.name?.message ? 'error' : ''} `}
                 type="text"
                 id="name"
-                value={name.name}
-                onChange={(e) => {
-                  checkFullNameData(e.target.value, setName, regName);
-                }}
-                required
+                {...register('name', {
+                  required: {
+                    value: true,
+                    message: 'Введите имя',
+                  },
+                  pattern: {
+                    value: regName,
+                    message: 'Имя введено не правильно',
+                  },
+                  minLength: {
+                    value: 2,
+                    message: 'Фамилия должно быть не короче 2 символов',
+                  },
+                })}
               ></input>
+              {errors.name?.message && (
+                <div className="form__clue__text error">
+                  {errors.name?.message}
+                </div>
+              )}
             </label>
+
             <label htmlFor="two_surname" className="initials__lable">
               <div className="initials__text">Отчество</div>
               <input
-                className={`initials__input two_surname-personal two_surname ${twoSurname.error === true ? 'error' : ''} `}
+                className={`initials__input two_surname-personal two_surname ${errors.two_surname?.message ? 'error' : ''} `}
                 type="text"
                 id="two_surname"
-                value={twoSurname.name}
-                onChange={(e) => {
-                  checkFullNameData(e.target.value, setTwoSurname, regName);
-                }}
+                {...register('two_surname', {
+                  required: {
+                    value: true,
+                    message: 'Введите отчество',
+                  },
+                  pattern: {
+                    value: regName,
+                    message: 'Отчество введено не правильно',
+                  },
+                  minLength: {
+                    value: 2,
+                    message: 'Фамилия должно быть не короче 2 символов',
+                  },
+                })}
                 required
               ></input>
+              {errors.two_surname?.message && (
+                <div className="form__clue__text error">
+                  {errors.two_surname?.message}
+                </div>
+              )}
             </label>
           </div>
 
@@ -194,42 +208,74 @@ export default function PaymentInfo() {
             <div className="telephone__info__title">Контактный телефон</div>
             <input
               type="tel"
-              className={`telephone__info__input ${telephoneValue.error === true ? 'error' : ''} `}
-              value={telephoneValue.number}
               placeholder="+7 (XXX) XXX-XX-XX"
-              onChange={(e) => {
-                checkTelephoneValue(e.target.value, setTelephoneValue);
-              }}
+              className={`telephone__info__input ${errors.telephone?.message ? 'error' : ''} `}
+              {...register('telephone', {
+                required: {
+                  value: true,
+                  message: 'Введите номер телефона',
+                },
+                minLength: {
+                  value: 18,
+                  message: 'Номер должен состоять из 11 цифр',
+                },
+              })}
+              onInput={handlePhoneInput}
+              onKeyDown={handlePhoneKeyDown}
+              onPaste={handlePhonePaste}
               required
             ></input>
           </div>
+          {errors.telephone?.message && (
+            <div className="form__clue__text form__clue__text-telephone error">
+              {errors.telephone?.message}
+            </div>
+          )}
 
           <div className="email__info">
             <div className="email__info__title"> E-mail</div>
             <input
               type="email"
-              className={`email__info__input ${emailValue.error === true ? 'error' : ''} `}
-              value={emailValue.name}
               placeholder="inbox@gmail.ru"
-              onChange={(e) => {
-                checkEmailValue(e.target.value, setEmailValue);
-              }}
+              className={`email__info__input ${errors.email?.message ? 'error' : ''} `}
+              {...register('email', {
+                required: {
+                  value: true,
+                  message: 'Ведите email',
+                },
+                pattern: {
+                  value: regEmail,
+                  message: 'email введен не правильно. Проверьте свой email',
+                },
+              })}
               required
             ></input>
+            {errors.email?.message && (
+              <div className="form__clue__text error form__clue__text-email">
+                {errors.email?.message}{' '}
+              </div>
+            )}
           </div>
           <div className="payment__method__title">Способ оплаты</div>
-          <div className="checkbox checkbox__online__payment">
+          <div
+            className={`checkbox checkbox__online__payment ${errors.payment?.message ? 'error' : ''}`}
+          >
             <input
               type="radio"
               name="payment"
               id="online__payment"
               value="onlinePayment"
               className="checkbox__input"
-              onChange={(e) => changePaymentType(e)}
+              {...register('payment', {
+                required: {
+                  value: true,
+                  message: 'Выберите тип оплаты',
+                },
+              })}
             />
             <label
               htmlFor="online__payment"
-              className={`checkbox__lable ${paymentType}`}
+              className={`checkbox__lable ${errors.payment?.message ? 'error' : ''}`}
             >
               Онлайн
             </label>
@@ -240,30 +286,34 @@ export default function PaymentInfo() {
             <div className="online__payment__item">Visa QIWI Wallet</div>
           </div>
 
-          <div className="checkbox checkbox__cash__payment">
+          <div className={`checkbox checkbox__cash__payment `}>
             <input
               type="radio"
               name="payment"
               id="cash__payment"
               value="cashPayment"
-              className="checkbox__input"
-              onChange={(e) => changePaymentType(e)}
+              className={`checkbox__input`}
+              {...register('payment', {
+                required: {
+                  value: true,
+                  message: 'Выберите тип оплаты',
+                },
+              })}
             />
             <label
               htmlFor="cash__payment"
-              className={`checkbox__lable ${paymentType}`}
+              className={`checkbox__lable ${errors.payment?.message ? 'error' : ''}`}
             >
               Наличными
             </label>
           </div>
+          <button
+            className={`buy__ticket__btn ${isValid === true ? '' : 'disabled'}`}
+          >
+            Купить билет
+          </button>
         </form>
-
-        <button
-          className={`buy__ticket__btn ${validForm === true ? '' : 'disabled'}`}
-          onClick={(e) => payTickets(e)}
-        >
-          Купить билет
-        </button>
+        {/* <DevTool control={control} /> */}
       </section>
     </>
   );

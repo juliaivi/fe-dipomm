@@ -1,8 +1,14 @@
 .payment__details__box {
-    display: flex;
-    justify-content: space-between; 
-    width: 1470px;
-    margin: auto;
-    padding-top: 95px;
-    padding-left: 42px;
+  display: flex;
+  justify-content: space-between;
+  width: 1470px;
+  margin: auto;
+  padding-top: 95px;
+  padding-left: 42px;
+}
+
+@media (min-width: 1280px) and (max-width: 1480px) {
+  .payment__details__box {
+    width: 1200px;
+  }
 }

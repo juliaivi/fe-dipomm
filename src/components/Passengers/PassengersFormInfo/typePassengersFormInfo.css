@@ -553,3 +553,88 @@
   color: var(--bg-and-color-white);
   border: 1px solid var(--color-gray);
 }
+
+@media (min-width: 1280px) and (max-width: 1480px) {
+  .accordion__passengers__header__title {
+    font-size: 24px;
+  }
+
+  .initials__input {
+    width: 224px;
+    font-size: 18px;
+  }
+
+  .add_passengers__box {
+    width: 772px;
+    font-size: 26px;
+  }
+
+  .passengers__details__box .passengers__forms__box {
+    width: 770px;
+  }
+
+  .accordion__passengers__forms__body .dropdown {
+    width: 224px;
+    left: -240px;
+  }
+
+  .gender__btn {
+    width: 80px;
+    font-size: 24px;
+  }
+
+  .date__birth {
+    width: 224px;
+  }
+
+  .dropdown-btn__birth-certificate {
+    width: 286px !important;
+    margin-left: 241px;
+  }
+
+  .dropdown-btn__birth-certificate:after {
+    right: -292px;
+  }
+
+  .accordion__passengers__forms__body .dropdown .dropdown-btn {
+    font-size: 18px;
+  }
+
+  .passengers__document__birth-certificate {
+    margin-left: 105px;
+  }
+
+  .passed .next__passenger__btn {
+    margin-left: -93px;
+    font-size: 22px;
+  }
+
+  .next__passenger__control.error {
+    padding-bottom: 24px;
+  }
+
+  .passengers__document__item .dropdown .dropdown-content {
+    left: 241px;
+  }
+
+  .passengers__document .dropdown .dropdown-btn {
+    margin-left: 238px;
+  }
+
+  .passengers__document__item .dropdown .dropdown-btn__passport {
+    width: 170px;
+  }
+
+  .accordion__passengers__forms__body .dropdown .dropdown-btn__passport::after {
+    right: -172px;
+  }
+
+  .passengers__document .dropdown .dropdown-btn__birth-certificate {
+    margin-left: 239px;
+  }
+
+  .further-btn {
+    padding: 12px 51px 12px 51px;
+    font-size: 24px;
+  }
+}

@@ -44,6 +44,9 @@
   border: 1px solid var(--bg-color-orange);
 }
 
-/* .vagon__info__amount {
-  margin: auto 0;
-} */
+@media (min-width: 1280px) and (max-width: 1480px) {
+  .seat__selection {
+    width: 768px;
+    margin-left: 20px;
+  }
+}

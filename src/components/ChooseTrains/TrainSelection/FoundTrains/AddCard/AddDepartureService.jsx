@@ -12,7 +12,7 @@ export default function AddDepartureService({
     <div className="item__place__info_box" key={index}>
       <p className="view__place">{text}</p>
       <div className="item__place__info">
-        <Tooltip text={priceInfo} index={index}>
+        <Tooltip text={priceInfo} index={Number(index)}>
           <p className="number__seats">{availableSeatsInfo}</p>
         </Tooltip>
         <p className="price__from">от</p>

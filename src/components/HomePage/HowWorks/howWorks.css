@@ -1,86 +1,97 @@
 .how__works {
-    background: url('../../../img/railway.jpg') center/cover;
-    background-size: cover;
-  }
-  
+  background: url('../../../img/railway.jpg') center/cover;
+  background-size: cover;
+}
+
+.how__works_box {
+  width: 1470px;
+  margin: auto;
+  margin-bottom: 8px;
+}
+
+.how__works__header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 34px;
+  padding-left: 6px;
+}
+
+.how__works__title {
+  margin-left: 28px;
+  margin-top: 32px;
+  margin-bottom: 107px;
+  color: white;
+}
+
+.how__works__button {
+  height: 60px;
+  margin-right: 36px;
+  margin-top: 26px;
+  padding: 10px 71px 18px 77px;
+  text-align: center;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 700;
+  background-color: unset;
+  border-radius: 5px;
+  border: 1px solid #fff;
+}
+
+.how__works__button:hover {
+  border-radius: 5px;
+  background: var(--bg-color-orange) !important;
+  color: #2d2b2f;
+}
+
+.how__works__button:active {
+  border-radius: 5px;
+  background: #fff !important;
+  color: #2d2b2f;
+}
+
+.how__works__list {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 271px 8px 269px;
+}
+
+.how__works__item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 108px;
+}
+
+.how__works__icon {
+  width: 162px;
+  height: 162px;
+  margin-bottom: 34px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.how__works__text {
+  width: 220px;
+  padding: 0;
+  margin: 0;
+  color: #e5e5e5;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media (min-width: 1280px) and (max-width: 1480px) {
   .how__works_box {
-    width: 1470px;
-    margin: auto;
-    margin-bottom: 8px;
+    width: 1200px;
   }
-  
-  .how__works__header {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 34px;
-    padding-left: 6px;
-  }
-  
-  .how__works__title { 
-    margin-left: 28px;
-    margin-top: 32px;
-    margin-bottom: 107px;
-    color: white;
-    font-size: 36px;
-    font-weight: 500;
-    text-transform: uppercase; 
-  }
-  
-  .how__works__button {  
-    height: 60px; 
-    margin-right: 36px;
-    margin-top: 26px;
-    padding: 10px 71px 18px 77px;
-    text-align: center;
-    font-size: 24px;
-    color: #FFF;
-    font-weight: 700;
-    background-color: unset;
-    border-radius: 5px;
-    border: 1px solid #FFF; 
-  }
-  
-  .how__works__button:hover {
-    border-radius: 5px;
-    background: var(--bg-color-orange) !important;
-    color: #2D2B2F;
-  }
-  
-  .how__works__button:active {
-    border-radius: 5px;
-    background: #FFF !important;
-    color: #2D2B2F;
-  }
-  
-  .how__works__list {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 271px 8px 269px;
-  }
-  
-  .how__works__item {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 108px;
-  }
-  
-  .how__works__icon {
-    width: 162px;
-    height: 162px;
-    margin-bottom: 34px;
-    margin-left: auto;
-    margin-right: auto;
-  
-  } 
-  
+
   .how__works__text {
-    width: 220px;
-    padding: 0;
-    margin: 0;
-    color: #E5E5E5;
-    text-align: center;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;  
+    font-size: 18px;
   }
+
+  .how__works__item {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

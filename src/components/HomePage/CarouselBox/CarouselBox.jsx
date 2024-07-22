@@ -11,7 +11,7 @@ export default function CarouselBox({ setProgress }) {
   return (
     <>
       <section className="carousel" id="reviews">
-        <h2 className="carousel__title">Отзывы</h2>
+        <h2 className="carousel__title title">Отзывы</h2>
         <Slider />
       </section>
     </>

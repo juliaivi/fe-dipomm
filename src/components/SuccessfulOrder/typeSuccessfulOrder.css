@@ -155,3 +155,23 @@
   background-color: var(--bg-and-color-white);
   box-shadow: 2px 4px 4px 1px rgba(128, 127, 127, 0.2);
 }
+
+@media (min-width: 1280px) and (max-width: 1480px) {
+  .successful__order__box {
+    width: 1200px;
+  }
+
+  .successful__order__title {
+    font-size: 46px;
+  }
+
+  .result__order__notice {
+    padding-top: 50px;
+    padding-left: 87px;
+    padding-bottom: 42px;
+  }
+
+  .successful__order__jumbotron .jumbotron__banner {
+    height: 568px !important;
+  }
+}

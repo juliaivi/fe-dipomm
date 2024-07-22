@@ -54,3 +54,9 @@
   padding-top: 12px;
   padding-right: 19px;
 }
+
+@media (min-width: 1280px) and (max-width: 1480px) {
+  .choose__another__train_img {
+    width: 62px;
+  }
+}

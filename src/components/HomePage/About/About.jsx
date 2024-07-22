@@ -10,7 +10,7 @@ export default function About({ setProgress }) {
   return (
     <>
       <section className="about" id="about">
-        <h2 className="about__title">О нас</h2>
+        <h2 className="about__title title">О нас</h2>
         <div className="paragraphs">
           <p className="paragraph">
             Мы рады видеть вас! Мы рботаем для Вас с 2003 года. 14 лет мы

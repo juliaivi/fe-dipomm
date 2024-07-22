@@ -22,7 +22,7 @@
   position: relative;
   z-index: 2;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   margin-top: 251px;
 }
 
@@ -33,8 +33,8 @@
 }
 
 .jumbotron__title__box {
-  margin-left: 137px;
-  margin-right: -63px;
+  margin-left: -36px;
+  margin-right: 60px;
   padding-top: 156px;
   color: var(--bg-and-color-white);
   line-height: 1.5;
@@ -163,10 +163,15 @@ input {
   background-repeat: no-repeat;
 }
 
+.jumbotron__order__box .button-find {
+  margin-top: 60px;
+}
+
 .button-find {
   width: 325px;
   height: 60px;
   margin-right: 9px;
+
   float: right;
   color: var(--bg-and-color-dark);
   font-weight: 700 !important;
@@ -255,4 +260,33 @@ input {
 .form__date-main .form__date-box_back .react-calendar {
   bottom: -172px;
   right: 46px;
+}
+
+@media (min-width: 1280px) and (max-width: 1480px) {
+  .jumbotron__title {
+    font-size: 52px;
+  }
+
+  .form__title {
+    font-size: 26px;
+  }
+
+  .direction__input {
+    font-size: 16px;
+  }
+
+  .date__back,
+  .date__here,
+  .direction__input {
+    background-size: 28px 28px;
+  }
+
+  .button-find {
+    font-size: 22px;
+  }
+
+  .form__date-box,
+  .from__direction_box {
+    width: 268px;
+  }
 }

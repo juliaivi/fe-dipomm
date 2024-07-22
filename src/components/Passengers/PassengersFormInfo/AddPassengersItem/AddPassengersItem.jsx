@@ -16,7 +16,6 @@ export default function AddPassengersItem({ index, id, el }) {
     type: el.type === 'adult' ? 'adult' : 'children',
     name: el.type === 'adult' ? 'Взрослый' : 'Детский',
   });
-
   const optionsType = [
     {
       type: 'children',
@@ -45,14 +44,14 @@ export default function AddPassengersItem({ index, id, el }) {
   const [genderType, setGenderType] = useState({
     genderType: 'M',
     valid: true,
-  });
+  }); //
   const [date] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
   const [dateBirth, setDateBirth] = useState({
     date: el.dateBirth,
     error: false,
-  });
-
+  }); //изначально календарь пустой
+  // документы
   const [seriesValue, setSeriesValue] = useState({
     number: el.series,
     error: false,
@@ -68,7 +67,6 @@ export default function AddPassengersItem({ index, id, el }) {
     error: false,
     valid: false,
   });
-
   const [surname, setSurname] = useState({
     name: el.surname,
     error: false,
@@ -115,6 +113,28 @@ export default function AddPassengersItem({ index, id, el }) {
       validForm: validForm,
     };
 
+    //  тип и док не совпадают
+    if (selected.type === 'adult' && selectedDocument.type === 'passport') {
+      setExamination(false);
+    }
+
+    if (selected.type === 'adult' && selectedDocument.type !== 'passport') {
+      setExamination(true);
+    }
+
+    if (
+      selected.type === 'children' &&
+      selectedDocument.type === 'birth-certificate'
+    ) {
+      setExamination(false);
+    }
+    if (
+      selected.type === 'children' &&
+      selectedDocument.type !== 'birth-certificate'
+    ) {
+      setExamination(true);
+    }
+
     if (validForm === true) {
       dispatch(addPassengers(form));
     }
@@ -122,23 +142,23 @@ export default function AddPassengersItem({ index, id, el }) {
     if (passengersInfo.validForm !== validForm) {
       dispatch(addPassengers(form));
     }
-  }, [validForm]);
+  }, [validForm, examination, selectedDocument]);
 
+  // изменения пола которое нужно проверить и изменить статус|| passengersInfo[index-1]?.type === undefined
   const changeGender = (e) => {
-    //конвертирование данные в дату
+    //конывертирование данные в дату
     e.preventDefault();
     if (e.target.textContent !== genderType) {
       setGenderType({ genderType: e.target.textContent, valid: false });
       setValidForm(false);
-      setExamination(false);
     }
   };
 
+  // выбор даты рождения
   const onChangeDate = (value) => {
     setDateBirth({ date: dateToString(value), error: false }); //dateToString -Преобразует объект даты в строку в соответствии с заданным пользователем форматом
-    setShowCalendar(false);
+    setShowCalendar(false); // закрыть календарь
     setValidForm(false);
-    setExamination(false);
   };
   // преобразование даты
   const dateToString = (date) => {
@@ -156,26 +176,22 @@ export default function AddPassengersItem({ index, id, el }) {
     if (e === undefined || e.length === 0) {
       elem({ name: e, error: true, valid: false });
       setValidForm(false);
-      setExamination(false);
     } else {
       if (e.match(regElem)) {
-        // если не пусто проверяем на правильность заполнения
         elem({ name: e, error: false, valid: true });
         setValidForm(true);
-        setExamination(false);
       } else {
         elem({ name: e, error: true, valid: false });
         setValidForm(false);
-        setExamination(false);
       }
     }
   };
 
+  // проверка документов
   const checkDocumentData = (el, obj, elem, number, regElem) => {
     if (obj === undefined || obj.length === 0) {
       elem({ number: obj, error: true, valid: false });
       setValidForm(false);
-      setExamination(false);
       return;
     }
 
@@ -190,7 +206,6 @@ export default function AddPassengersItem({ index, id, el }) {
       } else {
         elem({ number: obj, error: true, valid: false });
         setValidForm(false);
-        setExamination(false);
       }
     }
 
@@ -198,18 +213,15 @@ export default function AddPassengersItem({ index, id, el }) {
       if (obj.match(regElem) && 12 <= obj.length <= number) {
         elem({ number: obj, error: false, valid: true });
         setValidForm(true);
-        setExamination(false);
       } else {
         elem({ number: obj, error: true, valid: false });
         setValidForm(false);
-        setExamination(false);
       }
     }
   };
 
   const VerificationForm = (e) => {
     e.preventDefault();
-    setExamination(true);
 
     if (genderType.valid === false) {
       setGenderType({ ...genderType, valid: true });
@@ -222,10 +234,12 @@ export default function AddPassengersItem({ index, id, el }) {
     }
 
     if (selected.type === 'adult' && selectedDocument.type === 'passport') {
+      setExamination(false);
       setValidForm(true);
     }
 
     if (selected.type === 'adult' && selectedDocument.type !== 'passport') {
+      setExamination(true);
       setValidForm(false);
     }
 
@@ -233,13 +247,14 @@ export default function AddPassengersItem({ index, id, el }) {
       selected.type === 'children' &&
       selectedDocument.type === 'birth-certificate'
     ) {
+      setExamination(false);
       setValidForm(true);
     }
-
     if (
       selected.type === 'children' &&
       selectedDocument.type !== 'birth-certificate'
     ) {
+      setExamination(true);
       setValidForm(false);
     }
 
@@ -331,7 +346,7 @@ export default function AddPassengersItem({ index, id, el }) {
               <div className="accordion__passengers__header__title">{` Пассажир ${id + 1} `}</div>
               <div
                 className="accordion__passengers__header__btn btn__close"
-                onClick={(e) => closeCard(e, index)}
+                onClick={() => closeCard(index)}
               >
                 X
               </div>
@@ -346,6 +361,7 @@ export default function AddPassengersItem({ index, id, el }) {
               setNumberValue={setNumberValue}
               setNumberChildValue={setNumberChildValue}
               setExamination={setExamination}
+              setValidForm={setValidForm}
             />
 
             <div className="initials__box">
@@ -463,7 +479,6 @@ export default function AddPassengersItem({ index, id, el }) {
                     Тип документа
                   </div>
                   <Dropdown
-                    setExamination={setExamination}
                     selected={selectedDocument}
                     setSelected={setSelectedDocument}
                     options={optionsDocument}
@@ -472,6 +487,8 @@ export default function AddPassengersItem({ index, id, el }) {
                     setSeriesValue={setSeriesValue}
                     setNumberValue={setNumberValue}
                     setNumberChildValue={setNumberChildValue}
+                    setExamination={setExamination}
+                    setValidForm={setValidForm}
                   />
                 </div>
                 {selectedDocument.name === 'Паспорт РФ' ? (
@@ -563,35 +580,28 @@ export default function AddPassengersItem({ index, id, el }) {
                 )}
               </div>
             </div>
-
+            {/* при ошибке меняет цвет фона красный */}
             <div
               className={`next__passenger__control ${
-                (dateBirth.error === true ||
-                  surname.error === true ||
-                  name.error === true ||
-                  twoSurname.error === true ||
-                  seriesValue.error === true ||
-                  numberValue.error === true ||
-                  numberChildValue.error === true) &&
-                examination !== false
+                dateBirth.error === true ||
+                surname.error === true ||
+                name.error === true ||
+                twoSurname.error === true ||
+                seriesValue.error === true ||
+                numberValue.error === true ||
+                numberChildValue.error === true
                   ? 'error'
-                  : ''
-              }
-                                
-                                    ${
-                                      validForm === true &&
-                                      dateBirth.error !== true &&
-                                      surname.error !== true &&
-                                      name.error !== true &&
-                                      twoSurname.error !== true &&
-                                      seriesValue.error !== true &&
-                                      numberValue.error !== true &&
-                                      numberChildValue.error !== true &&
-                                      examination !== false
-                                        ? 'passed'
-                                        : 'next__passenger__examination'
-                                    } `}
+                  : validForm === true &&
+                      examination === false &&
+                      mobilityInfo.valid !== false &&
+                      genderType.valid !== false &&
+                      dateBirth.error !== true &&
+                      checkDocument === false
+                    ? 'passed'
+                    : examination === undefined && ''
+              } `}
             >
+              {/* при ошибке добавляет уведомления */}
               {dateBirth.error === true ||
               surname.error === true ||
               name.error === true ||
@@ -600,54 +610,40 @@ export default function AddPassengersItem({ index, id, el }) {
               numberValue.error === true ||
               numberChildValue.error === true ? (
                 <>
-                  <div
-                    className={`error__icon ${examination !== false ? 'active' : ''}`}
-                    onClick={() => {
-                      setExamination(false);
-                    }}
-                  >
-                    X
-                  </div>
+                  <div className="error__icon">X</div>
 
-                  {examination !== false &&
-                  dateBirth.error === true &&
+                  {(dateBirth.error === true || dateBirth.name === '') &&
+                  twoSurname.error === false &&
                   surname.error === false &&
-                  name.error === false &&
-                  twoSurname.error === false ? (
+                  name.error === false ? (
                     <div className="error__text">
                       Заполните поле с датой о рождении!!
                     </div>
                   ) : (
                     ''
                   )}
-
-                  {examination !== false &&
+                  {dateBirth.error === false &&
+                  examination !== false &&
                   surname.error === false &&
                   name.error === false &&
-                  twoSurname.error === false &&
-                  dateBirth.error === false &&
-                  numberChildValue.error === false ? (
+                  twoSurname.error === false ? (
                     <div className="error__text">
                       Проверьте тип документа! &nbsp;
                     </div>
                   ) : (
                     ''
                   )}
-                  {examination !== false &&
-                    (surname.error === true ||
-                      name.error === true ||
-                      twoSurname.error === true) && (
-                      <div className="error__text">
-                        Проверьте поле c ФИО! Оно должно быть заполнено
-                        кирилицей и никаких цифр!!!
-                      </div>
-                    )}
-                  {examination !== false &&
-                    (seriesValue.error === true ||
-                      (numberValue.error === true &&
-                        surname.error === false &&
-                        name.error === false &&
-                        twoSurname.error === false)) &&
+                  {(surname.error === true ||
+                    name.error === true ||
+                    twoSurname.error === true) && (
+                    <div className="error__text">
+                      Проверьте поле c ФИО! Оно должно быть заполнено кирилицей
+                      и никаких цифр!!!
+                    </div>
+                  )}
+                  {(seriesValue.error === true ||
+                    (numberValue.error === true &&
+                      dateBirth.error === false)) &&
                     dateBirth.error !== true && (
                       <div className="error__text">
                         {' '}
@@ -655,10 +651,7 @@ export default function AddPassengersItem({ index, id, el }) {
                       </div>
                     )}
                   {numberChildValue.error === true &&
-                    examination !== false &&
-                    surname.error === false &&
-                    name.error === false &&
-                    twoSurname.error === false &&
+                    examination === false &&
                     dateBirth.error === false && (
                       <div className="error__text">
                         Номер свидетельства о рождении указан некорректно.
@@ -667,8 +660,7 @@ export default function AddPassengersItem({ index, id, el }) {
                     )}
                 </>
               ) : (
-                validForm === false &&
-                examination !== false && (
+                (validForm === false || examination === true) && (
                   <button
                     className="next__passenger__btn"
                     onClick={(e) => VerificationForm(e, index)}
@@ -678,7 +670,9 @@ export default function AddPassengersItem({ index, id, el }) {
                 )
               )}
 
+              {/* Если все правильно */}
               {validForm === true &&
+              examination === false &&
               mobilityInfo.valid !== false &&
               dateBirth.error !== true &&
               surname.error !== true &&
@@ -687,30 +681,19 @@ export default function AddPassengersItem({ index, id, el }) {
               numberValue.error !== true &&
               seriesValue.error !== true &&
               numberChildValue.error !== true &&
-              checkDocument !== true &&
-              examination !== false ? (
+              checkDocument !== true ? (
                 <>
-                  <div className="examination__box ">
+                  <div className="examination__box">
                     <div className="examination__icon">V</div>
                     <div className="examination__text">Готово</div>
                   </div>
                   <button
-                    className={`next__passenger__btn `}
+                    className={`next__passenger__btn ${examination !== undefined && examination ? 'examination__btn' : ''}`}
                     onClick={(e) => VerificationForm(e, index)}
                   >
                     Следующий пассажир
                   </button>
                 </>
-              ) : (
-                ''
-              )}
-              {examination === false ? (
-                <button
-                  className={`next__passenger__btn`}
-                  onClick={(e) => VerificationForm(e, index)}
-                >
-                  Следующий пассажир
-                </button>
               ) : (
                 ''
               )}

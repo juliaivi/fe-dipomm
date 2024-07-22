@@ -91,7 +91,7 @@ export default function FoundTrains() {
         <AddCardElement
           classElem={'train__list'}
           el={lastRoutesItem}
-          index={lastRoutesItem.departure._id}
+          index={Number(lastRoutesItem.departure._id)}
         />
       )}
 
@@ -101,7 +101,7 @@ export default function FoundTrains() {
             <AddCardElement
               classElem={'train__list'}
               el={el}
-              index={index}
+              index={Number(index)}
               key={index}
             />
           ))}

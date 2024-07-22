@@ -202,3 +202,20 @@ a {
   padding-top: 95px;
   padding-left: 42px;
 }
+
+@media (min-width: 1280px) and (max-width: 1480px) {
+  .title {
+    font-size: 32px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .button {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .train__selection {
+    width: 1200px;
+  }
+}

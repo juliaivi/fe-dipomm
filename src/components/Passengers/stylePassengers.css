@@ -1,9 +1,20 @@
 .passengers__details__box {
-    display: flex;
-    width: 1470px;
-    justify-content: space-between;
-    margin: auto;
-    padding-top: 95px;
-    padding-left: 42px;
-    padding-bottom: 20px;
+  display: flex;
+  width: 1470px;
+  justify-content: space-between;
+  margin: auto;
+  padding-top: 95px;
+  padding-left: 42px;
+  padding-bottom: 20px;
+}
+
+@media (min-width: 1280px) and (max-width: 1480px) {
+  .passengers__details__box {
+    width: 1200px;
+  }
+
+  .add_passengers__box {
+    width: 869px;
+    margin-left: 0px;
+  }
 }

@@ -71,37 +71,39 @@ export default function TicketSearchForm({ title }) {
     <>
       <form className="form__order jumbotron__form__order">
         <div className="order__box jumbotron__order__box">
-          <div className="direction jumbotron__direction">
-            <p className="form__title">Направление</p>
-            <div className="from__direction">
-              <SearchCity title={'Откуда'} listcites={citiesFromList} />
+          <div className="jumbotron__order__wrapper">
+            <div className="direction jumbotron__direction">
+              <p className="form__title">Направление</p>
+              <div className="from__direction">
+                <SearchCity title={'Откуда'} listcites={citiesFromList} />
 
-              <button
-                className="button btn_reverse"
-                onClick={(e) => swapCities(e)}
-              >
-                {' '}
-              </button>
+                <button
+                  className="button btn_reverse"
+                  onClick={(e) => swapCities(e)}
+                >
+                  {' '}
+                </button>
 
-              <SearchCity title={'Куда'} listcites={citiesToList} />
+                <SearchCity title={'Куда'} listcites={citiesToList} />
+              </div>
+            </div>
+
+            <div className="date">
+              <p className="form__title">Дата</p>
+              <div className="form__date ">
+                <AddCalendar classElem={title} />
+              </div>
             </div>
           </div>
-
-          <div className="date">
-            <p className="form__title">Дата</p>
-            <div className="form__date ">
-              <AddCalendar classElem={title} />
-            </div>
-          </div>
+          <button
+            type="submit"
+            className={`button button-find ${valid ? '' : 'button-find-disabled'}`}
+            disabled={valid === true ? false : true}
+            onClick={(e) => lookTickets(e)}
+          >
+            Найти билеты
+          </button>
         </div>
-        <button
-          type="submit"
-          className={`button button-find ${valid ? '' : 'button-find-disabled'}`}
-          disabled={valid === true ? false : true}
-          onClick={(e) => lookTickets(e)}
-        >
-          Найти билеты
-        </button>
       </form>
     </>
   );

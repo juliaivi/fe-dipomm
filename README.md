@@ -16,6 +16,7 @@
     "react-bootstrap": "^2.9.1",
     "react-calendar": "^4.6.1",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.52.1",
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.1",
     "react-scripts": "^5.0.1",

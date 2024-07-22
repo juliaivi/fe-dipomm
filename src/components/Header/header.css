@@ -1,16 +1,25 @@
 header {
-    position: relative;
-    z-index: 2;
-  }
-  
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  width: 1470px;
+  display: flex;
+  margin: auto;
+  padding-top: 12px;
+  padding-left: 44px;
+  font-size: 36px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.logo__link {
+  text-decoration: none;
+}
+
+@media (min-width: 1280px) and (max-width: 1480px) {
   .logo {
-    padding-top: 12px;
-    padding-left: 255px;
-    font-size: 36px;
-    font-weight: 700;
-    text-decoration: none;
+    padding-left: 84px;
   }
-  
-  .logo__link {
-    text-decoration: none;
-  } 
+}

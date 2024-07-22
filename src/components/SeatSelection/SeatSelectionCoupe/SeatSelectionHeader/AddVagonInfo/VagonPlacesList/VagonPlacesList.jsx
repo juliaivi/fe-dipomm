@@ -48,7 +48,6 @@ export default function VagonPlacesList({ type, listPlaces, price, vagon }) {
     }
   }, [selectedPlacesThere, selectedPlacesBack, vagon]);
 
-  debugger; // eslint-disable-line no-debugger
   const toggleElement = (e, selectedPlaces, addSeat, seats, vagon) => {
     if (e.target.classList.contains('place_item_busy')) {
       return;

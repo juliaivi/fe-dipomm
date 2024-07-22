@@ -15,7 +15,7 @@ export default function HowWorks({ setProgress }) {
       <section className="how__works" id="howworks">
         <div className="how__works_box">
           <div className="how__works__header">
-            <h2 className="how__works__title">Как это работает</h2>
+            <h2 className="how__works__title title">Как это работает</h2>
             <button className="button how__works__button">Узнать больше</button>
           </div>
 

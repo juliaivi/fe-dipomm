@@ -11,6 +11,7 @@ export default function Dropdown({
   setNumberChildValue,
   setNumberValue,
   setSeriesValue,
+  setValidForm,
 }) {
   const [isActive, setIsActive] = useState(false);
 
@@ -33,7 +34,8 @@ export default function Dropdown({
                 onClick={() => {
                   setSelected(el);
                   setIsActive(false);
-                  setExamination(false);
+                  setExamination(true);
+                  setValidForm(false);
                   if (el.type === 'passport') {
                     setNumberChildValue({
                       number: '',
@@ -74,4 +76,5 @@ Dropdown.propTypes = {
   setNumberChildValue: PropTypes.func,
   setNumberValue: PropTypes.func,
   setSeriesValue: PropTypes.func,
+  setValidForm: PropTypes.func,
 };

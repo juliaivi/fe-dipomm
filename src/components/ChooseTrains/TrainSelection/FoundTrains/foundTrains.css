@@ -1,15 +1,16 @@
 .train__list {
   width: 981px;
   padding-right: 22px;
+  padding-left: 22px;
 }
-  
+
 .was-found {
   display: flex;
   margin-bottom: 48px;
-  justify-content: space-between;  
-  color: var(--color-gray) ;
+  justify-content: space-between;
+  color: var(--color-gray);
 }
-  
+
 .control__list {
   display: flex;
   width: 514px;
@@ -29,7 +30,13 @@
   margin-left: 0;
 }
 
- .price__type__currency {
+.price__type__currency {
   margin-top: -8px;
   font-size: 24px;
+}
+
+@media (min-width: 1280px) and (max-width: 1480px) {
+  .price__type__currency {
+    font-size: 18px;
+  }
 }

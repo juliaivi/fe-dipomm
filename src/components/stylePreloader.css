@@ -1,5 +1,4 @@
 .loader__block {
-  width: 1920px;
   display: flex;
   flex-direction: column;
   background: #3e3c41;
@@ -24,4 +23,13 @@
 
 .main {
   min-height: 1024px;
+}
+.loader__block__info-img {
+  display: flex;
+}
+
+@media (min-width: 1280px) and (max-width: 1480px) {
+  .loader__block__info {
+    width: 1200px;
+  }
 }

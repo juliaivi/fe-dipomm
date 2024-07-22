@@ -22,18 +22,22 @@
   height: 321px;
   margin-top: 111px !important;
   margin: auto;
-  padding: 25px 21px 59px 43px;
   background: rgba(41, 41, 41, 0.8) !important;
 }
 
 .main__form__info .form__order .order__box {
+  display: block;
+  width: 1470px;
+  margin: auto;
+}
+.main__form__info .form__order .order__box .jumbotron__order__wrapper {
   display: flex;
   justify-content: center;
-  margin-bottom: 0;
 }
 
 .main__form__info .form__order .order__box .direction {
   margin-right: 44px;
+  padding-left: 44px;
 }
 
 .main__form__infox .form__order .order__box .direction .form__title {
@@ -46,7 +50,7 @@
 
 .main__form__info .form__order .button-find {
   font-size: 24px;
-  margin-right: 18px;
+  margin-right: 24px;
   margin-top: -10px;
 }
 
@@ -63,29 +67,33 @@
   margin: auto;
 }
 
-.registration__stage {
-  width: 100%;
-  height: 99px;
-  background-color: var(--color-darck-gray);
-  z-index: -1;
-}
-
 .registration__stage__box {
   display: flex;
+  height: 100%;
 }
 
 .operation__name {
+  display: flex;
+  margin: auto;
+  align-items: center;
   text-align: center;
   font-size: 36px;
   color: var(--bg-and-color-white);
+  z-index: 2;
 }
 
 .stage {
-  flex-grow: 1;
+  margin: auto;
+}
+
+.status__passengers {
+  position: relative;
+  left: -36px;
 }
 
 .stage_active {
   display: flex;
+  width: 100%;
   background: orange;
 }
 
@@ -103,9 +111,9 @@
 }
 
 .arrow_active {
-  width: 72px;
-  height: 72px;
-  margin: 13px 0 0 -37px;
+  width: 73px;
+  height: 73px;
+  margin: 13px -39px -1px -36px;
   display: inline-block;
   border-top: 3px solid var(--bg-and-color-white) !important;
   border-right: 3px solid var(--bg-and-color-white) !important;
@@ -128,57 +136,13 @@
   border-radius: 32px;
 }
 
-.operation__name .list__title {
-  margin-top: 8px;
-  z-index: 2;
-}
-
-.stage__tickets {
-  width: 582px;
-  height: 99px;
-}
-
-.stage__passengers {
-  width: 361px;
-  margin-left: -35px;
-}
-
-.stage__passengers .operation__name {
-  margin-left: -65px;
-}
-
-.stage__payment {
-  width: 361px;
-  margin-left: -35px;
-}
-
-.stage__payment .operation__name {
-  margin-left: -65px;
-}
-
-.stage__check {
-  flex-grow: 2;
-  margin-left: -35px;
-}
-
-.registration__stage__box .status__check {
-  flex-grow: 1;
-}
-.stage__check .operation__name {
-  margin-left: -65px;
-}
-
-.operation__name {
-  display: flex;
-  margin-top: 22px;
-  margin-left: 92px;
-}
-
 .status {
   display: flex;
+  width: 100%;
+  height: 100%;
+  margin: auto;
 }
 
-/*trains trains trains*/
 .registration__stage {
   width: 100%;
   height: 99px;
@@ -186,60 +150,15 @@
   z-index: -1;
 }
 
-.registration__stage__box {
-  display: flex;
+.status__payment {
+  position: relative;
+  left: -40px;
 }
 
-.operation__name {
-  text-align: center;
-  font-size: 36px;
-  color: var(--bg-and-color-white);
+.status__check {
+  margin-left: -40px;
 }
 
-.stage {
-  flex-grow: 1;
-}
-
-.stage_active {
-  display: flex;
-  background: orange;
-}
-
-.arrow {
-  width: 72px;
-  height: 72px;
-  display: inline-block;
-  margin: 13px 0 0 -37px;
-  border-top: 3px solid var(--bg-and-color-white) !important;
-  border-right: 3px solid var(--bg-and-color-white) !important;
-  transform: rotate(45deg);
-  transition: 1s;
-  border-radius: 2px;
-  z-index: 4;
-}
-
-.arrow_active {
-  width: 72px;
-  height: 72px;
-  margin: 13px 0 0 -37px;
-  display: inline-block;
-  border-top: 3px solid var(--bg-and-color-white) !important;
-  border-right: 3px solid var(--bg-and-color-white) !important;
-  transform: rotate(45deg);
-  transition: 1s;
-  background-color: orange;
-  border-radius: 2px;
-  z-index: 1;
-}
-
-.list__number {
-  width: 60px;
-  height: 60px;
-  margin-left: 136px;
-  margin-right: 24px;
-  border: 3px solid;
-  border-radius: 32px;
-}
 .main__form__info .order__box .date {
   position: relative;
   z-index: 5;
@@ -254,4 +173,38 @@
 .form__date .form__date-box_back.main__from .react-calendar {
   right: 40px;
   bottom: -175px;
+}
+
+@media (min-width: 1280px) and (max-width: 1480px) {
+  .main__form__info .form__order {
+    padding: 0;
+  }
+
+  .main__form__info .form__order .order__box .jumbotron__order__wrapper {
+    padding-top: 30px;
+  }
+
+  .main__form__info .form__order .order__box {
+    width: 1200px;
+  }
+
+  .main__form__info .form__order .button-find {
+    margin-right: 4px;
+  }
+
+  .operation__name {
+    font-size: 28px;
+  }
+
+  .list__number {
+    display: flex;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-left: 89px;
+    margin-right: 9px;
+    align-items: center;
+    border: 3px solid;
+    border-radius: 32px;
+  }
 }

@@ -6,7 +6,10 @@
 
 .navbar_nav {
   display: flex;
-  padding: 26px 99px 0 257px;
+  width: 1470px;
+  margin: auto;
+  padding-top: 26px;
+  padding-left: 44px;
 }
 
 .nav__item {
@@ -17,4 +20,14 @@
   font-size: 30px;
   font-weight: 300;
   text-decoration: none;
+}
+
+@media (min-width: 1280px) and (max-width: 1480px) {
+  .nav__link {
+    font-size: 26px;
+  }
+
+  .navbar_nav {
+    width: 1200px;
+  }
 }

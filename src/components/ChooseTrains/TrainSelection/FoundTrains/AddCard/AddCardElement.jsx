@@ -125,7 +125,7 @@ export default function AddCardElement({ el, index }) {
 
         <div className="list__place__box">
           <div className="list__place__info">
-            <ListPlace departure={el.departure} index={index} />
+            <ListPlace departure={el.departure} index={Number(index)} />
           </div>
 
           <div className="list__services_box">

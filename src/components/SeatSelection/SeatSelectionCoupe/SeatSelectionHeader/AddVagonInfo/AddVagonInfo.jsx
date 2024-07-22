@@ -3,12 +3,6 @@ import './styleVagonInfo.css';
 import AddServiceButtons from '../AddServiceButtons/AddServiceButtons';
 import VagonPlacesList from './VagonPlacesList/VagonPlacesList';
 import { useSelector } from 'react-redux';
-// import {useEffect,, useDispatch
-//   setTicketPricesThere,
-//   setTicketPricesBack,
-//   deleteSeatThere,
-//   deleteSeatBack,
-// } from '../../../../../redux/slice/passengersSlice';
 import PropTypes from 'prop-types';
 
 export default function AddVagonInfo({ type }) {
@@ -16,21 +10,10 @@ export default function AddVagonInfo({ type }) {
     (state) => state.passengers,
   );
   const { trainSeats, trainSeatsBack } = useSelector((state) => state.train);
-  // const dispatch = useDispatch();
 
   const [toggleState, setToggleState] = useState(null);
   let typeSeats;
   let trainSeatsInfo;
-
-  // useEffect(() => {
-  //   if (type === 'there') {
-  //     dispatch(setTicketPricesThere(0));
-  //     dispatch(deleteSeatThere());
-  //   } else {
-  //     dispatch(setTicketPricesBack(0));
-  //     dispatch(deleteSeatBack());
-  //   }
-  // }, [toggleState]);
 
   const toggleActive = (e, index) => {
     e.preventDefault();

@@ -162,3 +162,38 @@ input:-moz-placeholder {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.passengers__forms__box .form__clue__text.form__clue__text-telephone.error {
+  margin-left: 40px;
+}
+
+.form__clue__text.error {
+  width: 250px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: none;
+  color: var(--bg-color-error);
+}
+
+.passengers__forms__box .form__clue__text.form__clue__text-email.error {
+  margin-top: -78px;
+  margin-bottom: 42px;
+}
+
+.checkbox.checkbox__cash__payment.error,
+.checkbox__input.error {
+  border: 1px solid var(--bg-color-error);
+}
+
+@media (min-width: 1280px) and (max-width: 1480px) {
+  .passengers__forms__box .form__title,
+  .payment__method__title {
+    font-size: 26px;
+  }
+
+  .telephone__info__input,
+  .email__info__input,
+  .online__payment__list {
+    font-size: 18px;
+  }
+}
