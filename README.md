@@ -30,3 +30,7 @@
    ```
 5. Запуск в development режиме
    `npm run start`
+
+---
+### Краткий обзор 
+![](../fe-dipomm/public/video.mp4)
