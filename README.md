@@ -33,4 +33,4 @@
 
 ---
 ### Краткий обзор 
-![](../fe-dipomm/public/video.mp4)
+![](./public/video.mp4)
