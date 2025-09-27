@@ -1,7 +1,7 @@
 {
   "name": "fe-diplom",
   "version": "0.1.0",
-  "homepage": "https://juliaivi.github.io/fe-dipomm/",
+  "homepage": "https://juliaivi.github.io/fe-dipomm",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
