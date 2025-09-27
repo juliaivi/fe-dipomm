@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <div className="case">
-        <Router basename="/fe-dipomm">
+        <Router>
           <Header />
           <Routes>
             <Route path="/" element={<Main />} />
